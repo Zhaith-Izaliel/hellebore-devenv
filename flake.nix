@@ -7,46 +7,45 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs = inputs@{ flake-parts, helix, self, ... }:
   let
     version = "1.0.0";
   in
-  flake-parts.lib.mkFlake { inherit inputs; } {
+  flake-parts.lib.mkFlake { inherit inputs; } ({ withSystem, ... }: {
     systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
 
     perSystem = { pkgs, system, ... }: {
       devShells = {
-        # nix develop
-        default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            taplo
-            toml2nix
+      # nix develop
+      default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          taplo
+          toml2nix
+        ];
+      };
+    };
+
+    packages.default = pkgs.callPackages ./nix { inherit version; };
+  };
+
+  flake = rec {
+    homeManagerModules.default = { pkgs, ... }: {
+      imports =  [ ./nix/hm-module.nix ];
+
+      programs.helix.zhaith-configuration.package =
+        withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
+
+        nixpkgs = {
+          overlays = [
+            overlays.default
           ];
         };
       };
-
-      packages.default = pkgs.callPackages ./nix { inherit version; };
+      overlays.default = helix.overlays.default;
     };
-
-    flake = rec {
-      flakeModule = { withSystem, ... }: {
-        flake.homeManagerModules.default = { pkgs, ... }: {
-          imports =  [ ./nix/hm-module.nix ];
-
-          programs.helix.zhaith-configuration.package =
-            withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
-
-            nixpkgs = {
-              overlays = [
-                overlays.default
-              ];
-            };
-          };
-        };
-        overlays.default = helix.overlays.default;
-      };
-    };
-  }
+  });
+}
 
