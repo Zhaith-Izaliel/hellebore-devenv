@@ -36,7 +36,7 @@ formatter = { command = "prettier" }
 auto-format = true
 
 [[language]]
-name = "javacript"
+name = "javascript"
 language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
 roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
 auto-format = true
