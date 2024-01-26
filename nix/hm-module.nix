@@ -28,7 +28,8 @@ in
       inherit extraPackages;
     };
 
-    home.file.".config/helix".source = "${cfg.package}";
+    home.file.".config/helix/config.toml".source = "${cfg.package}/config.toml";
+    home.file.".config/helix/languages.toml".source = "${cfg.package}/languages.toml";
   };
 }
 
