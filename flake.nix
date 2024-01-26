@@ -28,7 +28,7 @@
       };
     };
 
-    packages.default = pkgs.callPackages ./nix { inherit version; };
+    packages.default = pkgs.callPackage ./nix { inherit version; };
   };
 
   flake = rec {
