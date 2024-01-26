@@ -22,9 +22,9 @@ insert = "bar"
 
 [editor.indent-guides]
 render = true
-character = "▏"# Some characters that work well: "▏", "┆", "┊", "⸽"
+character = "▏"
 skip-levels = 1
 
 
 [keys.normal]
-D = ["ensure_selections_forward", "extend_to_line_end"]
+"$" = ["ensure_selections_forward", "extend_to_line_end"]
