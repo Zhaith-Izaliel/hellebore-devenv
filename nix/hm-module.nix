@@ -31,7 +31,7 @@ in
       ];
     };
 
-    home.file.${config.xdg.configHome}.helix.source = "${cfg.package}";
+    home.file.".config/helix".source = "${cfg.package}";
   };
 }
 
