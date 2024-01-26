@@ -7,7 +7,7 @@ command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
 [language-server.eslint.config]
-codeActionsOnSave = { mode = "all", "eslint.applyAllFixes" = true }
+codeActionsOnSave = { mode = "all" }
 format = { enable = true }
 nodePath = ""
 quiet = false
@@ -31,6 +31,8 @@ scss = { validate = { enable = true } }
 less = { validate = { enable = true } }
 provideFormatter = true
 
+[language-server.vuels.config]
+nodePath = ""
 
 [[language]]
 name = "typescript"
