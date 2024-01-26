@@ -30,31 +30,31 @@ documentFormatting = false
 
 [[language]]
 name = "typescript"
-language-servers = ["vuels", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls", "eslint"]
+language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"]
 roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"]
 formatter = { command = "prettier" }
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls", "eslint"] # shouldn't need to override this
+language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"] # shouldn't need to override this
 roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = ["vuels", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls", "eslint"] # shouldn't need to override this
+language-servers = [ "eslint", "vuels", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"] # shouldn't need to override this
 roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
 auto-format = true
 
 [[language]]
 name = "jsx"
-language-servers = ["vuels", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls", "eslint"] # shouldn't need to override this
+language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls" ] # shouldn't need to override this
 roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
 auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-ls", "eslint"]
+language-servers = [ "eslint", "vuels", "tailwindcss-ls" ]
 auto-format = true
 
