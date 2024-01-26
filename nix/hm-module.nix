@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stdenv, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf types mkOption;
   cfg = config.programs.helix.zhaith-configuration;
+  extraPackages = (import ./dependencies.nix { inherit pkgs stdenv; }).packages;
 in
 {
   options.programs.helix.zhaith-configuration = {
@@ -24,10 +25,7 @@ in
   config = mkIf cfg.enable {
     programs.helix = {
       inherit (cfg) enable defaultEditor;
-
-      extraPackages = with pkgs; [
-        taplo
-      ];
+      inherit extraPackages;
     };
 
     home.file.".config/helix".source = "${cfg.package}";
