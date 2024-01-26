@@ -38,4 +38,3 @@ tabpad = "―"
 [keys.normal]
 "$" = ["ensure_selections_forward", "extend_to_line_end"]
 "F3" = ":set whitespace.render all"
-GG = [ "select_all", "remove_primary_selection" ]
