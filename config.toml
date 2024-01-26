@@ -9,7 +9,7 @@ bufferline = "multiple"
 color-modes = true
 
 [editor.statusline]
-separator = "╲"
+separator = "╲ "
 left = [ "mode", "read-only-indicator", "file-base-name", "separator", "version-control" ]
 center = [ "spinner", "diagnostics" ]
 right = [ "file-encoding", "register", "position", "position-percentage" ]
@@ -19,3 +19,12 @@ mode.select = "SELECT"
 
 [editor.cursor-shape]
 insert = "bar"
+
+[editor.indent-guides]
+render = true
+character = "▏"# Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+
+[keys.normal]
+D = ["ensure_selections_forward", "extend_to_line_end"]
