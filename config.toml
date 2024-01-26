@@ -20,11 +20,22 @@ mode.select = "SELECT"
 [editor.cursor-shape]
 insert = "bar"
 
+[editor.lsp]
+display-inlay-hints = true
+
 [editor.indent-guides]
 render = true
 character = "▏"
 skip-levels = 1
 
+[editor.whitespace.characters]
+space = "·"
+nbsp = "󱁐"
+tab = ""
+newline = "$"
+tabpad = "―"
 
 [keys.normal]
 "$" = ["ensure_selections_forward", "extend_to_line_end"]
+"F3" = ":set whitespace.render all"
+GG = [ "select_all", "remove_primary_selection" ]
