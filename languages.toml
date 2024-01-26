@@ -7,7 +7,7 @@ command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
 [language-server.eslint.config]
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+codeActionsOnSave = { mode = "all", "eslint.applyAllFixes" = true }
 format = { enable = true }
 nodePath = ""
 quiet = false
