@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    helix = {
-      url = "github:helix-editor/helix";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
@@ -31,18 +27,12 @@
     packages.default = pkgs.callPackage ./nix { inherit version; };
   };
 
-  flake = rec {
+  flake = {
     homeManagerModules.default = { pkgs, ... }: {
       imports =  [ ./nix/hm-module.nix ];
 
       programs.helix.zhaith-configuration.package =
         withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
-
-        nixpkgs = {
-          overlays = [
-            overlays.default
-          ];
-        };
       };
       overlays.default = helix.overlays.default;
     };
