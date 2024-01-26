@@ -1,8 +1,7 @@
-{ overlays, configPackage }:
 { config, pkgs, lib, ... }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf types mkOption;
   cfg = config.programs.helix.zhaith-configuration;
 in
 {
@@ -15,13 +14,14 @@ in
         editor using the {env}`EDITOR` environment variable.
       '';
     };
+
+    package = mkOption {
+      type = types.package;
+      defaultText = lib.literalMD "`packages.default` from the helix-config flake";
+    };
   };
 
   config = mkIf cfg.enable {
-    nixpkgs = {
-      inherit overlays;
-    };
-
     programs.helix = {
       inherit (cfg) enable defaultEditor;
 
@@ -31,7 +31,7 @@ in
       ];
     };
 
-    home.file.${config.xdg.configHome}.helix.source = "${configPackage}";
+    home.file.${config.xdg.configHome}.helix.source = "${cfg.package}";
   };
 }
 

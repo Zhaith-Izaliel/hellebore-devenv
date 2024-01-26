@@ -3,43 +3,50 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs: with inputs;
+  outputs = inputs@{ flake-parts, helix, self, ... }:
   let
     version = "1.0.0";
   in
-  with import nixpkgs { inherit system; };
-  flake-utils.lib.eachDefaultSystem (system:
-    rec {
-      workspaceShell = pkgs.mkShell {
-        # nativeBuildInputs is usually what you want -- tools you need to run
-        nativeBuildInputs = with pkgs; [
-          taplo
-          toml2nix
-        ];
-      };
+  flake-parts.lib.mkFlake { inherit inputs; } {
+    systems = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
 
+    perSystem = { pkgs, system, ... }: {
       devShells = {
         # nix develop
-        "${system}".default = workspaceShell;
-        default = workspaceShell;
+        default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            taplo
+            toml2nix
+          ];
+        };
       };
-      packages.default = pkgs.callPackage ./nix { inherit version; };
-    }
-    ) // {
-      homeManagerModules.default = import ./nix {
-        overlays = [
-          overlays.default
-        ];
-        configPackage = self.packages.${pkgs.system}.default;
-      };
-      overlays.default = helix.overlays.default;
+
+      packages.default = pkgs.callPackages ./nix { inherit version; };
     };
-}
+
+    flake = rec {
+      flakeModule = { withSystem, ... }: {
+        flake.homeManagerModules.default = { pkgs, ... }: {
+          imports =  [ ./nix/hm-module.nix ];
+
+          programs.helix.zhaith-configuration.package =
+            withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
+
+            nixpkgs = {
+              overlays = [
+                overlays.default
+              ];
+            };
+          };
+        };
+        overlays.default = helix.overlays.default;
+      };
+    };
+  }
 
