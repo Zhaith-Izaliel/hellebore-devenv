@@ -10,6 +10,7 @@ in
   packages = with pkgs; [
     # Language Servers
     nil
+    emmet-ls
     nodePackages.pyright
     sumneko-lua-language-server
     rust-analyzer

@@ -1,59 +1,71 @@
+[language-server]
+deno = { command = "deno", args = [ "lsp" ] }
+emmet-ls = { command = "emmet-ls", args = [ "--stdio" ] }
+
 [language-server.eslint]
-args = ["--stdio"]
 command = "vscode-eslint-language-server"
+args = ["--stdio"]
 
 [language-server.eslint.config]
-validate = "on"
-experimental = { useFlatConfig = false }
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
 rulesCustomizations = []
 run = "onType"
+validate = "on"
+experimental = {}
 problems = { shortenToSingleLine = false }
-nodePath = "" 
 
 [language-server.eslint.config.codeAction]
-[language-server.eslint.config.codeAction.disableRuleComment]
-enable = true
-location = "separateLine"
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
 
-[language-server.eslint.config.codeAction.showDocumentation]
-enable = true
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
 
-[language-server.eslint.config.codeActionOnSave]
-enable = true
-mode = "fixAll"
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
 
-[language-server.eslint.config.workingDirectory]
-mode = "location"
-
-[language-server.typescript-language-server.config]
-documentFormatting = false
 
 [[language]]
 name = "typescript"
-language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"]
-roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"]
-auto-format = true
-
-[[language]]
-name = "javascript"
-language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"] # shouldn't need to override this
-roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "eslint", "vuels", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"] # shouldn't need to override this
-roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
+language-servers = [ "deno", "eslint", "emmet-ls" ]
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
 auto-format = true
 
 [[language]]
 name = "jsx"
-language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls" ] # shouldn't need to override this
-roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "tailwindcss-ls" ]
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "emmet-ls", "tailwindcss-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "emmet-ls", "tailwindcss-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = [ "eslint", "vuels", "tailwindcss-ls" ]
+language-servers = [ "vuels", "tailwindcss-ls", "eslint" ]
 auto-format = true
 
