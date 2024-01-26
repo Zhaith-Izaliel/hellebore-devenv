@@ -1,2 +1,18 @@
 theme = "catppuccin_macchiato"
 
+[editor]
+middle-click-paste = false
+line-number = "relative"
+auto-save = true
+rulers = [ 80 ]
+bufferline = "multiple"
+color-modes = "true"
+
+[editor.statusline]
+separator = "╲"
+left = [ "mode", "read-only-indicator", "file-base-name", "separator", "version-control" ]
+center = [ "spinner", "diagnostics" ]
+right = [ "file-encoding", "register", "position", "position-percentage" ]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
