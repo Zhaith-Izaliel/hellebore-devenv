@@ -26,6 +26,10 @@ in
     nodejs-servers.stylelint-lsp
     nodejs-servers."@tailwindcss/language-server"
     nodejs-servers."@volar/vue-language-server"
+
+    # DAP
+    lldb
+    delve
   ];
 }
 
