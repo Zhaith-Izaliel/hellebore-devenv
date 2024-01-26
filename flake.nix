@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    nil.url = "github:oxalica/nil";
   };
 
-  outputs = inputs@{ flake-parts, helix, self, ... }:
+  outputs = inputs@{ flake-parts, nil, self, ... }:
   let
     version = "1.0.0";
   in
@@ -27,14 +27,20 @@
     packages.default = pkgs.callPackage ./nix { inherit version; };
   };
 
-  flake = {
+  flake = rec {
     homeManagerModules.default = { pkgs, ... }: {
       imports =  [ ./nix/hm-module.nix ];
+
+      nixpkgs = {
+        overlays = [
+          overlays.default
+        ];
+      };
 
       programs.helix.zhaith-configuration.package =
         withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
       };
-      overlays.default = helix.overlays.default;
+      overlays.default = nil.overlays.default;
     };
   });
 }
