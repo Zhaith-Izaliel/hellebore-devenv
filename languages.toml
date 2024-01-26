@@ -32,7 +32,6 @@ documentFormatting = false
 name = "typescript"
 language-servers = [ "eslint", { except-features = ["format"], name = "typescript-language-server" }, "tailwindcss-ls"]
 roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"]
-formatter = { command = "prettier" }
 auto-format = true
 
 [[language]]
