@@ -26,7 +26,6 @@ in
       inherit (cfg) enable defaultEditor;
 
       extraPackages = with pkgs; [
-        mdformat
         taplo
       ];
     };
