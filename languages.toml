@@ -16,7 +16,7 @@ enable = true
 location = "separateLine"
 
 [language-server.eslint.config.codeAction.showDocumentation]
-enable = true
+enable = true # why?
 
 [language-server.eslint.config.codeActionOnSave]
 enable = true
@@ -25,26 +25,37 @@ mode = "fixAll"
 [language-server.eslint.config.workingDirectory]
 mode = "location" # do we need to override this?
 
-[[language]]
-name = "javascript"
-language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"]
-auto-format = true
-
-[[language]]
-name = "jsx"
-language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"]
-auto-format = true
+[language-server.typescript-language-server.config]
+documentFormatting = false # use eslint instead, do we have to override this ourselves? I think if eslint LSP is detected and enabled, this should be done automatically for us as generally everyone lets eslint take over linting+prettying, which uses prettier by default if detected by it
 
 [[language]]
 name = "typescript"
 language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
+roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
+formatter = { command = "prettier" }
+auto-format = true
+
+[[language]]
+name = "javacript"
+language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
+roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
 auto-format = true
 
 [[language]]
 name = "tsx"
 language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
+roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
+roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
 auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = ["eslint", "vuels", "tailwindcss-ls"]
+language-servers = ["vuels", "tailwindcss-ls", "eslint"] # shouldn't need to override this
+roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
+auto-format = true
+
