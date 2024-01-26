@@ -1,4 +1,4 @@
-{ overlays }:
+{ overlays, configPackage }:
 { config, pkgs, lib, ... }:
 
 let
@@ -25,7 +25,13 @@ in
     programs.helix = {
       inherit (cfg) enable defaultEditor;
 
+      extraPackages = with pkgs; [
+        mdformat
+        taplo
+      ];
     };
+
+    home.file.${config.xdg.configHome}.helix.source = "${configPackage}";
   };
 }
 

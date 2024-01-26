@@ -11,8 +11,11 @@
   };
 
   outputs = inputs: with inputs;
+  let
+    version = "1.0.0";
+  in
+  with import nixpkgs { inherit system; };
   flake-utils.lib.eachDefaultSystem (system:
-    with import nixpkgs { inherit system; };
     rec {
       workspaceShell = pkgs.mkShell {
         # nativeBuildInputs is usually what you want -- tools you need to run
@@ -27,12 +30,14 @@
         "${system}".default = workspaceShell;
         default = workspaceShell;
       };
+      packages.default = pkgs.callPackage ./nix { inherit version; };
     }
-    ) // rec {
+    ) // {
       homeManagerModules.default = import ./nix {
         overlays = [
           overlays.default
         ];
+        configPackage = self.packages.${pkgs.system}.default;
       };
       overlays.default = helix.overlays.default;
     };
