@@ -24,7 +24,10 @@
       };
     };
 
-    packages.default = pkgs.callPackage ./nix { inherit version; };
+    packages = rec {
+      default = pkgs.callPackage ./nix { inherit version toml-merge; };
+      toml-merge = pkgs.callPackage ./nix/toml-merge.nix {};
+    };
   };
 
   flake = rec {
