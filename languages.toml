@@ -44,17 +44,7 @@ provideFormatter = true
 
 [[language]]
 name = "git-commit"
-language-servers = [ "scls", "commitlint" ]
-
-# introduce a new language to enable completion on any doc by forcing set language with :set-language stub
-[[language]]
-name = "stub"
-scope = "text.stub"
-file-types = []
-shebangs = []
-roots = []
-auto-format = false
-language-servers = [ "scls" ]
+language-servers = [ "commitlint", "scls" ]
 
 [[language]]
 name = "typescript"
