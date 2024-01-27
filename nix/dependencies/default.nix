@@ -21,7 +21,7 @@ in {
     rust-analyzer
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
-    nodePackages.vls
+    nodePackages.volar
     tailwindcss-language-server
     python311Packages.mdformat
     nodePackages.bash-language-server
@@ -42,7 +42,6 @@ in {
         + ''
           mkdir -p $out/node_modules
 
-          ln -s ${nodejs-packages.commitlint-format-json}/lib/node_modules/* $out/node_modules
           ln -s ${nodejs-packages."@commitlint/config-conventional"}/lib/node_modules/* $out/node_modules
         '';
     }))

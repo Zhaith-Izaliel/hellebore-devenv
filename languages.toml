@@ -1,7 +1,6 @@
 [language-server]
 deno = { command = "deno", args = [ "lsp" ] }
 emmet-ls = { command = "emmet-ls", args = [ "--stdio" ] }
-vuels = { command = "vls", args = ["--stdio"], config = { typescript = { tsdk = "node_modules/typescript/lib/" } } }
 commitlint = { command = "commitlint", args = [ "--format", "commitlint-format-json", "--extends", "@commitlint/config-conventional" ] }
 
 [language-server.scls]
