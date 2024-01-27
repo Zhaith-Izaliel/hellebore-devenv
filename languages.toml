@@ -117,7 +117,7 @@ language-servers = [ "clangd", "scls" ]
 auto-format = true
 
 [[language]]
-name = "c++"
+name = "cpp"
 language-servers = [ "clangd", "scls" ]
 auto-format = true
 
