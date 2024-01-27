@@ -33,6 +33,7 @@ in {
     gopls
     cmake-language-server
     ltex-ls
+    nodejs-packages.stylelint-lsp
 
     (pkgs.commitlint.overrideAttrs
       (final: prev: {

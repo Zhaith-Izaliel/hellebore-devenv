@@ -1,12 +1,6 @@
 [language-server]
 deno = { command = "deno", args = ["lsp"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
-commitlint = { command = "commitlint", args = [
-  "--format",
-  "commitlint-format-json",
-  "--extends",
-  "@commitlint/config-conventional",
-] }
 
 [language-server.scls]
 command = "simple-completion-language-server"
@@ -17,6 +11,25 @@ snippets_first = true        # completions will return before snippets by defaul
 feature_words = true         # enable completion by word
 feature_snippets = true      # enable snippets
 feature_unicode_input = true # enable "unicode input"
+
+[language-server.stylelint-ls]
+command = "stylelint-lsp"
+args = ["--stdio"]
+
+[language-server.stylelint-ls.config]
+at-rule-no-unknown = [
+  true,
+  { ignoreAtRules = [
+    "apply",
+    "layer",
+    "responsive",
+    "screen",
+    "tailwind",
+    "variants",
+  ] },
+]
+declaration-block-trailing-semicolon = "null"
+no-descending-specificity = "null"
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
@@ -100,18 +113,13 @@ auto-format = true
 
 [[language]]
 name = "css"
-language-servers = [
-  "vscode-css-language-server",
-  "emmet-ls",
-  "tailwindcss-ls",
-  "scls",
-]
+language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = "prettier", args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-ls", "eslint", "scls"]
+language-servers = ["vuels", "stylelint-ls", "tailwindcss-ls", "eslint", "scls"]
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
