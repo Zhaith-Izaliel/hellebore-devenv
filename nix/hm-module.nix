@@ -6,12 +6,11 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkIf types mkOption;
+  inherit (dependencies) language-servers debug-adapters formatters;
+
   cfg = config.programs.helix.zhaith-configuration;
 
-  nodejs-servers = import ./nodejs {
-    inherit pkgs stdenv;
-    nodejs = pkgs.nodejs;
-  };
+  dependencies = import ./dependencies { inherit pkgs stdenv lib; };
 in {
   options.programs.helix.zhaith-configuration = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
@@ -36,32 +35,7 @@ in {
     programs.helix = {
       inherit (cfg) enable defaultEditor;
 
-      extraPackages = with pkgs; [
-        # Language Servers
-        nil
-        emmet-ls
-        nodePackages.pyright
-        sumneko-lua-language-server
-        rust-analyzer
-        nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
-        nodePackages.typescript-language-server
-        nodePackages.vls
-        tailwindcss-language-server
-        python311Packages.mdformat
-        nodePackages.bash-language-server
-        haskell-language-server
-        ccls
-        gopls
-        cmake-language-server
-        ltex-ls
-
-        # DAP
-        lldb
-        delve
-
-        # Formatters
-        alejandra
-      ];
+      extraPackages = language-servers ++ debug-adapters ++ formatters;
     };
 
     home.file.".config/helix/config.toml".source = "${cfg.package}/config.toml";
