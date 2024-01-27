@@ -24,7 +24,7 @@ in {
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
     nodePackages.volar
-    tailwindcsscss-language-server
+    tailwindcss-language-server
     texlab
     nodePackages.bash-language-server
     haskell-language-server
