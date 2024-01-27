@@ -34,16 +34,16 @@ in {
     (pkgs.commitlint.overrideAttrs
     (final: prev: {
       nativeBuildInputs = [
-        nodejs-servers."@commitlint/config-conventional"
-        nodejs-servers.commitlint-format-json
+        nodejs-packages."@commitlint/config-conventional"
+        nodejs-packages.commitlint-format-json
       ];
       installPhase =
         prev.installPhase
         + ''
           mkdir -p $out/node_modules
 
-          ln -s ${nodejs-servers.commitlint-format-json}/lib/node_modules/* $out/node_modules
-          ln -s ${nodejs-servers."@commitlint/config-conventional"}/lib/node_modules/* $out/node_modules
+          ln -s ${nodejs-packages.commitlint-format-json}/lib/node_modules/* $out/node_modules
+          ln -s ${nodejs-packages."@commitlint/config-conventional"}/lib/node_modules/* $out/node_modules
         '';
     }))
   ];
