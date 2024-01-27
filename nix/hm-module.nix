@@ -1,10 +1,11 @@
+{ package }:
 { config, pkgs, lib, stdenv, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf types mkOption;
   cfg = config.programs.helix.zhaith-configuration;
   
-  extraLanguagesToml = pkgs.writeText "zhaith-helix-extra-languages.toml" ''
+  extraLanguages = pkgs.writeText "zhaith-helix-extra-languages.toml" ''
     [language-server]
     vuels = { command = "vue-language-server", args = ["--stdio"], config = { typescript = { tsdk = "${volar}/lib/node_modules/typescript/lib/" } } }
   '';
@@ -25,7 +26,6 @@ let
     ln -s ${pkgs.typescript}/lib/node_modules/* $out/node_modules
     '';
   });
-
 in
 {
   options.programs.helix.zhaith-configuration = {
@@ -39,8 +39,9 @@ in
     };
 
     package = mkOption {
+      default = package.override { inherit extraLanguages; };
       type = types.package;
-      defaultText = lib.literalMD "`packages.default` from the helix-config flake";
+      description = "Defines the package used to get Helix's configuration from.";
     };
   };
 

@@ -31,18 +31,22 @@
   };
 
   flake = rec {
-    homeManagerModules.default = { pkgs, ... }: {
-      imports =  [ ./nix/hm-module.nix ];
+    homeManagerModules.default = { pkgs, ... }: 
+    let
+      home-module = import ./nix/hm-module.nix { 
+        package = withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
+      };
+    in
+    {
+      imports =  [ home-module ];
 
       nixpkgs = {
         overlays = [
           overlays.default
         ];
       };
+    };
 
-      programs.helix.zhaith-configuration.package =
-        withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.default);
-      };
       overlays.default = nil.overlays.default;
     };
   });
