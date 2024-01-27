@@ -32,9 +32,6 @@ scss = { validate = { enable = true } }
 less = { validate = { enable = true } }
 provideFormatter = true
 
-[language-server.vuels.config]
-nodePath = ""
-
 [[language]]
 name = "typescript"
 language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
