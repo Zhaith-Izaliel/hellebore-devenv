@@ -8,6 +8,7 @@ rulers = [ 80 ]
 bufferline = "multiple"
 color-modes = true
 auto-completion = true
+auto-format = true
 
 [editor.statusline]
 separator = "╲ "
