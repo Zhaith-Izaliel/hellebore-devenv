@@ -58,40 +58,42 @@ language-servers = [ "scls" ]
 
 [[language]]
 name = "typescript"
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "slcs" ]
 auto-format = true
 
 [[language]]
 name = "tsx"
-language-servers = [ "deno", "typescript-language-server", "eslint", "emmet-ls" ]
+language-servers = [ "deno", "typescript-language-server", "eslint", "emmet-ls", "slcs" ]
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls" ]
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "slcs" ]
 auto-format = true
 
 [[language]]
 name = "jsx"
-language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "tailwindcss-ls" ]
+language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "tailwindcss-ls", "scls" ]
 auto-format = true
 
 [[language]]
 name = "html"
-language-servers = [ "vscode-html-language-server", "emmet-ls", "tailwindcss-ls" ]
+language-servers = [ "vscode-html-language-server", "emmet-ls", "tailwindcss-ls", "scls" ]
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
 
 [[language]]
 name = "css"
-language-servers = [ "vscode-css-language-server", "emmet-ls", "tailwindcss-ls" ]
+language-servers = [ "vscode-css-language-server", "emmet-ls", "tailwindcss-ls", "scls" ]
 auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = [ "vuels", "tailwindcss-ls", "eslint" ]
+language-servers = [ "vuels", "tailwindcss-ls", "eslint", "scls" ]
 auto-format = true
 
 [[language]]
 name = "nix"
+language-servers = [ "nil", "scls" ]
+auto-format = true
 formatter = { command = "alejandra" }
