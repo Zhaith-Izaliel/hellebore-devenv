@@ -8,29 +8,10 @@
   inherit (lib) mkEnableOption mkIf types mkOption;
   cfg = config.programs.helix.zhaith-configuration;
 
-  extraLanguages = ''
-    [language-server]
-    vuels = { command = "vue-language-server", args = ["--stdio"], config = { typescript = { tsdk = "${volar}/node_modules/typescript/lib/" } } }
-  '';
-
   nodejs-servers = import ./nodejs {
     inherit pkgs stdenv;
     nodejs = pkgs.nodejs;
   };
-
-  volar = nodejs-servers."@volar/vue-language-server".overrideAttrs (final: prev: {
-    nativeBuildInputs = with pkgs; [
-      typescript
-    ];
-
-    installPhase =
-      prev.installPhase
-      + ''
-        mkdir -p $out/node_modules
-
-        ln -s ${pkgs.typescript}/lib/node_modules/* $out/node_modules
-      '';
-  });
 in {
   options.programs.helix.zhaith-configuration = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
@@ -45,7 +26,7 @@ in {
       };
 
     package = mkOption {
-      default = package.override {inherit extraLanguages;};
+      default = package;
       type = types.package;
       description = "Defines the package used to get Helix's configuration from.";
     };
@@ -64,6 +45,8 @@ in {
         rust-analyzer
         nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
         nodePackages.typescript-language-server
+        nodePackages.vls
+        tailwindcss-language-server
         python311Packages.mdformat
         nodePackages.bash-language-server
         haskell-language-server
@@ -71,9 +54,6 @@ in {
         gopls
         cmake-language-server
         ltex-ls
-        nodejs-servers.stylelint-lsp
-        nodejs-servers."@tailwindcss/language-server"
-        volar
 
         # DAP
         lldb
