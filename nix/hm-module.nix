@@ -10,7 +10,7 @@
 
   extraLanguages = ''
     [language-server]
-    vuels = { command = "vue-language-server", args = ["--stdio"], config = { typescript = { tsdk = "${volar}/lib/node_modules/typescript/lib/" } } }
+    vuels = { command = "vue-language-server", args = ["--stdio"], config = { typescript = { tsdk = "${volar}/node_modules/typescript/lib/" } } }
   '';
 
   nodejs-servers = import ./nodejs {
