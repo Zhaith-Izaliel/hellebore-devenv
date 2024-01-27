@@ -107,7 +107,7 @@ auto-format = true
 
 [[language]]
 name = "haskell"
-languages-servers = [ "haskell-language-server", "scls" ]
+language-server = [ "haskell-language-server", "scls" ]
 formatter = { command = "stylish-haskell", args = [] }
 auto-format = true
 
