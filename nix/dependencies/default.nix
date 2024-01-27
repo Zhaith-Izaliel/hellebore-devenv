@@ -31,7 +31,7 @@ in {
     cmake-language-server
     ltex-ls
 
-    pkgs.commitlint.overrideAttrs
+    (pkgs.commitlint.overrideAttrs
     (final: prev: {
       nativeBuildInputs = [
         nodejs-servers."@commitlint/config-conventional"
@@ -45,7 +45,7 @@ in {
           ln -s ${nodejs-servers.commitlint-format-json}/lib/node_modules/* $out/node_modules
           ln -s ${nodejs-servers."@commitlint/config-conventional"}/lib/node_modules/* $out/node_modules
         '';
-    })
+    }))
   ];
 
   debug-adapters = with pkgs; [
