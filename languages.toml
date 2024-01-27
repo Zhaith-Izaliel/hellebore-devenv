@@ -28,7 +28,6 @@ at-rule-no-unknown = [
     "variants",
   ] },
 ]
-declaration-block-trailing-semicolon = "null"
 no-descending-specificity = "null"
 
 [language-server.eslint]
