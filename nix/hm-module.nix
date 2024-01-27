@@ -5,7 +5,7 @@ let
   inherit (lib) mkEnableOption mkIf types mkOption;
   cfg = config.programs.helix.zhaith-configuration;
   
-  extraLanguages = pkgs.writeText "zhaith-helix-extra-languages.toml" ''
+  extraLanguages = ''
     [language-server]
     vuels = { command = "vue-language-server", args = ["--stdio"], config = { typescript = { tsdk = "${volar}/lib/node_modules/typescript/lib/" } } }
   '';
