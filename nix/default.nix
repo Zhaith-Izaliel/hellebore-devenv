@@ -1,5 +1,6 @@
 {
   stdenv,
+  writeTextFile,
   lib,
   toml-merge,
   version ? "git",
@@ -7,9 +8,16 @@
   extraConfig ? "",
 }:
 
-let
-  extraLanguagesFile = builtins.toFile "helix-zhaith-extra-languages-file.toml" extraLanguages;
-  extraConfigFile= builtins.toFile "helix-zhaith-extra-languages-file.toml" extraConfig;
+let  
+  extraLanguagesFile = writeTextFile {
+    name =  "helix-zhaith-extra-languages-file.toml";
+    text = extraLanguages;
+  };
+
+  extraConfigFile = writeTextFile  {
+    name = "helix-zhaith-extra-languages-file.toml";   
+    text = extraConfig;
+  };
 in
 stdenv.mkDerivation {
   inherit version;

@@ -49,30 +49,34 @@ in
     programs.helix = {
       inherit (cfg) enable defaultEditor;
 
-  extraPackages = with pkgs; [
-    # Language Servers
-    nil
-    emmet-ls
-    nodePackages.pyright
-    sumneko-lua-language-server
-    rust-analyzer
-    nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
-    nodePackages.typescript-language-server
-    python311Packages.mdformat
-    nodePackages.bash-language-server
-    haskell-language-server
-    ccls
-    gopls
-    cmake-language-server
-    ltex-ls
-    nodejs-servers.stylelint-lsp
-    nodejs-servers."@tailwindcss/language-server"
+      extraPackages = with pkgs; [
+        # Language Servers
+        nil
+        emmet-ls
+        nodePackages.pyright
+        sumneko-lua-language-server
+        rust-analyzer
+        nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
+        nodePackages.typescript-language-server
+        python311Packages.mdformat
+        nodePackages.bash-language-server
+        haskell-language-server
+        ccls
+        gopls
+        cmake-language-server
+        ltex-ls
+        nodejs-servers.stylelint-lsp
+        nodejs-servers."@tailwindcss/language-server"
 
-    # DAP
-    lldb
-    delve
-  ];    };
+        # DAP
+        lldb
+        delve
 
+        # Formatters
+        alejandra
+      ];    
+    };
+    
     home.file.".config/helix/config.toml".source = "${cfg.package}/config.toml";
     home.file.".config/helix/languages.toml".source = "${cfg.package}/languages.toml";
   };

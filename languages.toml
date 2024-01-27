@@ -63,7 +63,6 @@ auto-format = true
 [[language]]
 name = "css"
 language-servers = [ "vscode-css-language-server", "emmet-ls", "tailwindcss-ls" ]
-formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
@@ -71,3 +70,6 @@ name = "vue"
 language-servers = [ "vuels", "tailwindcss-ls", "eslint" ]
 auto-format = true
 
+[[language]]
+name = "nix"
+formatter = { command = "alejandra" }
