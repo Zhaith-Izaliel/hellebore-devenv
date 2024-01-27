@@ -51,7 +51,9 @@
 
       overlays.default = [
         nil.overlays.default
-        simple-completion-language-server.overlays.default
+        (final: prev: {
+          simple-completion-language-server = simple-completion-language-server.packages.${final.stdenv.hostPlatform.system}.default;
+        })
       ];
     };
   });
