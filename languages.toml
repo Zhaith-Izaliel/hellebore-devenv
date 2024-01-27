@@ -1,6 +1,7 @@
 [language-server]
 deno = { command = "deno", args = [ "lsp" ] }
 emmet-ls = { command = "emmet-ls", args = [ "--stdio" ] }
+vuels = { command = "vls", args = ["--stdio"], config = { typescript = { tsdk = "node_modules/typescript/lib/" } } }
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
