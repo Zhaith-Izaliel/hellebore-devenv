@@ -28,7 +28,6 @@ at-rule-no-unknown = [
     "variants",
   ] },
 ]
-no-descending-specificity = "null"
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
