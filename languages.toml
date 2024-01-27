@@ -49,21 +49,25 @@ language-servers = [ "commitlint", "scls" ]
 [[language]]
 name = "typescript"
 language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "slcs" ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "tsx"
 language-servers = [ "deno", "typescript-language-server", "eslint", "emmet-ls", "slcs" ]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
 language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "slcs" ]
+formatter = { command = "prettier", args = ["--parser", "javascript"] }
 auto-format = true
 
 [[language]]
 name = "jsx"
 language-servers = [ "typescript-language-server", "eslint", "emmet-ls", "tailwindcss-ls", "scls" ]
+formatter = { command = "prettier", args = ["--parser", "javascript"] }
 auto-format = true
 
 [[language]]
@@ -75,15 +79,61 @@ auto-format = true
 [[language]]
 name = "css"
 language-servers = [ "vscode-css-language-server", "emmet-ls", "tailwindcss-ls", "scls" ]
+formatter = { command = "prettier", args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
 name = "vue"
 language-servers = [ "vuels", "tailwindcss-ls", "eslint", "scls" ]
+formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
 name = "nix"
 language-servers = [ "nil", "scls" ]
+formatter = { command = "alejandra", args = [] }
 auto-format = true
-formatter = { command = "alejandra" }
+
+[[language]]
+name = "lua"
+language-servers = [ "lua-language-server", "scls" ]
+auto-format = true
+
+[[language]]
+name = "toml"
+language-servers = [ "taplo", "scls" ]
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
+
+[[language]]
+name = "haskell"
+languages-servers = [ "haskell-language-server", "scls" ]
+formatter = { command = "stylish-haskell", args = [] }
+auto-format = true
+
+[[language]]
+name = "c"
+language-servers = [ "clangd", "scls" ]
+auto-format = true
+
+[[language]]
+name = "c++"
+language-servers = [ "clangd", "scls" ]
+auto-format = true
+
+[[languages]]
+name = "go"
+language-servers = [ "gopls", "scls" ]
+formatter = { command = "goimports", args = [] }
+auto-format = true
+
+[[language]]
+name = "markdown"
+language-servers = [ "marksman", "ltex-ls", "scls" ]
+formatter = { command = "mdformat", args = [] }
+auto-format = true
+
+[[language]]
+name = "latex"
+language-servers = [ "texlab", "ltex-ls", "scls" ]
+auto-format = true
