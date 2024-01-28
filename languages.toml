@@ -42,6 +42,7 @@ args = ["--stdio"]
 [language-server.eslint.config]
 codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
 format = { enable = true }
+nodePath = ""
 quiet = false
 rulesCustomizations = []
 run = "onType"
