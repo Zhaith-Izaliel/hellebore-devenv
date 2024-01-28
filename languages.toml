@@ -15,10 +15,10 @@ feature_unicode_input = true # enable "unicode input"
 [language-server.stylelint-ls]
 command = "stylelint-lsp"
 args = ["--stdio"]
+
+[language-server.stylelint-ls.config]
 autoFixOnSave = true
 autoFixOnFormat = true
-
-# [language-server.stylelint-ls.config]
 # at-rule-no-unknown = [
 #   true,
 #   { ignoreAtRules = [
