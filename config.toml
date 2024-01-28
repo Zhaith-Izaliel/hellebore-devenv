@@ -4,7 +4,7 @@ theme = "catppuccin_macchiato"
 middle-click-paste = false
 line-number = "relative"
 auto-save = true
-rulers = [ 80 ]
+rulers = [80]
 bufferline = "multiple"
 color-modes = true
 auto-completion = true
@@ -12,9 +12,15 @@ auto-format = true
 
 [editor.statusline]
 separator = "╲ "
-left = [ "mode", "read-only-indicator", "file-base-name", "separator", "version-control" ]
-center = [ "spinner", "diagnostics" ]
-right = [ "file-encoding", "register", "position", "position-percentage" ]
+left = [
+  "mode",
+  "read-only-indicator",
+  "file-base-name",
+  "separator",
+  "version-control",
+]
+center = ["spinner", "diagnostics"]
+right = ["file-encoding", "register", "position", "position-percentage"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
@@ -23,7 +29,7 @@ mode.select = "SELECT"
 insert = "bar"
 
 [editor.lsp]
-display-inlay-hints = true
+display-inlay-hints = false
 display-messages = true
 
 [editor.indent-guides]
@@ -39,7 +45,7 @@ newline = "$"
 tabpad = "―"
 
 [keys.normal]
-"$" = [ "ensure_selections_forward", "extend_to_line_end" ]
+"$" = ["ensure_selections_forward", "extend_to_line_end"]
 "F3" = ":set whitespace.render all"
 "F4" = ":set whitespace.render none"
 # I might regret that
@@ -49,7 +55,7 @@ tabpad = "―"
 "left" = "no_op"
 
 [keys.select]
-"$" = [ "ensure_selections_forward", "extend_to_line_end" ]
+"$" = ["ensure_selections_forward", "extend_to_line_end"]
 # I might regret that
 "up" = "no_op"
 "down" = "no_op"
