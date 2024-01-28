@@ -45,7 +45,7 @@ format = { enable = true }
 nodePath = ""
 quiet = false
 rulesCustomizations = []
-run = "onType"
+run = "onSave"
 validate = "on"
 experimental = {}
 problems = { shortenToSingleLine = false }
@@ -62,7 +62,6 @@ provideFormatter = true
 css = { validate = { enable = false } }
 scss = { validate = { enable = false } }
 less = { validate = { enable = false } }
-provideFormatter = true
 
 [[language]]
 name = "git-commit"
@@ -137,7 +136,7 @@ language-servers = [
   "eslint",
   "scls",
 ]
-formatter = { command = 'prettier', args = ["--parser", "vue"] }
+# formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
