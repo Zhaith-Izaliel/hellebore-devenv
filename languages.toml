@@ -25,6 +25,7 @@ autoFixOnFormat = true
 
 [language-server.stylelint-ls.config.stylelintplus.config.rules]
 at-rule-no-unknown = [
+  true,
   { ignoreAtRules = [
     "apply",
     "screen",
@@ -35,7 +36,7 @@ at-rule-no-unknown = [
     "responsive",
   ] },
 ]
-function-no-unknown = [{ ignoreFunctions = ["theme"] }]
+function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
 
 
 [language-server.eslint]
