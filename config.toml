@@ -29,7 +29,7 @@ mode.select = "SELECT"
 insert = "bar"
 
 [editor.lsp]
-display-inlay-hints = true
+display-inlay-hints = false
 display-messages = true
 
 [editor.indent-guides]
