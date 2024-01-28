@@ -21,7 +21,7 @@ autoFixOnSave = true
 autoFixOnFormat = true
 configFile = "/home/zhaith/Development/gitlab.com/Zhaith-Izaliel/virgilribeyre.com-next/.stylelintrc.json"
 
-[language-server.stylelint-ls.config.stylelintplus.config.rules]
+[language-server.stylelint-ls.config]
 at-rule-no-unknown = [
   true,
   { ignoreAtRules = [
