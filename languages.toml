@@ -19,9 +19,8 @@ args = ["--stdio"]
 [language-server.stylelint-ls.config.stylelintplus]
 autoFixOnSave = true
 autoFixOnFormat = true
-configFile = "/home/zhaith/Development/gitlab.com/Zhaith-Izaliel/virgilribeyre.com-next/.stylelintrc.json"
 
-[language-server.stylelint-ls.config]
+[language-server.stylelint-ls.config.stylelintplus.config.rules]
 at-rule-no-unknown = [
   true,
   { ignoreAtRules = [
@@ -30,7 +29,7 @@ at-rule-no-unknown = [
     "layer",
     "config",
     "variants",
-    "responsiveive",
+    "responsive",
     "screen",
   ] },
 ]
