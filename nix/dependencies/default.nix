@@ -12,6 +12,7 @@ in {
     alejandra
     python311Packages.mdformat
     gotools
+    nodePackages.prettier
   ];
 
   language-servers = with pkgs; [
@@ -23,7 +24,7 @@ in {
     rust-analyzer
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
-    nodePackages.vls
+    nodePackages.volar
     tailwindcss-language-server
     texlab
     nodePackages.bash-language-server
@@ -34,21 +35,6 @@ in {
     cmake-language-server
     ltex-ls
     nodejs-packages.stylelint-lsp
-
-    (pkgs.commitlint.overrideAttrs
-      (final: prev: {
-        nativeBuildInputs = [
-          nodejs-packages."@commitlint/config-conventional"
-          nodejs-packages.commitlint-format-json
-        ];
-        installPhase =
-          prev.installPhase
-          + ''
-            mkdir -p $out/node_modules
-
-            ln -s ${nodejs-packages."@commitlint/config-conventional"}/lib/node_modules/* $out/node_modules
-          '';
-      }))
   ];
 
   debug-adapters = with pkgs; [

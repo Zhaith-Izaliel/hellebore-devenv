@@ -1,7 +1,6 @@
 [language-server]
 deno = { command = "deno", args = ["lsp"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
-vuels = { command = "vls" }
 
 [language-server.scls]
 command = "simple-completion-language-server"
