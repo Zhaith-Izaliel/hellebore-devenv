@@ -117,7 +117,7 @@ auto-format = true
 name = "css"
 language-servers = [
   "stylelint-ls",
-  "vscode-css-language-server",
+  # "vscode-css-language-server",
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
