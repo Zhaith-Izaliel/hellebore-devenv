@@ -18,12 +18,6 @@ args = ["--stdio"]
 
 [language-server.stylelint-ls.config]
 nodePath = ""
-
-[language-server.stylelint-ls.config.stylelintplus]
-autoFixOnSave = true
-autoFixOnFormat = true
-
-[language-server.stylelint-ls.config.stylelintplus.config.rules]
 at-rule-no-unknown = [
   true,
   { ignoreAtRules = [
@@ -37,6 +31,12 @@ at-rule-no-unknown = [
   ] },
 ]
 function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
+
+[language-server.stylelint-ls.config.stylelintplus]
+autoFixOnSave = true
+autoFixOnFormat = true
+
+# [language-server.stylelint-ls.config.stylelintplus.config.rules]
 
 
 [language-server.eslint]

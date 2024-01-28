@@ -35,9 +35,14 @@ in
       fusion
     ];
 
-    installPhase = lib.concatStringsSep "\n" [
-      "mkdir -p $out"
-      "cp -r *.toml $out"
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out
+      cp -r *.toml $out
+      runHook postInstall
+    '';
+
+    postInstallPhase = lib.concatStringsSep "\n" [
       (lib.optionalString (extraLanguages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml")
       (lib.optionalString (extraConfig != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml")
     ];
