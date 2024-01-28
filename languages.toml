@@ -131,11 +131,10 @@ auto-format = true
 [[language]]
 name = "vue"
 language-servers = [
+  "eslint",
   "vuels",
   "vscode-css-language-server",
   "tailwindcss-ls",
-  "eslint",
-  "scls",
 ]
 # formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
