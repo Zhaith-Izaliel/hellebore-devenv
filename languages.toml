@@ -16,10 +16,6 @@ feature_unicode_input = true # enable "unicode input"
 command = "stylelint-lsp"
 args = ["--stdio"]
 
-[language-sever.stylelint-ls.config]
-provideFormatter = true
-format = { enable = true }
-
 [language-server.stylelint-ls.config.stylelintplus]
 autoFixOnSave = true
 autoFixOnFormat = true
@@ -40,7 +36,7 @@ command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
 [language-server.eslint.config]
-codeActionsOnSave = { mode = "all" }
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
 format = { enable = true }
 nodePath = ""
 quiet = false
