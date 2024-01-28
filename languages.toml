@@ -40,6 +40,9 @@ command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
 [language-server.eslint.config]
+provideFormatter = true
+
+[language-server.eslint.config.eslint]
 codeActionsOnSave = { mode = "all" }
 format = { enable = true }
 nodePath = ""
@@ -50,7 +53,7 @@ validate = "on"
 experimental = {}
 problems = { shortenToSingleLine = false }
 
-[language-server.eslint.config.codeAction]
+[language-server.eslint.config.eslint.codeAction]
 disableRuleComment = { enable = true, location = "separateLine" }
 showDocumentation = { enable = false }
 
