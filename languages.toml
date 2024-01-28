@@ -18,6 +18,7 @@ args = ["--stdio"]
 
 [language-server.stylelint-ls.config]
 provideFormatter = true
+format = { enable = true }
 autoFixOnFormat = true
 # at-rule-no-unknown = [
 #   true,
@@ -120,6 +121,7 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
+roots = ["package.json", "package-lock.json", "yarn.lock", ".stylelintrc.json"]
 # formatter = { command = "prettier", args = ["--parser", "css"] }
 auto-format = true
 
