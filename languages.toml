@@ -123,7 +123,7 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
-formatter = { command = "eslint", args = ["--stdin", "--fix"] }
+formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
