@@ -19,6 +19,7 @@ args = ["--stdio"]
 [language-server.stylelint-ls.config.stylelintplus]
 autoFixOnSave = true
 autoFixOnFormat = true
+configFile = "/home/zhaith/Development/gitlab.com/Zhaith-Izaliel/virgilribeyre.com-next/.stylelintrc.json"
 
 [language-server.stylelint-ls.config.stylelintplus.config.rules]
 at-rule-no-unknown = [
