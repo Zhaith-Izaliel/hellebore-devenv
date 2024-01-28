@@ -8,17 +8,12 @@
       url = "github:estin/simple-completion-language-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    fusion = {
-      url = "github:edgelaboratories/fusion";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {
     flake-parts,
     nil,
     simple-completion-language-server,
-    fusion,
     ...
   }: let
     version = "1.0.0";
@@ -42,9 +37,8 @@
         };
 
         packages = rec {
-          default = pkgs.callPackage ./nix {inherit version toml-merge;};
-          toml-merge = pkgs.callPackage ./nix/toml-merge.nix {};
-          fusion = pkgs.callPackage ./nix/fusion.nix {src = fusion;};
+          default = pkgs.callPackage ./nix {inherit version fusion;};
+          fusion = pkgs.callPackage ./nix/dependencies/fusion.nix {};
         };
       };
 

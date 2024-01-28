@@ -53,22 +53,6 @@
         "type": "github"
       }
     },
-    "fusion": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704798605,
-        "narHash": "sha256-tgsc9telG/RZcQv+r+48zXGpZ4i1ONatY7pdnQ/ncuY=",
-        "owner": "edgelaboratories",
-        "repo": "fusion",
-        "rev": "da4d33796edfcd1f5e7b3ec3eabdfadd7c714078",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edgelaboratories",
-        "repo": "fusion",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -164,7 +148,6 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "fusion": "fusion",
         "nil": "nil",
         "nixpkgs": "nixpkgs_2",
         "simple-completion-language-server": "simple-completion-language-server"

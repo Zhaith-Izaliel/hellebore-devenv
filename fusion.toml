@@ -1,0 +1,186 @@
+[[language]]
+  language-servers = ["scls"]
+  name = "git-commit"
+
+[[language]]
+  auto-format = true
+  language-servers = ["typescript-language-server", "eslint", "emmet-ls", "slcs"]
+  name = "typescript"
+  [language.formatter]
+    args = ["--parser", "typescript"]
+    command = "prettier"
+
+[[language]]
+  auto-format = true
+  language-servers = ["deno", "typescript-language-server", "eslint", "emmet-ls", "slcs"]
+  name = "tsx"
+  [language.formatter]
+    args = ["--parser", "typescript"]
+    command = "prettier"
+
+[[language]]
+  auto-format = true
+  language-servers = ["typescript-language-server", "eslint", "emmet-ls", "slcs"]
+  name = "javascript"
+  [language.formatter]
+    args = ["--parser", "javascript"]
+    command = "prettier"
+
+[[language]]
+  auto-format = true
+  language-servers = ["typescript-language-server", "eslint", "emmet-ls", "tailwindcss-ls", "scls"]
+  name = "jsx"
+  [language.formatter]
+    args = ["--parser", "javascript"]
+    command = "prettier"
+
+[[language]]
+  auto-format = true
+  language-servers = ["vscode-html-language-server", "emmet-ls", "tailwindcss-ls", "scls"]
+  name = "html"
+  [language.formatter]
+    args = ["--parser", "html"]
+    command = "prettier"
+
+[[language]]
+  auto-format = true
+  language-servers = ["stylelint-ls", "vscode-css-language-server", "emmet-ls", "tailwindcss-ls", "scls"]
+  name = "css"
+
+[[language]]
+  auto-format = true
+  language-servers = ["eslint", "vuels", "vscode-css-language-server", "tailwindcss-ls", "scls"]
+  name = "vue"
+  [language.formatter]
+    args = ["--parser", "vue"]
+    command = "prettier"
+
+[[language]]
+  auto-format = true
+  language-servers = ["nil", "scls"]
+  name = "nix"
+  [language.formatter]
+    args = []
+    command = "alejandra"
+
+[[language]]
+  auto-format = true
+  language-servers = ["lua-language-server", "scls"]
+  name = "lua"
+
+[[language]]
+  auto-format = true
+  language-servers = ["taplo", "scls"]
+  name = "toml"
+  [language.formatter]
+    args = ["format", "-"]
+    command = "taplo"
+
+[[language]]
+  auto-format = true
+  language-servers = ["haskell-language-server", "scls"]
+  name = "haskell"
+  [language.formatter]
+    args = []
+    command = "stylish-haskell"
+
+[[language]]
+  auto-format = true
+  language-servers = ["clangd", "scls"]
+  name = "c"
+
+[[language]]
+  auto-format = true
+  language-servers = ["clangd", "scls"]
+  name = "cpp"
+
+[[language]]
+  auto-format = true
+  language-servers = ["marksman", "ltex-ls", "scls"]
+  name = "markdown"
+  [language.formatter]
+    args = ["-"]
+    command = "mdformat"
+
+[[language]]
+  auto-format = true
+  language-servers = ["texlab", "ltex-ls", "scls"]
+  name = "latex"
+
+[language-server]
+  [language-server.deno]
+    args = ["lsp"]
+    command = "deno"
+  [language-server.emmet-ls]
+    args = ["--stdio"]
+    command = "emmet-ls"
+  [language-server.eslint]
+    args = ["--stdio"]
+    command = "vscode-eslint-language-server"
+    [language-server.eslint.config]
+      quiet = false
+      rulesCustomizations = []
+      run = "onType"
+      validate = "on"
+      [language-server.eslint.config.codeAction]
+        [language-server.eslint.config.codeAction.disableRuleComment]
+          enable = true
+          location = "separateLine"
+        [language-server.eslint.config.codeAction.showDocumentation]
+          enable = false
+      [language-server.eslint.config.codeActionsOnSave]
+        mode = "all"
+      [language-server.eslint.config.experimental]
+      [language-server.eslint.config.format]
+        enable = true
+      [language-server.eslint.config.problems]
+        shortenToSingleLine = false
+  [language-server.scls]
+    command = "simple-completion-language-server"
+    [language-server.scls.config]
+      feature_snippets = true
+      feature_unicode_input = true
+      feature_words = true
+      max_completion_items = 20
+      snippets_first = true
+  [language-server.stylelint-ls]
+    args = ["--stdio"]
+    command = "stylelint-lsp"
+    [language-server.stylelint-ls.config]
+      nodePath = ""
+      test = "no"
+      [language-server.stylelint-ls.config.stylelintplus]
+        autoFixOnFormat = true
+        autoFixOnSave = true
+        [language-server.stylelint-ls.config.stylelintplus.config]
+          [language-server.stylelint-ls.config.stylelintplus.config.rules]
+            at-rule-no-unknown = [true, {ignoreAtRules = ["apply", "screen", "tailwind", "config", "layer", "variants", "responsive"]}]
+            function-no-unknown = [true, {ignoreFunctions = ["theme"]}]
+  [language-server.vscode-css-language-server]
+    [language-server.vscode-css-language-server.config]
+      [language-server.vscode-css-language-server.config.css]
+        [language-server.vscode-css-language-server.config.css.validate]
+          enable = false
+      [language-server.vscode-css-language-server.config.less]
+        [language-server.vscode-css-language-server.config.less.validate]
+          enable = false
+      [language-server.vscode-css-language-server.config.scss]
+        [language-server.vscode-css-language-server.config.scss.validate]
+          enable = false
+  [language-server.vscode-json-language-server]
+    [language-server.vscode-json-language-server.config]
+      provideFormatter = true
+      [language-server.vscode-json-language-server.config.json]
+        [language-server.vscode-json-language-server.config.json.format]
+          enable = true
+        [language-server.vscode-json-language-server.config.json.validate]
+          enable = true
+
+[[languages]]
+  auto-format = true
+  language-servers = ["gopls", "scls"]
+  name = "go"
+  [languages.formatter]
+    args = []
+    command = "goimports"
+
