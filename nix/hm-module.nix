@@ -9,7 +9,7 @@
   inherit (dependencies) language-servers debug-adapters formatters;
 
   cfg = config.programs.helix.zhaith-configuration;
-
+  extraLanguages = import ./extraLanguages.nix {inherit pkgs;};
   dependencies = import ./dependencies {inherit pkgs stdenv lib;};
 in {
   options.programs.helix.zhaith-configuration = {
@@ -26,10 +26,7 @@ in {
 
     package = mkOption {
       default = package.override {
-        extraLanguages = ''
-          [language-server.vuels.config.typescript]
-          tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib/"
-        '';
+        inherit extraLanguages;
       };
       type = types.package;
       description = "Defines the package used to get Helix's configuration from.";

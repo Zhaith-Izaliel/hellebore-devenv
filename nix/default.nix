@@ -37,8 +37,10 @@ in
 
     installPhase = ''
       runHook preInstall
+
       mkdir -p $out
       cp -r *.toml $out
+
       runHook postInstall
     '';
 
