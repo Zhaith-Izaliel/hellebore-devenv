@@ -43,7 +43,7 @@ args = ["--stdio"]
 args = ["--log-level=4", "--stdio"]
 
 [language-server.eslint.config]
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+codeActionsOnSave = { mode = "all" }
 format = { enable = true }
 nodePath = ""
 quiet = false
@@ -71,7 +71,6 @@ language-servers = ["scls"]
 [[language]]
 name = "typescript"
 language-servers = ["typescript-language-server", "eslint", "slcs"]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
@@ -89,7 +88,6 @@ auto-format = true
 [[language]]
 name = "javascript"
 language-servers = ["typescript-language-server", "eslint", "emmet-ls", "slcs"]
-formatter = { command = "prettier", args = ["--parser", "javascript"] }
 auto-format = true
 
 [[language]]
@@ -118,7 +116,6 @@ auto-format = true
 [[language]]
 name = "vue"
 language-servers = ["vuels", "eslint", "emmet-ls", "tailwindcss-ls", "scls"]
-formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
