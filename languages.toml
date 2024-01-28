@@ -39,6 +39,9 @@ function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
 command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
+[language-server.typescript-language-server]
+args = ["--stdio", "--log-level 4"]
+
 [language-server.eslint.config]
 codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
 format = { enable = true }
