@@ -40,7 +40,7 @@ command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
 [language-server.typescript-language-server]
-args = ["--stdio", "--log-level 4"]
+args = ["--log-level=4", "--stdio"]
 
 [language-server.eslint.config]
 codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
