@@ -23,7 +23,7 @@ in {
     rust-analyzer
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
-    nodePackages.volar
+    nodePackages.vls
     tailwindcss-language-server
     texlab
     nodePackages.bash-language-server
