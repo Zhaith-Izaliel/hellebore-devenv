@@ -23,6 +23,20 @@ nodePath = ""
 autoFixOnSave = true
 autoFixOnFormat = true
 
+[language-server.stylelint-ls.config.stylelintplus.config.rules]
+at-rule-no-unknown = [
+  { ignoreAtRules = [
+    "apply",
+    "screen",
+    "tailwind",
+    "config",
+    "layer",
+    "variants",
+    "responsive",
+  ] },
+]
+function-no-unknown = [{ ignoreFunctions = ["theme"] }]
+
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
