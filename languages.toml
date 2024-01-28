@@ -123,7 +123,6 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
-roots = ["package.json", "package-lock.json", "yarn.lock", ".stylelintrc.json"]
 # formatter = { command = "prettier", args = ["--parser", "css"] }
 auto-format = true
 
@@ -134,8 +133,9 @@ language-servers = [
   "vuels",
   "vscode-css-language-server",
   "tailwindcss-ls",
+  "scls",
 ]
-# formatter = { command = 'prettier', args = ["--parser", "vue"] }
+formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
