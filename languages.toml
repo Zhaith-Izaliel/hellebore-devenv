@@ -58,6 +58,9 @@ showDocumentation = { enable = false }
 json = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
 
+[language-server.vuels.config]
+nodePath = ""
+
 [[language]]
 name = "git-commit"
 language-servers = ["scls"]
@@ -121,7 +124,7 @@ language-servers = [
   "vuels",
   "vscode-css-language-server",
   "tailwindcss-ls",
-  "scls",
+  # "scls",
 ]
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
