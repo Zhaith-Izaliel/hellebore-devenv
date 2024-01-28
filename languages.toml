@@ -61,16 +61,13 @@ showDocumentation = { enable = false }
 json = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
 
-[language-server.vuels.config]
-nodePath = ""
-
 [[language]]
 name = "git-commit"
 language-servers = ["scls"]
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "eslint", "slcs"]
+language-servers = ["eslint", "typescript-language-server", "slcs"]
 auto-format = true
 
 [[language]]
@@ -82,12 +79,11 @@ language-servers = [
   "emmet-ls",
   "slcs",
 ]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server", "eslint", "emmet-ls", "slcs"]
+language-servers = ["typescript-language-server", "eslint", "slcs"]
 auto-format = true
 
 [[language]]
@@ -99,23 +95,35 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "javascript"] }
 auto-format = true
 
 [[language]]
 name = "html"
-language-servers = ["emmet-ls", "tailwindcss-ls", "scls"]
+language-servers = [
+  "vscode-html-language-server",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+]
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
 
 [[language]]
 name = "css"
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "eslint", "emmet-ls", "tailwindcss-ls", "scls"]
+language-servers = [
+  "vuels",
+  "vscode-html-language-server",
+  "eslint",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+]
 auto-format = true
 
 [[language]]
