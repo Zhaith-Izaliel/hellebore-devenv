@@ -48,7 +48,6 @@ tabpad = "―"
 "$" = ["ensure_selections_forward", "extend_to_line_end"]
 "F3" = ":set whitespace.render all"
 "F4" = ":set whitespace.render none"
-"C-A" = ":lsp-workspace-command"
 # I might regret that
 "up" = "no_op"
 "down" = "no_op"
@@ -59,9 +58,11 @@ tabpad = "―"
 "$" = ["ensure_selections_forward", "extend_to_line_end"]
 "F3" = ":set whitespace.render all"
 "F4" = ":set whitespace.render none"
-"C-A" = ":lsp-workspace-command"
 # I might regret that
 "up" = "no_op"
 "down" = "no_op"
 "right" = "no_op"
 "left" = "no_op"
+
+[keys.space]
+A = ":lsp-workspace-command"

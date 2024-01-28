@@ -10,7 +10,7 @@
 
   cfg = config.programs.helix.zhaith-configuration;
 
-  dependencies = import ./dependencies { inherit pkgs stdenv lib; };
+  dependencies = import ./dependencies {inherit pkgs stdenv lib;};
 in {
   options.programs.helix.zhaith-configuration = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
@@ -25,7 +25,12 @@ in {
       };
 
     package = mkOption {
-      default = package;
+      default = package.override {
+        extraLanguages = ''
+          [language-server.vuels.config.typescript]
+          tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib/"
+        '';
+      };
       type = types.package;
       description = "Defines the package used to get Helix's configuration from.";
     };
