@@ -67,7 +67,7 @@ language-servers = ["scls"]
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "eslint", "emmet-ls", "slcs"]
+language-servers = ["typescript-language-server", "eslint", "slcs"]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
