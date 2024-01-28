@@ -15,6 +15,8 @@ feature_unicode_input = true # enable "unicode input"
 [language-server.stylelint-ls]
 command = "stylelint-lsp"
 args = ["--stdio"]
+autoFixOnSave = true
+autoFixOnFormat = true
 
 [language-server.stylelint-ls.config]
 # at-rule-no-unknown = [
@@ -28,8 +30,6 @@ args = ["--stdio"]
 #     "variants",
 #   ] },
 # ]
-autoFixOnSave = true
-autoFixOnFormat = true
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
