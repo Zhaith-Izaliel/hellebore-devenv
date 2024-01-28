@@ -20,20 +20,20 @@ args = ["--stdio"]
 autoFixOnSave = true
 autoFixOnFormat = true
 
-# [language-server.stylelint-ls.config.stylelintplus.config.rules]
-# at-rule-no-unknown = [
-#   true,
-#   { ignoreAtRules = [
-#     "tailwind",
-#     "apply",
-#     "layer",
-#     "config",
-#     "variants",
-#     "responsive",
-#     "screen",
-#   ] },
-# ]
-# function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
+[language-server.stylelint-ls.config.stylelintplus.config.rules]
+at-rule-no-unknown = [
+  true,
+  { ignoreAtRules = [
+    "tailwind",
+    "apply",
+    "layer",
+    "config",
+    "variants",
+    "responsive",
+    "screen",
+  ] },
+]
+function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
 
 [language-server.eslint]
 command = "vscode-eslint-language-server"
@@ -42,10 +42,9 @@ args = ["--stdio"]
 [language-server.eslint.config]
 codeActionsOnSave = { mode = "all" }
 format = { enable = true }
-nodePath = ""
 quiet = false
 rulesCustomizations = []
-run = "onSave"
+run = "onType"
 validate = "on"
 experimental = {}
 problems = { shortenToSingleLine = false }
