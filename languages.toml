@@ -20,7 +20,7 @@ args = ["--stdio"]
 autoFixOnSave = true
 autoFixOnFormat = true
 
-[language-server.stylelint-lsp.stylelintplus.config.rules]
+[language-server.stylelint-ls.stylelintplus.config.rules]
 at-rule-no-unknown = [
   true,
   { ignoreAtRules = [
