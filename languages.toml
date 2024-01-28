@@ -120,7 +120,7 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "css"] }
+# formatter = { command = "prettier", args = ["--parser", "css"] }
 auto-format = true
 
 [[language]]
