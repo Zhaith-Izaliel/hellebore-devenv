@@ -40,7 +40,7 @@ command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
 [language-server.eslint.config]
-codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+codeActionsOnSave = { mode = "all" }
 format = { enable = true }
 nodePath = ""
 quiet = false
@@ -137,6 +137,7 @@ language-servers = [
   "eslint",
   "scls",
 ]
+formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
