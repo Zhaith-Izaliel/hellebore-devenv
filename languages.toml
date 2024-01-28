@@ -103,7 +103,7 @@ auto-format = true
 
 [[language]]
 name = "html"
-language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+language-servers = ["emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
 
@@ -114,14 +114,7 @@ auto-format = true
 
 [[language]]
 name = "vue"
-language-servers = [
-  "vuels",
-  "eslint",
-  "emmet-ls",
-  "tailwindcss-ls",
-  "stylelint-ls",
-  "scls",
-]
+language-servers = ["vuels", "eslint", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
