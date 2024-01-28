@@ -64,5 +64,5 @@ tabpad = "―"
 "right" = "no_op"
 "left" = "no_op"
 
-[keys.space]
+[keys.normal.space]
 A = ":lsp-workspace-command"
