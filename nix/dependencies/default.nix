@@ -13,6 +13,7 @@ in {
     python311Packages.mdformat
     gotools
     nodePackages.prettier
+    nodePackages.eslint
   ];
 
   language-servers = with pkgs; [

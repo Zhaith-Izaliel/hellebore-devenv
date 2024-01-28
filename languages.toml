@@ -16,10 +16,12 @@ feature_unicode_input = true # enable "unicode input"
 command = "stylelint-lsp"
 args = ["--stdio"]
 
+[language-server.stylelint-ls.config]
+nodePath = ""
+
 [language-server.stylelint-ls.config.stylelintplus]
 autoFixOnSave = true
 autoFixOnFormat = true
-configFile = "/home/zhaith/.stylelintrc.json"
 
 
 [language-server.eslint]
@@ -121,7 +123,7 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
-formatter = { command = 'prettier', args = ["--parser", "vue"] }
+formatter = { command = "eslint", args = ["--stdin", "--fix"] }
 auto-format = true
 
 [[language]]
