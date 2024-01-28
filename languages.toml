@@ -17,8 +17,8 @@ command = "stylelint-lsp"
 args = ["--stdio"]
 
 [language-server.stylelint-ls.config]
-autoFixOnSave = true
-# autoFixOnFormat = true
+provideFormatter = true
+autoFixOnFormat = true
 # at-rule-no-unknown = [
 #   true,
 #   { ignoreAtRules = [
@@ -128,7 +128,6 @@ name = "vue"
 language-servers = [
   "vuels",
   "vscode-css-language-server",
-  "stylelint-ls",
   "tailwindcss-ls",
   "eslint",
   "scls",
