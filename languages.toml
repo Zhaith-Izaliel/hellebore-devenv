@@ -137,7 +137,6 @@ language-servers = [
   "eslint",
   "scls",
 ]
-formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
