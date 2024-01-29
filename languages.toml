@@ -39,9 +39,6 @@ function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
 command = "vscode-eslint-language-server"
 args = ["--stdio"]
 
-[language-server.typescript-language-server]
-args = ["--log-level=4", "--stdio"]
-
 [language-server.eslint.config]
 codeActionsOnSave = { mode = "all" }
 format = { enable = true }
@@ -124,6 +121,7 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
+formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
 
 [[language]]
