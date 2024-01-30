@@ -44,6 +44,12 @@ tab = ""
 newline = "$"
 tabpad = "―"
 
+[editor.soft-wrap]
+enable = true
+max-wrap = 25
+max-indent-retain = 40
+wrap-indicator = "󱞵"
+
 [keys.normal]
 "$" = ["ensure_selections_forward", "extend_to_line_end"]
 "F3" = ":set whitespace.render all"
