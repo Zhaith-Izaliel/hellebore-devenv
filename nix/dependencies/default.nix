@@ -13,6 +13,7 @@ in {
     python311Packages.mdformat
     gotools
     nodePackages.prettier
+    stylish-haskell
   ];
 
   language-servers = with pkgs; [

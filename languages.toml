@@ -65,6 +65,7 @@ language-servers = ["scls"]
 [[language]]
 name = "typescript"
 language-servers = ["eslint", "typescript-language-server", "slcs"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
@@ -76,11 +77,13 @@ language-servers = [
   "emmet-ls",
   "slcs",
 ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
 language-servers = ["typescript-language-server", "eslint", "slcs"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
@@ -92,6 +95,7 @@ language-servers = [
   "tailwindcss-ls",
   "scls",
 ]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
