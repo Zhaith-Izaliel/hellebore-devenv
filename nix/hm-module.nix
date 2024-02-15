@@ -40,8 +40,6 @@ in {
       extraPackages = language-servers ++ debug-adapters ++ formatters;
     };
 
-    home.file.".config/helix/config.toml".source = "${cfg.package}/config.toml";
-    home.file.".config/helix/languages.toml".source = "${cfg.package}/languages.toml";
-    home.file.".config/helix/themes".source = "${cfg.package}/themes";
+    home.file.".config/helix".source = "${cfg.package}";
   };
 }
