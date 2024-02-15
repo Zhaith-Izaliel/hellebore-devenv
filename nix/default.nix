@@ -39,7 +39,7 @@ in
       runHook preInstall
 
       mkdir -p $out
-      cp -r *.toml $out
+      cp -t $out -r *.toml themes
 
       runHook postInstall
     '';
