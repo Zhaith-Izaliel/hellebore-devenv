@@ -22,14 +22,7 @@ in
 
     pname = "helix-zhaith-configuration";
 
-    src = lib.cleanSourceWith {
-      filter = name: type:
-        (type == "regular")
-        && (
-          (builtins.match ".*\.nix" name) == null
-        );
-      src = lib.cleanSource ../.;
-    };
+    src = lib.cleanSource ../.;
 
     nativeBuildInputs = [
       fusion
