@@ -1,4 +1,4 @@
-theme = "catppuccin-transparent-bg"
+theme = "catppuccin_transparent_bg"
 
 [editor]
 middle-click-paste = false
