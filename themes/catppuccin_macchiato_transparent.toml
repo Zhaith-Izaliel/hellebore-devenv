@@ -1,2 +1,2 @@
 inherits = "catppuccin_macchiato"
-"ui.background" = { fg = "foreground" }
+"ui.background" = { fg = "text" }
