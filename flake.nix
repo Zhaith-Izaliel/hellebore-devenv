@@ -16,7 +16,7 @@
     simple-completion-language-server,
     ...
   }: let
-    version = "1.1.0";
+    version = "1.0.0";
   in
     flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
       systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
