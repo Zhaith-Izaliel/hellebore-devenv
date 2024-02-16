@@ -3,38 +3,64 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    helix = {
-      url = "github:helix-editor/helix";
+    nil.url = "github:oxalica/nil";
+    simple-completion-language-server = {
+      url = "github:estin/simple-completion-language-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs: with inputs;
-  flake-utils.lib.eachDefaultSystem (system:
-    with import nixpkgs { inherit system; };
-    rec {
-      workspaceShell = pkgs.mkShell {
-        # nativeBuildInputs is usually what you want -- tools you need to run
-        nativeBuildInputs = with pkgs; [
-          taplo
-          toml2nix
-        ];
+  outputs = inputs @ {
+    flake-parts,
+    nil,
+    simple-completion-language-server,
+    ...
+  }: let
+    version = "1.0.0";
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
+      systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
+
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: {
+        devShells = {
+          # nix develop
+          default = pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+              taplo
+              toml2nix
+            ];
+          };
+        };
+
+        packages = rec {
+          default = pkgs.callPackage ./nix {inherit version fusion;};
+          fusion = pkgs.callPackage ./nix/dependencies/fusion.nix {};
+        };
       };
 
-      devShells = {
-        # nix develop
-        "${system}".default = workspaceShell;
-        default = workspaceShell;
-      };
-    }
-    ) // rec {
-      homeManagerModules.default = import ./nix {
-        overlays = [
-          overlays.default
+      flake = rec {
+        homeManagerModules.default = {pkgs, ...}: let
+          home-module = import ./nix/hm-module.nix {
+            package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.default);
+          };
+        in {
+          imports = [home-module];
+
+          nixpkgs = {
+            overlays = overlays.default;
+          };
+        };
+
+        overlays.default = [
+          nil.overlays.default
+          (final: prev: {
+            simple-completion-language-server = simple-completion-language-server.defaultPackage.${final.stdenv.hostPlatform.system};
+          })
         ];
       };
-      overlays.default = helix.overlays.default;
-    };
+    });
 }
-

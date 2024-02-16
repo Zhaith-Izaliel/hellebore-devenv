@@ -1,0 +1,6 @@
+[
+  "stylelint-lsp",
+  "@commitlint/config-conventional",
+  "commitlint-format-json",
+  "@commitlint/cli"
+]

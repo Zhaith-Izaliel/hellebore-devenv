@@ -1,0 +1,179 @@
+[language-server]
+deno = { command = "deno", args = ["lsp"] }
+emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
+
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 20    # set max completion results len for each group: words, snippets, unicode-input
+snippets_first = true        # completions will return before snippets by default
+feature_words = true         # enable completion by word
+feature_snippets = true      # enable snippets
+feature_unicode_input = true # enable "unicode input"
+
+[language-server.stylelint-ls]
+command = "stylelint-lsp"
+args = ["--stdio"]
+
+[language-server.stylelint-ls.config.stylelintplus]
+autoFixOnSave = true
+autoFixOnFormat = true
+
+[language-server.stylelint-ls.config.stylelintplus.config.rules]
+at-rule-no-unknown = [
+  true,
+  { ignoreAtRules = [
+    "apply",
+    "screen",
+    "tailwind",
+    "config",
+    "layer",
+    "variants",
+    "responsive",
+  ] },
+]
+function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+codeActionsOnSave = { mode = "all" }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[[language]]
+name = "git-commit"
+language-servers = ["scls"]
+
+[[language]]
+name = "typescript"
+language-servers = ["eslint", "typescript-language-server", "slcs"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [
+  "deno",
+  "typescript-language-server",
+  "eslint",
+  "emmet-ls",
+  "slcs",
+]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "eslint", "slcs"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [
+  "typescript-language-server",
+  "eslint",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = [
+  "vscode-html-language-server",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = true
+
+[[language]]
+name = "vue"
+language-servers = [
+  "vuels",
+  "vscode-html-language-server",
+  "eslint",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+]
+formatter = { command = 'prettier', args = ["--parser", "vue"] }
+auto-format = true
+
+[[language]]
+name = "nix"
+language-servers = ["nil", "scls"]
+formatter = { command = "alejandra", args = [] }
+auto-format = true
+
+[[language]]
+name = "lua"
+language-servers = ["lua-language-server", "scls"]
+auto-format = true
+
+[[language]]
+name = "toml"
+language-servers = ["taplo", "scls"]
+formatter = { command = "taplo", args = ["format", "-"] }
+auto-format = true
+
+[[language]]
+name = "haskell"
+language-servers = ["haskell-language-server", "scls"]
+formatter = { command = "stylish-haskell", args = [] }
+auto-format = true
+
+[[language]]
+name = "c"
+language-servers = ["clangd", "scls"]
+auto-format = true
+
+[[language]]
+name = "cpp"
+language-servers = ["clangd", "scls"]
+auto-format = true
+
+[[languages]]
+name = "go"
+language-servers = ["gopls", "scls"]
+formatter = { command = "goimports", args = [] }
+auto-format = true
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "ltex-ls", "scls"]
+formatter = { command = "mdformat", args = ["-"] }
+auto-format = true
+
+[[language]]
+name = "latex"
+language-servers = ["texlab", "ltex-ls", "scls"]
+auto-format = true

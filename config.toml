@@ -1,0 +1,74 @@
+theme = "catppuccin_macchiato_transparent"
+
+[editor]
+middle-click-paste = false
+line-number = "relative"
+auto-save = true
+rulers = [80]
+bufferline = "multiple"
+color-modes = true
+auto-completion = true
+auto-format = true
+
+[editor.statusline]
+separator = "╲ "
+left = [
+  "mode",
+  "read-only-indicator",
+  "file-base-name",
+  "separator",
+  "version-control",
+]
+center = ["spinner", "diagnostics"]
+right = ["file-encoding", "register", "position", "position-percentage"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.lsp]
+display-inlay-hints = false
+display-messages = true
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 1
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "󱁐"
+tab = ""
+newline = "$"
+tabpad = "―"
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25
+max-indent-retain = 40
+wrap-indicator = "󱞵"
+
+[keys.normal]
+"$" = ["ensure_selections_forward", "extend_to_line_end"]
+"F3" = ":set whitespace.render all"
+"F4" = ":set whitespace.render none"
+# I might regret that
+"up" = "no_op"
+"down" = "no_op"
+"right" = "no_op"
+"left" = "no_op"
+
+[keys.select]
+"$" = ["ensure_selections_forward", "extend_to_line_end"]
+"F3" = ":set whitespace.render all"
+"F4" = ":set whitespace.render none"
+# I might regret that
+"up" = "no_op"
+"down" = "no_op"
+"right" = "no_op"
+"left" = "no_op"
+
+[keys.normal.space]
+A = ":lsp-workspace-command"
