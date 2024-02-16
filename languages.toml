@@ -169,11 +169,7 @@ auto-format = true
 
 [[language]]
 name = "markdown"
-language-servers = [
-  # "marksman",
-  "ltex-ls",
-  "scls",
-]
+language-servers = ["marksman", "ltex-ls", "scls"]
 formatter = { command = "mdformat", args = ["-"] }
 auto-format = true
 
