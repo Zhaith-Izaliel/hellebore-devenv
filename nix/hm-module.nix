@@ -34,7 +34,7 @@ in {
 
     helixPackage = mkOption {
       default = helixPackage;
-      type = types.packages;
+      type = types.package;
       description = "Defines the Helix package to use.";
     };
   };
