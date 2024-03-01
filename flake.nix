@@ -20,7 +20,6 @@
   outputs = inputs @ {
     flake-parts,
     nil,
-    helix,
     simple-completion-language-server,
     ...
   }: let
@@ -46,7 +45,7 @@
 
         packages = rec {
           default = pkgs.callPackage ./nix {inherit version fusion;};
-          helix = helix.packages.${system}.default;
+          helix = inputs.helix.packages.${system}.default;
           fusion = pkgs.callPackage ./nix/dependencies/fusion.nix {};
         };
       };
