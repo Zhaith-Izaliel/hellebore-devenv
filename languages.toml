@@ -177,3 +177,22 @@ auto-format = true
 name = "latex"
 language-servers = ["texlab", "ltex-ls", "scls"]
 auto-format = true
+
+[[language]]
+name = "less"
+scope = "source.less"
+injection-regex = "less"
+comment-token = "//"
+language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+formatter = { command = 'prettier', args = ["--parser", "less"] }
+auto-format = true
+
+
+[[language]]
+name = "scss"
+scope = "source.scss"
+injection-regex = "scss"
+comment-token = "//"
+language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+formatter = { command = 'prettier', args = ["--parser", "scss"] }
+auto-format = true
