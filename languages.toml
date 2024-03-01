@@ -111,6 +111,7 @@ auto-format = true
 
 [[language]]
 name = "css"
+file-types = [ "css", "scss", "less" ]
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
@@ -176,12 +177,6 @@ auto-format = true
 [[language]]
 name = "latex"
 language-servers = ["texlab", "ltex-ls", "scls"]
-auto-format = true
-
-[[language]]
-name = "less"
-language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
-formatter = { command = 'prettier', args = ["--parser", "less"] }
 auto-format = true
 
 
