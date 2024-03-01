@@ -182,6 +182,7 @@ auto-format = true
 name = "less"
 scope = "source.less"
 injection-regex = "less"
+file-types = [ "less" ]
 comment-token = "//"
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "less"] }
@@ -192,6 +193,7 @@ auto-format = true
 name = "scss"
 scope = "source.scss"
 injection-regex = "scss"
+file-types = [ "scss", "sass" ]
 comment-token = "//"
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "scss"] }
