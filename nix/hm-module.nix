@@ -1,4 +1,4 @@
-{package}: {
+{package, helixPackage}: {
   config,
   pkgs,
   lib,
@@ -33,7 +33,7 @@ in {
     };
 
     helixPackage = mkOption {
-      default = pkgs.helix;
+      default = helixPackage;
       type = types.packages;
       description = "Defines the Helix package to use.";
     };
