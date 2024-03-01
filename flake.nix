@@ -3,7 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nil.url = "github:oxalica/nil";
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     simple-completion-language-server = {
       url = "github:estin/simple-completion-language-server";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +20,7 @@
   outputs = inputs @ {
     flake-parts,
     nil,
+    helix,
     simple-completion-language-server,
     ...
   }: let
@@ -38,6 +46,7 @@
 
         packages = rec {
           default = pkgs.callPackage ./nix {inherit version fusion;};
+          helix = helix.packages.${system}.default;
           fusion = pkgs.callPackage ./nix/dependencies/fusion.nix {};
         };
       };
@@ -46,6 +55,7 @@
         homeManagerModules.default = {pkgs, ...}: let
           home-module = import ./nix/hm-module.nix {
             package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.default);
+            helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.helix);
           };
         in {
           imports = [home-module];

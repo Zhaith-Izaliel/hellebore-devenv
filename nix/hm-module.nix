@@ -31,12 +31,18 @@ in {
       type = types.package;
       description = "Defines the package used to get Helix's configuration from.";
     };
+
+    helixPackage = mkOption {
+      default = pkgs.helix;
+      type = types.packages;
+      description = "Defines the Helix package to use.";
+    };
   };
 
   config = mkIf cfg.enable {
     programs.helix = {
       inherit (cfg) enable defaultEditor;
-
+      package = cfg.helixPackage;
       extraPackages = language-servers ++ debug-adapters ++ formatters;
     };
 

@@ -180,10 +180,6 @@ auto-format = true
 
 [[language]]
 name = "less"
-scope = "source.less"
-injection-regex = "less"
-file-types = [ "less" ]
-comment-token = "//"
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "less"] }
 auto-format = true
@@ -191,10 +187,6 @@ auto-format = true
 
 [[language]]
 name = "scss"
-scope = "source.scss"
-injection-regex = "scss"
-file-types = [ "scss", "sass" ]
-comment-token = "//"
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "scss"] }
 auto-format = true
