@@ -1,4 +1,7 @@
-{package, helixPackage}: {
+{
+  package,
+  helixPackage,
+}: {
   config,
   pkgs,
   lib,
@@ -10,7 +13,7 @@
   cfg = config.programs.helix.zhaith-configuration;
   extraLanguages = import ./extraLanguages.nix {inherit pkgs;};
   dependencies = import ./dependencies {inherit pkgs stdenv lib;};
-  extraPackages = flatten (mapAttrsToList (name: value: value) dependencies)); 
+  extraPackages = flatten (mapAttrsToList (name: value: value) dependencies);
 in {
   options.programs.helix.zhaith-configuration = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
