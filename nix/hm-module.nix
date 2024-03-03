@@ -5,12 +5,12 @@
   stdenv,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf types mkOption;
-  inherit (dependencies) language-servers debug-adapters formatters;
+  inherit (lib) mkEnableOption mkIf types mkOption mapAttrsToList flatten;
 
   cfg = config.programs.helix.zhaith-configuration;
   extraLanguages = import ./extraLanguages.nix {inherit pkgs;};
   dependencies = import ./dependencies {inherit pkgs stdenv lib;};
+  extraPackages = flatten (mapAttrsToList (name: value: value) dependencies)); 
 in {
   options.programs.helix.zhaith-configuration = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
@@ -41,9 +41,9 @@ in {
 
   config = mkIf cfg.enable {
     programs.helix = {
+      inherit extraPackages;
       inherit (cfg) enable defaultEditor;
       package = cfg.helixPackage;
-      extraPackages = language-servers ++ debug-adapters ++ formatters;
     };
 
     home.file.".config/helix".source = "${cfg.package}";

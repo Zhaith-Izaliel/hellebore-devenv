@@ -42,4 +42,8 @@ in {
     lldb
     delve
   ];
+
+  other-packages = with pkgs; [
+    wl-clipboard
+  ];
 }
