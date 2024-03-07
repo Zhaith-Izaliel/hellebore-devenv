@@ -23,7 +23,7 @@
     simple-completion-language-server,
     ...
   }: let
-    version = "1.0.0";
+    version = "1.1.0";
   in
     flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
       systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
@@ -54,7 +54,7 @@
         homeManagerModules.default = {pkgs, ...}: let
           home-module = import ./nix/hm-module.nix {
             package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.default);
-            helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.helix);
+            helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
           };
         in {
           imports = [home-module];
