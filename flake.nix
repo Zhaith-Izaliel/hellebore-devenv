@@ -55,13 +55,10 @@
           home-module = import ./nix/hm-module.nix {
             package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.default);
             helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
+            overlays = overlays.default;
           };
         in {
           imports = [home-module];
-
-          nixpkgs = {
-            overlays = overlays.default;
-          };
         };
 
         overlays.default = [

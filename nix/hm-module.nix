@@ -1,6 +1,7 @@
 {
   package,
   helixPackage,
+  overlays,
 }: {
   config,
   pkgs,
@@ -43,6 +44,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = overlays;
+
     programs.helix = {
       inherit extraPackages;
       inherit (cfg) enable defaultEditor;
