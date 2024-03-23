@@ -12,7 +12,7 @@
   inherit (lib) mkEnableOption mkIf types mkOption mapAttrsToList flatten;
 
   cfg = config.programs.helix.zhaith-configuration;
-  extraLanguages = import ./extraLanguages.nix {inherit pkgs;};
+  extraLanguages = import ./extraLanguages.nix {inherit pkgs lib;};
   dependencies = import ./dependencies {inherit pkgs stdenv lib;};
   extraPackages = flatten (mapAttrsToList (name: value: value) dependencies);
 in {
