@@ -1,6 +1,7 @@
 [language-server]
 deno = { command = "deno", args = ["lsp"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
+ccls = { command = "ccls" }
 
 [language-server.scls]
 command = "simple-completion-language-server"
@@ -154,12 +155,12 @@ auto-format = true
 
 [[language]]
 name = "c"
-language-servers = ["clangd", "scls"]
+language-servers = ["ccls", "scls"]
 auto-format = true
 
 [[language]]
 name = "cpp"
-language-servers = ["clangd", "scls"]
+language-servers = ["ccls", "scls"]
 auto-format = true
 
 [[languages]]

@@ -35,7 +35,7 @@ in {
     gopls
     cmake-language-server
     ltex-ls
-    clang-tools
+    ccls
     nodejs-packages.stylelint-lsp
   ];
 
