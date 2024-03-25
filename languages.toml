@@ -111,7 +111,7 @@ auto-format = true
 
 [[language]]
 name = "css"
-file-types = [ "css", "scss", "less" ]
+file-types = ["css", "scss", "less"]
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
