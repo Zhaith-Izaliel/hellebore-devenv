@@ -6,6 +6,7 @@
   version ? "git",
   extraLanguages ? "",
   extraConfig ? "",
+  extraThemes ? [],
 }: let
   extraLanguagesFile = writeTextFile {
     name = "helix-zhaith-extra-languages-file.toml";
@@ -13,7 +14,7 @@
   };
 
   extraConfigFile = writeTextFile {
-    name = "helix-zhaith-extra-languages-file.toml";
+    name = "helix-zhaith-extra-config-file.toml";
     text = extraConfig;
   };
 in
@@ -41,5 +42,6 @@ in
     postInstallPhase = lib.concatStringsSep "\n" [
       (lib.optionalString (extraLanguages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml")
       (lib.optionalString (extraConfig != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml")
+
     ];
   }

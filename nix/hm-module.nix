@@ -52,21 +52,11 @@ in {
   config = mkIf cfg.enable {
     nixpkgs.overlays = overlays;
 
-    home.packages = [
-      (pkgs.symlinkJoin {
-        name = "${lib.getName cfg.package}-wrapped-${lib.getVersion cfg.package}";
-        paths = [cfg.helixPackage];
-        preferLocalBuild = true;
-        nativeBuildInputs = [pkgs.makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/hx \
-            --prefix HELIX_RUNTIME : ${lib.makeBinPath cfg.extraPackages}
-        '';
-      })
-    ];
-
-    home.sessionVariables = mkIf cfg.defaultEditor {EDITOR = "hx";};
-
+    programs.helix = {
+      inherit (cfg) extraPackages enable defaultEditor;
+      package = cfg.helixPackage;
+    };
+    
     home.file.".config/helix".source = "${cfg.package}";
   };
 }
