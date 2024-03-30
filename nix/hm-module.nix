@@ -41,6 +41,12 @@ in {
       type = types.package;
       description = "Defines the Helix package to use.";
     };
+
+    extraPackages = mkOption {
+      default = extraPackages;
+      type = types.listOf types.package;
+      description = "Defines the list of additional runtimes to add to Helix. Usually language servers.";
+    };
   };
 
   config = mkIf cfg.enable {
