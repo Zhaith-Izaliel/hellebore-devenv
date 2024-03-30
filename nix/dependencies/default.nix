@@ -18,6 +18,7 @@ in {
 
   language-servers = with pkgs; [
     simple-completion-language-server
+    taplo
     nil
     emmet-ls
     nodePackages.pyright
