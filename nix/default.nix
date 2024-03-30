@@ -33,15 +33,12 @@ in
       runHook preInstall
 
       mkdir -p $out
+
       cp -r *.toml $out
       cp -r themes $out/themes
+      ${lib.optionalString (extraLanguages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml"}
+      ${lib.optionalString (extraConfig != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml"}
 
       runHook postInstall
     '';
-
-    postInstallPhase = lib.concatStringsSep "\n" [
-      (lib.optionalString (extraLanguages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml")
-      (lib.optionalString (extraConfig != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml")
-
-    ];
   }
