@@ -12,4 +12,11 @@ in ''
 
   [language-server.nil]
   command = "${getExe pkgs.nil}"
+
+  [language-server.taplo]
+  command = "${getExe pkgs.taplo}"
+
+  [[language]]
+  name = "toml"
+  formatter = { command = "${getExe pkgs.taplo}", args = ["format", "-"] }
 ''
