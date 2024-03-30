@@ -46,11 +46,14 @@ in {
   config = mkIf cfg.enable {
     nixpkgs.overlays = overlays;
 
-    programs.helix = {
-      inherit extraPackages;
-      inherit (cfg) enable defaultEditor;
-      package = cfg.helixPackage;
-    };
+    home.packages = [
+      cfg.helixPackage.override
+      {
+        makeWrapperArgs = extraPackages;
+      }
+    ];
+
+    home.sessionVariables = mkIf cfg.defaultEditor {EDITOR = "hx";};
 
     home.file.".config/helix".source = "${cfg.package}";
   };
