@@ -47,10 +47,16 @@ in {
     nixpkgs.overlays = overlays;
 
     home.packages = [
-      cfg.helixPackage.override
-      {
-        makeWrapperArgs = extraPackages;
-      }
+      (pkgs.symlinkJoin {
+        name = "${lib.getName cfg.package}-wrapped-${lib.getVersion cfg.package}";
+        paths = [cfg.helixPackage];
+        preferLocalBuild = true;
+        nativeBuildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/hx \
+            --prefix HELIX_RUNTIME : ${lib.makeBinPath cfg.extraPackages}
+        '';
+      })
     ];
 
     home.sessionVariables = mkIf cfg.defaultEditor {EDITOR = "hx";};
