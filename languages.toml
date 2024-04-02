@@ -144,7 +144,7 @@ auto-format = true
 [[language]]
 name = "toml"
 language-servers = ["taplo", "scls"]
-formatter = { command = "taplo", args = ["format"] }
+formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true
 
 [[language]]
