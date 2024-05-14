@@ -14,10 +14,12 @@ in {
     gotools
     nodePackages.prettier
     stylish-haskell
+    google-java-format
   ];
 
   language-servers = with pkgs; [
     simple-completion-language-server
+    jdt-language-server
     taplo
     nil
     emmet-ls

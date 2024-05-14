@@ -184,5 +184,12 @@ auto-format = true
 [[language]]
 name = "scss"
 language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
-formatter = { command = 'prettier', args = ["--parser", "scss"] }
+formatter = { command = "prettier", args = ["--parser", "scss"] }
+auto-format = true
+
+[[language]]
+name = "java"
+language-servers = ["jdtls", "scls"]
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "google-java-format", args = ["-"] }
 auto-format = true
