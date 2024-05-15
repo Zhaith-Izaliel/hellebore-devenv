@@ -13,17 +13,7 @@
 }: let
   inherit (lib) concatStringsSep optionalString mapAttrsToList;
 
-  extraLanguagesFile = writeTextFile {
-    name = "helix-zhaith-extra-languages-file.toml";
-    text = extraConfig.languages;
-  };
-
-  extraConfigFile = writeTextFile {
-    name = "helix-zhaith-extra-config-file.toml";
-    text = extraConfig.config;
-  };
-
-  extraThemesInstall = concatStringsSep "\n" (mapAttrsToList (name: value: ''echo '${value}' > "$out/themes/${name}.toml"'') extraConfig.themes);
+  extraThemesInstall = concatStringsSep "\n" (mapAttrsToList (name: value: ''cat '${value}' > "$out/themes/${name}.toml"'') extraConfig.themes);
 
   finalIgnores =
     if extraConfig.ignores != ""
@@ -50,8 +40,8 @@ in
         cp -r themes $out/themes
       ''
       finalIgnores
-      (optionalString (extraConfig.languages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml")
-      (optionalString (extraConfig.config != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml")
+      (optionalString (extraConfig.languages != "") "fusion toml languages.toml ${extraConfig.languages} -o $out/languages.toml")
+      (optionalString (extraConfig.config != "") "fusion toml config.toml ${extraConfig.config} -o $out/config.toml")
       extraThemesInstall
       ''
         runHook postInstall
