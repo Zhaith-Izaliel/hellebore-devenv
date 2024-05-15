@@ -4,19 +4,31 @@
   lib,
   fusion,
   version ? "git",
-  extraLanguages ? "",
-  extraConfig ? "",
-  extraThemes ? [],
+  extraConfig ? {
+    languages = "";
+    config = "";
+    ignores = "";
+    themes = {};
+  },
 }: let
+  inherit (lib) concatStringsSep optionalString mapAttrsToList;
+
   extraLanguagesFile = writeTextFile {
     name = "helix-zhaith-extra-languages-file.toml";
-    text = extraLanguages;
+    text = extraConfig.languages;
   };
 
   extraConfigFile = writeTextFile {
     name = "helix-zhaith-extra-config-file.toml";
-    text = extraConfig;
+    text = extraConfig.config;
   };
+
+  extraThemesInstall = concatStringsSep "\n" (mapAttrsToList (name: value: ''echo '${value}' > "$out/themes/${name}.toml"'') extraConfig.themes);
+
+  finalIgnores =
+    if extraConfig.ignores != ""
+    then "echo '${extraConfig.ignores}' > $out/ignore"
+    else "cp ignore $out/ignore";
 in
   stdenv.mkDerivation {
     inherit version;
@@ -29,16 +41,20 @@ in
       fusion
     ];
 
-    installPhase = ''
-      runHook preInstall
+    installPhase = concatStringsSep "\n" [
+      ''
+        runHook preInstall
+        mkdir -p $out
 
-      mkdir -p $out
-
-      cp -r *.toml $out
-      cp -r themes $out/themes
-      ${lib.optionalString (extraLanguages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml"}
-      ${lib.optionalString (extraConfig != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml"}
-
-      runHook postInstall
-    '';
+        cp -r *.toml $out
+        cp -r themes $out/themes
+      ''
+      finalIgnores
+      (optionalString (extraConfig.languages != "") "fusion toml languages.toml ${extraLanguagesFile} -o $out/languages.toml")
+      (optionalString (extraConfig.config != "") "fusion toml config.toml ${extraConfigFile} -o $out/config.toml")
+      extraThemesInstall
+      ''
+        runHook postInstall
+      ''
+    ];
   }

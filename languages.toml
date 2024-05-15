@@ -139,6 +139,7 @@ auto-format = true
 [[language]]
 name = "lua"
 language-servers = ["lua-language-server", "scls"]
+formatter = { command = "stylua", args = ["-"] }
 auto-format = true
 
 [[language]]
@@ -180,6 +181,17 @@ name = "latex"
 language-servers = ["texlab", "ltex-ls", "scls"]
 auto-format = true
 
+[[language]]
+name = "graphql"
+language-servers = ["graphql-language-service", "scls"]
+auto-format = true
+
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server", "scls"]
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = 'shfmt', args = ["-i", "2"] }
+auto-format = true
 
 [[language]]
 name = "scss"

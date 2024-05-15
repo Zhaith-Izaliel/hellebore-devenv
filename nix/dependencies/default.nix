@@ -15,25 +15,27 @@ in {
     nodePackages.prettier
     stylish-haskell
     google-java-format
+    stylua
+    shfmt
   ];
 
   language-servers = with pkgs; [
     simple-completion-language-server
     jdt-language-server
-    taplo
+    (taplo.override {withLsp = true;})
     nil
     emmet-ls
-    nodePackages.pyright
     sumneko-lua-language-server
     rust-analyzer
+    nodePackages.pyright
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
+    nodePackages.graphql-language-service-cli
+    nodePackages.bash-language-server
     nodePackages.volar
     tailwindcss-language-server
     texlab
-    nodePackages.bash-language-server
     haskell-language-server
-    rocmPackages.llvm.clang-tools-extra
     marksman
     gopls
     cmake-language-server
