@@ -1,6 +1,5 @@
 {
   stdenv,
-  writeTextFile,
   lib,
   fusion,
   version ? "git",

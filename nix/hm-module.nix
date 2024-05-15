@@ -22,9 +22,9 @@
 
   finalPackage = cfg.package.override {
     extraConfig = {
-      languages = tomlFormat.generate "zhaith-helix-extraLanguages" (recursiveUpdate extraLanguages cfg.settings.languages);
-      config = tomlFormat.generate "zhaith-helix-extraConfig" cfg.settings.config;
-      themes = builtins.mapAttrs (name: value: tomlFormat.generate name "zhaith-helix-theme-${value}") cfg.settings.themes;
+      languages = tomlFormat.generate "zhaith-helix-extraLanguages.toml" (recursiveUpdate extraLanguages cfg.settings.languages);
+      config = tomlFormat.generate "zhaith-helix-extraConfig.toml" cfg.settings.config;
+      themes = builtins.mapAttrs (name: value: tomlFormat.generate name "zhaith-helix-theme-${value}.toml") cfg.settings.themes;
       ignores = concatStringsSep "\n" cfg.settings.ignores;
     };
   };
