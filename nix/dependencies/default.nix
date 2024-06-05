@@ -17,7 +17,6 @@ in {
     google-java-format
     stylua
     shfmt
-    eslint_d
   ];
 
   language-servers = with pkgs; [
