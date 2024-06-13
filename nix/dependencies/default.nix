@@ -27,7 +27,7 @@ in {
     emmet-ls
     sumneko-lua-language-server
     rust-analyzer
-    nodePackages.pyright
+    pyright
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
     nodePackages.graphql-language-service-cli
