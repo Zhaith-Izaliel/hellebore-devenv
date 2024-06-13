@@ -32,7 +32,6 @@ in {
     nodePackages.typescript-language-server
     nodePackages.graphql-language-service-cli
     nodePackages.bash-language-server
-    nodePackages.volar
     tailwindcss-language-server
     texlab
     haskell-language-server
@@ -42,6 +41,7 @@ in {
     ltex-ls
     ccls
     nodejs-packages.stylelint-lsp
+    nodejs-packages."@vue/language-server"
   ];
 
   debug-adapters = with pkgs; [

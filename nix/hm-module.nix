@@ -13,7 +13,13 @@
   tomlFormat = pkgs.formats.toml {};
 
   cfg = config.programs.helix.zhaith-configuration;
-  extraLanguages = import ./extraLanguages.nix {inherit pkgs lib;};
+
+  nodejs-packages = import ./nodejs {
+    inherit pkgs stdenv;
+    nodejs = pkgs.nodejs;
+  };
+
+  extraLanguages = import ./extraLanguages.nix {inherit pkgs lib nodejs-packages;};
   extraPackages = flatten (
     mapAttrsToList
     (name: value: value)
