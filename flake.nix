@@ -37,7 +37,6 @@
           # nix develop
           default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
-              taplo
               toml2nix
             ];
           };

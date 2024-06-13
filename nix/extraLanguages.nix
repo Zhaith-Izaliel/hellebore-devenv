@@ -2,5 +2,11 @@
   pkgs,
   lib,
 }: {
-  language-server.vuels.config.typescript.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib/";
+  language-server.typescript-language-server.config.plugins = [
+    {
+      name = "@vue/typescript-plugin";
+      languages = ["vue"];
+      location = "${pkgs.nodePackages.volar}/lib/node_modules/@volar/vue-language-server/";
+    }
+  ];
 }
