@@ -14,7 +14,7 @@
 
   cfg = config.programs.helix.zhaith-configuration;
 
-  nodejs-packages = import ./nodejs {
+  nodejs-packages = import ./dependencies/nodejs {
     inherit pkgs stdenv;
     nodejs = pkgs.nodejs;
   };
