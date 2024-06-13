@@ -7,7 +7,7 @@
     {
       name = "@vue/typescript-plugin";
       languages = ["vue"];
-      location = "${nodejs-packages."@vue/language-server"}/lib/node_modules/@volar/vue-language-server/";
+      location = "${nodejs-packages."@vue/language-server"}/lib/node_modules/@vue/language-server/";
     }
   ];
 }
