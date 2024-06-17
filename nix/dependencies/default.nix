@@ -31,7 +31,7 @@ in {
     nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
     nodePackages.typescript-language-server
     nodePackages.graphql-language-service-cli
-    nodePackages.bash-language-server
+    bash-language-server
     tailwindcss-language-server
     texlab
     haskell-language-server
