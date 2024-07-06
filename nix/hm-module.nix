@@ -86,14 +86,11 @@ in {
               The syntax of programs.helix.languages has changed.
               It now generates the whole languages.toml file instead of just the language array in that file.
 
-              Use
-              programs.helix.languages = { language = <languages list>; }
-              instead.
+              Use programs.helix.languages = { language = <languages list>; } instead.
             '' {inherit language;}) (addCheck tomlFormat.type builtins.isAttrs);
         default = {};
         example = literalExpression ''
           {
-            # the language-server option currently requires helix from the master branch at https://github.com/helix-editor/helix/
             language-server.typescript-language-server = with pkgs.nodePackages; {
               command = "''${typescript-language-server}/bin/typescript-language-server";
               args = [ "--stdio" "--tsserver-path=''${typescript}/lib/node_modules/typescript/lib" ];
