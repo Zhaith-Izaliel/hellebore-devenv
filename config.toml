@@ -60,7 +60,7 @@ wrap-indicator = "󱞵"
 "right" = "no_op"
 "left" = "no_op"
 
-["keys.insert"]
+[keys.insert]
 "S-space" = " " # Non breakable space
 
 [keys.select]
