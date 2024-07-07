@@ -61,7 +61,7 @@ wrap-indicator = "󱞵"
 "left" = "no_op"
 
 [keys.insert]
-"S-space" = " " # Non breakable space
+"S-space" = ":insert-ouput echo' '" # Non breakable space
 
 [keys.select]
 "ù" = ["ensure_selections_forward", "extend_to_line_end"]
