@@ -19,53 +19,49 @@
 
   outputs = inputs @ {
     flake-parts,
-    nil,
-    simple-completion-language-server,
+    nixpkgs,
     ...
-  }: let
-    version = "1.1.0";
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} ({withSystem, ...}: {
-      systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} ({
+      withSystem,
+      flake-parts-lib,
+      ...
+    }: let
+      inherit (lib) types mkOption;
+      inherit (flake-parts-lib) importApply;
+      lib = nixpkgs.lib;
+      flakeModules.helix = importApply ./helix {inherit withSystem;};
+    in {
+      imports = [
+        flakeModules.helix
+      ];
 
-      perSystem = {
-        pkgs,
-        system,
-        ...
-      }: {
-        devShells = {
-          # nix develop
-          default = pkgs.mkShell {
-            nativeBuildInputs = with pkgs; [
-              toml2nix
-            ];
-          };
-        };
-
-        packages = rec {
-          default = pkgs.callPackage ./nix {inherit version fusion;};
-          helix = inputs.helix.packages.${system}.default;
-          fusion = pkgs.callPackage ./nix/dependencies/fusion.nix {};
+      options.flake = {
+        version = mkOption {
+          default = "1.1.0";
+          type = types.nonEmptyStr;
+          readOnly = true;
+          description = "Defines the version of the flake";
         };
       };
 
-      flake = rec {
-        homeManagerModules.default = {pkgs, ...}: let
-          home-module = import ./nix/hm-module.nix {
-            package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.default);
-            helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
-            overlays = overlays.default;
-          };
-        in {
-          imports = [home-module];
-        };
+      config = {
+        systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
 
-        overlays.default = [
-          nil.overlays.default
-          (final: prev: {
-            simple-completion-language-server = simple-completion-language-server.defaultPackage.${final.stdenv.hostPlatform.system};
-          })
-        ];
+        perSystem = {
+          pkgs,
+          system,
+          ...
+        }: {
+          devShells = {
+            # nix develop
+            default = pkgs.mkShell {
+              nativeBuildInputs = with pkgs; [
+                toml2nix
+              ];
+            };
+          };
+        };
       };
     });
 }
