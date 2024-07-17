@@ -223,6 +223,8 @@ in {
       extraPackages = finalExtraPackages;
     };
 
-    home.file.".config/helix".source = "${finalPackage}";
+    xdg.configFile = {
+      "helix".source = "${finalPackage}";
+    };
   };
 }

@@ -53,6 +53,10 @@
           system,
           ...
         }: {
+          packages = {
+            fusion = pkgs.callPackage ./common/fusion.nix {};
+          };
+
           devShells = {
             # nix develop
             default = pkgs.mkShell {
