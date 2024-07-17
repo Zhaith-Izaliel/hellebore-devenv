@@ -284,6 +284,8 @@ in {
         See <https://zellij.dev/documentation/plugin-aliases> for more information.
       '';
     };
+
+    layoutAlias = mkEnableOption "`zlayout` as an alias to select a layout under {file}`$XDG_CONFIG_HOME/zellij/layouts` in a new tab.";
   };
 
   config = mkIf cfg.enable {
@@ -304,6 +306,10 @@ in {
           + prettyPrintConflicts;
       })
     ];
+
+    home.shellAliases = mkIf cfg.layoutAlias {
+      zlayout = "zellij action new-tab --layout";
+    };
 
     home.sessionVariables = {
       ZELLIJ_AUTO_ATTACH =
