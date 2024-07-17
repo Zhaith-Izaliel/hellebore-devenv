@@ -54,7 +54,7 @@
     // value.config)
   cfg.plugins;
 
-  finalPackage = cfg.package.override {
+  finalPackage = cfg.packages.config.override {
     extraConfig = {
       config = writeKdlFile "zellij-generated-config.kdl" cfg.settings.config;
       layouts = pipe cfg.settings.layouts [

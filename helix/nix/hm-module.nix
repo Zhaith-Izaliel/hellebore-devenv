@@ -26,7 +26,7 @@
     (import ./dependencies {inherit pkgs stdenv lib;})
   );
 
-  finalPackage = cfg.package.override {
+  finalPackage = cfg.packages.config.override {
     extraConfig = {
       languages = tomlFormat.generate "zhaith-helix-extraLanguages.toml" (recursiveUpdate extraLanguages cfg.settings.languages);
       config = tomlFormat.generate "zhaith-helix-extraConfig.toml" cfg.settings.config;
@@ -48,16 +48,18 @@ in {
         '';
       };
 
-    package = mkOption {
-      default = package;
-      type = types.package;
-      description = "Defines the package used to get Helix's configuration from.";
-    };
+    packages = {
+      config = mkOption {
+        default = package;
+        type = types.package;
+        description = "Defines the package used to get Helix's configuration from.";
+      };
 
-    helixPackage = mkOption {
-      default = helixPackage;
-      type = types.package;
-      description = "Defines the Helix package to use.";
+      helix = mkOption {
+        default = helixPackage;
+        type = types.package;
+        description = "Defines the Helix package to use.";
+      };
     };
 
     extraPackages = mkOption {
@@ -219,7 +221,7 @@ in {
 
     programs.helix = {
       inherit (cfg) enable defaultEditor;
-      package = cfg.helixPackage;
+      package = cfg.packages.helix;
       extraPackages = finalExtraPackages;
     };
 
