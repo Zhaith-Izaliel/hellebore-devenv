@@ -297,7 +297,7 @@ in {
         ];
         definedLayouts = mapAttrsToList (name: value: toLayoutFileName name value) cfg.settings.layouts;
       in {
-        assertion = (builtins.length conflictLayouts) > 0;
+        assertion = (builtins.length conflictLayouts) == 0;
         message =
           "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
           + prettyPrintConflicts;
