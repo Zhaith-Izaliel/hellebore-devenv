@@ -88,71 +88,75 @@
     valueType;
 
   layoutsType = types.submodule {
-    isSwap = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        Defines if the layout is a swap layout.
+    options = {
+      isSwap = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Defines if the layout is a swap layout.
 
-        See <https://zellij.dev/documentation/swap-layouts> for the full list of options.
-      '';
-    };
+          See <https://zellij.dev/documentation/swap-layouts> for the full list of options.
+        '';
+      };
 
-    content = mkOption {
-      type = pathOrKdlType;
-      default = null;
-      description = ''
-        The configuration of the layout.
-        Can be a path to a KDL file or an attribute set representing a KDL configuration.
+      content = mkOption {
+        type = pathOrKdlType;
+        default = null;
+        description = ''
+          The configuration of the layout.
+          Can be a path to a KDL file or an attribute set representing a KDL configuration.
 
-        See <https://zellij.dev/documentation/layouts> for the full list of options.
-      '';
+          See <https://zellij.dev/documentation/layouts> for the full list of options.
+        '';
 
-      example = literalExpression ''
-        {
-          layout = {
-            tab_template = {
-              _props = {
-                name = "ui";
-              };
-              pane = {
+        example = literalExpression ''
+          {
+            layout = {
+              tab_template = {
                 _props = {
-                  size = 1;
-                  borderless = true;
+                  name = "ui";
                 };
-                plugin = {
+                pane = {
                   _props = {
-                   location = "zellij:tab-bar";
+                    size = 1;
+                    borderless = true;
+                  };
+                  plugin = {
+                    _props = {
+                     location = "zellij:tab-bar";
+                    };
                   };
                 };
+                children = {};
               };
-              children = {};
             };
-          };
-        }
-      '';
+          }
+        '';
+      };
     };
   };
 
   pluginsType = types.submodule {
-    location = mkOption {
-      type = types.oneOf [types.nonEmptyStr types.path];
-      default = "";
-      description = ''
-        Defines the plugin location. Can be a path to a wasm file or an URL
+    options = {
+      location = mkOption {
+        type = types.oneOf [types.nonEmptyStr types.path];
+        default = "";
+        description = ''
+          Defines the plugin location. Can be a path to a wasm file or an URL
 
-        See <https://zellij.dev/documentation/plugin-loading> for more information.
-      '';
-    };
+          See <https://zellij.dev/documentation/plugin-loading> for more information.
+        '';
+      };
 
-    settings = mkOption {
-      type = kdlType;
-      default = {};
-      description = ''
-        The configuration of the plugin.
+      settings = mkOption {
+        type = kdlType;
+        default = {};
+        description = ''
+          The configuration of the plugin.
 
-        See <https://zellij.dev/documentation/plugins> for the full list of options.
-      '';
+          See <https://zellij.dev/documentation/plugins> for the full list of options.
+        '';
+      };
     };
   };
 in {
