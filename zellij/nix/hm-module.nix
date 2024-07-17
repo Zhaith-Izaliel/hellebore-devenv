@@ -25,8 +25,7 @@
   cfg = config.hellebore.dev-env.zellij;
 
   writeKdlFile = name: content: let
-    file =
-      pkgs.writeTextFile {
+    file = pkgs.writeTextFile ({
         inherit name;
       }
       // (
@@ -37,7 +36,7 @@
         else {
           text = toKdl content;
         }
-      );
+      ));
   in
     if content == null
     then ""
@@ -292,23 +291,23 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # assertions = [
-    #   (let
-    #     conflictLayouts = intersectLists defaultLayouts definedLayouts;
-    #     prettyPrintConflicts = concatStringsSep "\n" (builtins.map (item: "- ${item}") conflictLayouts);
-    #     defaultLayouts = pipe ../layouts [
-    #       builtins.readDir
-    #       (filterAttrs (name: value: value == "regular"))
-    #       (mapAttrsToList (name: value: name))
-    #     ];
-    #     definedLayouts = mapAttrsToList (name: value: toLayoutFileName name value) cfg.layouts;
-    #   in {
-    #     assertion = (builtins.length conflictLayouts) == 0;
-    #     message =
-    #       "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
-    #       + prettyPrintConflicts;
-    #   })
-    # ];
+    assertions = [
+      (let
+        conflictLayouts = intersectLists defaultLayouts definedLayouts;
+        prettyPrintConflicts = concatStringsSep "\n" (builtins.map (item: "- ${item}") conflictLayouts);
+        defaultLayouts = pipe ../layouts [
+          builtins.readDir
+          (filterAttrs (name: value: value == "regular"))
+          (mapAttrsToList (name: value: name))
+        ];
+        definedLayouts = mapAttrsToList (name: value: toLayoutFileName name value) cfg.layouts;
+      in {
+        assertion = (builtins.length conflictLayouts) == 0;
+        message =
+          "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
+          + prettyPrintConflicts;
+      })
+    ];
 
     home.sessionVariables = {
       ZELLIJ_AUTO_ATTACH =
