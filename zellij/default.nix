@@ -16,7 +16,7 @@ localFlake: {
   };
 
   flake = {
-    homeManagerModules.default = {pkgs, ...}: let
+    homeManagerModules.zellij-module = {pkgs, ...}: let
       home-module = import ./nix/hm-module.nix {
         package = localFlake.withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zellij-config);
       };

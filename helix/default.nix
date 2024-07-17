@@ -18,7 +18,7 @@ localFlake: {
   };
 
   flake = rec {
-    homeManagerModules.default = {pkgs, ...}: let
+    homeManagerModules.helix-module = {pkgs, ...}: let
       home-module = import ./nix/hm-module.nix {
         package = localFlake.withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-config);
         helixPackage = localFlake.withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);

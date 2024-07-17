@@ -25,6 +25,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} ({
       withSystem,
       flake-parts-lib,
+      config,
       ...
     }: let
       inherit (lib) types mkOption;
@@ -47,6 +48,15 @@
 
       config = {
         systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
+
+        flake = {
+          homeManagerModules.default = {...}: {
+            imports = [
+              config.homeManagerModules.helix-module
+              config.homeManagerModules.zellij-module
+            ];
+          };
+        };
 
         perSystem = {
           pkgs,

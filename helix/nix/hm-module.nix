@@ -12,7 +12,7 @@
   inherit (lib) mkEnableOption mkIf types mkOption mapAttrsToList flatten recursiveUpdate literalExpression warn concatStringsSep;
   tomlFormat = pkgs.formats.toml {};
 
-  cfg = config.programs.helix.zhaith-configuration;
+  cfg = config.hellebore.dev-env.helix;
 
   nodejs-packages = import ./dependencies/nodejs {
     inherit pkgs stdenv;
@@ -36,7 +36,7 @@
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
 in {
-  options.programs.helix.zhaith-configuration = {
+  options.hellebore.dev-env.helix = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
 
     defaultEditor =

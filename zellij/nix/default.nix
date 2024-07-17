@@ -5,6 +5,8 @@
   extraConfig ? {
     layouts = [];
     config = "";
+    themes = "";
+    plugins = "";
   },
 }: let
   inherit (lib) concatStringsSep optionalString;

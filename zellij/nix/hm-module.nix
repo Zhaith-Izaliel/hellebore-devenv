@@ -24,60 +24,76 @@
 
   cfg = config.hellebore.dev-env.zellij;
 
-  writeKdlFile = name: content:
-    pkgs.writeTextFile {
-      inherit name;
-    }
-    // (
-      if builtins.isPath content
-      then {
-        source = content;
+  writeKdlFile = name: content: let
+    file =
+      pkgs.writeTextFile {
+        inherit name;
       }
-      else {
-        text = toKdl content;
-      }
-    );
+      // (
+        if builtins.isPath content
+        then {
+          source = content;
+        }
+        else {
+          text = toKdl content;
+        }
+      );
+  in
+    if content == null
+    then ""
+    else "${file}";
 
-  toLayoutFileName = name: value: "${value.name}${optionalString value.isSwap ".swap"}.kdl";
+  toLayoutFileName = name: value: "${name}${optionalString value.isSwap ".swap"}.kdl";
+
+  finalPluginsKdlAttrs = builtins.mapAttrs (name: value:
+    {
+      _props = {
+        inherit (value) location;
+      };
+    }
+    // value.config)
+  cfg.plugins;
 
   finalPackage = cfg.package.override {
     extraConfig = {
       config = writeKdlFile "zellij-generated-config.kdl" cfg.settings.config;
-      layouts =
-        mapAttrsToList (
-          name: value: let
-            fileName = toLayoutFileName name value;
-            content = value.config;
-          in "${writeKdlFile fileName content}"
+      layouts = pipe cfg.settings.layouts [
+        (
+          mapAttrsToList (
+            name: value: let
+              fileName = toLayoutFileName name value;
+              content = value.config;
+            in
+              writeKdlFile fileName content
+          )
         )
-        cfg.settings.layouts;
+        (builtins.filter (item: item != ""))
+      ];
+      themes = writeKdlFile "zellij-generated-themes.kdl" {themes = cfg.themes;};
+      plugins = writeKdlFile "zellij-generated-plugins-aliases.kdl" {plugins = finalPluginsKdlAttrs;};
     };
   };
 
+  pathOrKdlType = with types;
+    nullOr (oneOf [
+      path
+      kdlType
+    ]);
+
   kdlType = with types; let
-    primitive = nullOr (oneOf [
+    valueType = nullOr (oneOf [
       bool
       int
       float
       str
       path
-      (attrsOf primitive)
-      (listOf primitive)
+      (attrsOf valueType)
+      (listOf valueType)
     ]);
-    valueType = attrsOf primitive;
   in
-    nullOr (oneOf [
-      path
-      valueType
-    ]);
+    valueType;
 
   layoutsType = types.submodule {
-    name = mkOption {
-      type = types.nonEmptyStr;
-      default = "";
-      description = "The name of the layout";
-    };
-
     isSwap = mkOption {
       type = types.bool;
       default = false;
@@ -89,10 +105,11 @@
     };
 
     config = mkOption {
-      type = kdlType;
+      type = pathOrKdlType;
       default = null;
       description = ''
         The configuration of the layout.
+        Can be a path to a KDL file or an attribute set representing a KDL configuration.
 
         See <https://zellij.dev/documentation/layouts> for the full list of options.
       '';
@@ -104,11 +121,43 @@
               _props = {
                 name = "ui";
               };
-
-
-            }
+              pane = {
+                _props = {
+                  size = 1;
+                  borderless = true;
+                };
+                plugin = {
+                  _props = {
+                   location = "zellij:tab-bar";
+                  };
+                };
+              };
+              children = {};
+            };
           };
         }
+      '';
+    };
+  };
+
+  pluginsType = types.submodule {
+    location = mkOption {
+      type = types.oneOf [types.nonEmptyStr types.path];
+      default = "";
+      description = ''
+        Defines the plugin location. Can be a path to a wasm file or an URL
+
+        See <https://zellij.dev/documentation/plugin-loading> for more information.
+      '';
+    };
+
+    config = mkOption {
+      type = kdlType;
+      default = {};
+      description = ''
+        The configuration of the plugin.
+
+        See <https://zellij.dev/documentation/plugins> for the full list of options.
       '';
     };
   };
@@ -155,11 +204,11 @@ in {
 
     settings = {
       config = mkOption {
-        type = kdlType;
+        type = pathOrKdlType;
         default = {};
         description = ''
-          Configuration written to
-          {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
+          Configuration written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
+          Can be a path to a KDL file or an attribute set representing a KDL configuration.
 
           See <https://zellij.dev/documentation> for the full list of options.
         '';
@@ -186,15 +235,53 @@ in {
         type = types.attrsOf layoutsType;
         default = {};
         description = ''
-          Each theme is written to
-          {file}`$XDG_CONFIG_HOME/zellij/layouts`.
-          Where the name of every layouts is the layout name (in the example "example-layout").
+          Each layout is written to {file}`$XDG_CONFIG_HOME/zellij/layouts`.
+          Where the name of every layouts is the layout name.
 
           The layouts name should not conflict with the layouts defined in Hellebore Dev-Env.
 
           See <https://zellij.dev/documentation/layouts> for the full list of options.
         '';
       };
+    };
+
+    themes = mkOption {
+      type = types.attrsOf kdlType;
+      default = {};
+      description = ''
+        Each theme is written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
+        Where the name of every theme is the theme name (in the example "dracula").
+
+        See <https://zellij.dev/documentation/themes> for the full list of options.
+      '';
+      example = literalExpression ''
+        {
+          dracula {
+            fg = { _args = [ 248 248 242 ]; };
+            bg = { _args = [ 40 42 54 ]; };
+            red = { _args = [ 255 85 85 ]; };
+            green = { _args = [ 80 250 123 ]; };
+            yellow = { _args = [ 241 250 140 ]; };
+            blue = { _args = [ 98 114 164 ]; };
+            magenta = { _args = [ 255 121 198 ]; };
+            orange = { _args = [ 255 184 108 ]; };
+            cyan = { _args = [ 139 233 253 ]; };
+            black = { _args = [ 0 0 0 ]; };
+            white = { _args = [ 255 255 255 ]; };
+          }
+        }
+      '';
+    };
+
+    plugins = mkOption {
+      type = types.attrsOf pluginsType;
+      default = {};
+      description = ''
+        Each plugin is written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
+        Where the name of every plugins is the plugin alias.
+
+        See <https://zellij.dev/documentation/plugin-aliases> for more information.
+      '';
     };
   };
 
@@ -212,9 +299,7 @@ in {
       in {
         assertion = (builtins.length conflictLayouts) > 0;
         message =
-          ''
-            These layouts names conflict with the one defined in Hellebore's Dev-Env:
-          ''
+          "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
           + prettyPrintConflicts;
       })
     ];
