@@ -24,21 +24,12 @@
   }:
     flake-parts.lib.mkFlake {inherit inputs;} ({
       withSystem,
-      flake-parts-lib,
       config,
       ...
     }: let
       inherit (lib) types mkOption;
-      inherit (flake-parts-lib) importApply;
       lib = nixpkgs.lib;
-      flakeModules.helix = importApply ./helix {inherit withSystem;};
-      flakeModules.zellij = importApply ./zellij {inherit withSystem;};
     in {
-      imports = [
-        flakeModules.helix
-        flakeModules.zellij
-      ];
-
       options.flake = {
         version = mkOption {
           default = "1.1.0";
@@ -51,12 +42,39 @@
       config = {
         systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
 
-        flake = {
-          homeManagerModules.default = {...}: {
-            imports = [
-              config.homeManagerModules.helix-module
-              config.homeManagerModules.zellij-module
-            ];
+        flake = rec {
+          overlays.default = [
+            inputs.nil.overlays.default
+            (final: prev: {
+              simple-completion-language-server = inputs.simple-completion-language-server.defaultPackage.${final.stdenv.hostPlatform.system};
+            })
+          ];
+
+          homeManagerModules = {
+            default = {...}: {
+              imports = [
+                homeManagerModules.helix-module
+                homeManagerModules.zellij-module
+              ];
+            };
+
+            helix-module = {pkgs, ...}: let
+              home-module = import ./nix/hm-module.nix {
+                package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-config);
+                helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
+                overlays = overlays.default;
+              };
+            in {
+              imports = [home-module];
+            };
+
+            zellij-module = {pkgs, ...}: let
+              home-module = import ./nix/hm-module.nix {
+                package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zellij-config);
+              };
+            in {
+              imports = [home-module];
+            };
           };
         };
 
@@ -65,8 +83,16 @@
           system,
           ...
         }: {
-          packages = {
+          packages = rec {
             fusion = pkgs.callPackage ./common/fusion.nix {};
+            zellij-config = pkgs.callPackage ./nix {
+              version = config.flake.version;
+            };
+            helix-config = pkgs.callPackage ./nix {
+              inherit fusion;
+              version = config.flake.version;
+            };
+            helix = inputs.helix.packages.${system}.default;
           };
 
           devShells = {
