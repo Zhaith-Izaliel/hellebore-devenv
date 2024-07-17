@@ -25,18 +25,13 @@
   cfg = config.hellebore.dev-env.zellij;
 
   writeKdlFile = name: content: let
-    file = pkgs.writeTextFile ({
-        inherit name;
-      }
-      // (
+    file = pkgs.writeTextFile {
+      inherit name;
+      text =
         if builtins.isPath content
-        then {
-          source = content;
-        }
-        else {
-          text = toKdl content;
-        }
-      ));
+        then builtins.readFile content
+        else toKdl content;
+    };
   in
     if content == null
     then ""
