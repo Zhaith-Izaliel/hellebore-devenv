@@ -301,7 +301,7 @@ in {
           (filterAttrs (name: value: value == "regular"))
           (mapAttrsToList (name: value: name))
         ];
-        definedLayouts = mapAttrsToList (name: value: (toLayoutFileName name value)) cfg.layouts;
+        definedLayouts = mapAttrsToList (name: value: "${name}${optionalString value.isSwap ".swap"}.kdl") cfg.layouts;
       in {
         assertion = (builtins.length conflictLayouts) == 0;
         message =
