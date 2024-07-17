@@ -20,6 +20,7 @@
     intersectLists
     concatStringsSep
     ;
+
   toKdl = lib.hm.generators.toKdl {};
 
   cfg = config.hellebore.dev-env.zellij;
@@ -51,18 +52,15 @@
   finalPackage = cfg.packages.config.override {
     extraConfig = {
       config = writeKdlFile "zellij-generated-config.kdl" cfg.settings;
-      layouts = pipe cfg.layouts [
-        (
-          mapAttrsToList (
-            name: value: let
-              fileName = toLayoutFileName name value;
-              content = value.content;
-            in
-              writeKdlFile fileName content
-          )
-        )
-        (builtins.filter (item: item != ""))
-      ];
+      layouts = pipe cfg.layouts mapAttrsToList (
+        name: value: let
+          fileName = toLayoutFileName name value;
+          content = assert value.content != null || throw "Your layout ${name} should have a content."; value.content;
+        in {
+          fileName = fileName;
+          generatedFile = writeKdlFile fileName content;
+        }
+      );
       themes = writeKdlFile "zellij-generated-themes.kdl" {themes = cfg.themes;};
       plugins = writeKdlFile "zellij-generated-plugins-aliases.kdl" {plugins = finalPluginsKdlAttrs;};
     };

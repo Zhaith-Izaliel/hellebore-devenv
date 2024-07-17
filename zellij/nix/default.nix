@@ -10,7 +10,7 @@
   },
 }: let
   inherit (lib) concatStringsSep optionalString;
-  extraLayoutsInstall = concatStringsSep "\n" (builtins.map (item: "cp ${item} $out/layouts") extraConfig.layouts);
+  extraLayoutsInstall = concatStringsSep "\n" (builtins.map (item: "cp ${item.generatedFile} $out/layouts/${item.fileName}") extraConfig.layouts);
 in
   stdenv.mkDerivation {
     inherit version;
