@@ -56,8 +56,8 @@
 
   finalPackage = cfg.packages.config.override {
     extraConfig = {
-      config = writeKdlFile "zellij-generated-config.kdl" cfg.settings.config;
-      layouts = pipe cfg.settings.layouts [
+      config = writeKdlFile "zellij-generated-config.kdl" cfg.settings;
+      layouts = pipe cfg.layouts [
         (
           mapAttrsToList (
             name: value: let
@@ -210,47 +210,45 @@ in {
 
     autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
 
-    settings = {
-      config = mkOption {
-        type = pathOrKdlType;
-        default = {};
-        description = ''
-          Configuration written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
-          Can be a path to a KDL file or an attribute set representing a KDL configuration.
+    settings = mkOption {
+      type = pathOrKdlType;
+      default = {};
+      description = ''
+        Configuration written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
+        Can be a path to a KDL file or an attribute set representing a KDL configuration.
 
-          See <https://zellij.dev/documentation> for the full list of options.
-        '';
-        example = literalExpression ''
-          {
-            keybinds = {
-              _props = { # This attribute defines KDL props.
-                clear-defaults = true;
-              };
+        See <https://zellij.dev/documentation> for the full list of options.
+      '';
+      example = literalExpression ''
+        {
+          keybinds = {
+            _props = { # This attribute defines KDL props.
+              clear-defaults = true;
+            };
 
-              resize = {
-                "bind \"Ctrl n\"" = { # Use a string for nodes with the same name but with different arguments, since Nix doesn't allow multiple attributes with the same names on the same level.
-                  SwitchMode = {
-                    _args = [ "Normal" ]; # This attribute defines multiple KDL args;
-                  }
-                };
+            resize = {
+              "bind \"Ctrl n\"" = { # Use a string for nodes with the same name but with different arguments, since Nix doesn't allow multiple attributes with the same names on the same level.
+                SwitchMode = {
+                  _args = [ "Normal" ]; # This attribute defines multiple KDL args;
+                }
               };
             };
-          }
-        '';
-      };
+          };
+        }
+      '';
+    };
 
-      layouts = mkOption {
-        type = types.attrsOf layoutsType;
-        default = {};
-        description = ''
-          Each layout is written to {file}`$XDG_CONFIG_HOME/zellij/layouts`.
-          Where the name of every layouts is the layout name.
+    layouts = mkOption {
+      type = types.attrsOf layoutsType;
+      default = {};
+      description = ''
+        Each layout is written to {file}`$XDG_CONFIG_HOME/zellij/layouts`.
+        Where the name of every layouts is the layout name.
 
-          The layouts name should not conflict with the layouts defined in Hellebore Dev-Env.
+        The layouts name should not conflict with the layouts defined in Hellebore Dev-Env.
 
-          See <https://zellij.dev/documentation/layouts> for the full list of options.
-        '';
-      };
+        See <https://zellij.dev/documentation/layouts> for the full list of options.
+      '';
     };
 
     themes = mkOption {
@@ -303,7 +301,7 @@ in {
           (filterAttrs (name: value: value == "regular"))
           (mapAttrsToList (name: value: name))
         ];
-        definedLayouts = mapAttrsToList (name: value: toLayoutFileName name value) cfg.settings.layouts;
+        definedLayouts = mapAttrsToList (name: value: toLayoutFileName name value) cfg.layouts;
       in {
         assertion = (builtins.length conflictLayouts) == 0;
         message =
