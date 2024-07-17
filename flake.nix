@@ -59,7 +59,7 @@
             };
 
             helix-module = {pkgs, ...}: let
-              home-module = import ./nix/hm-module.nix {
+              home-module = import ./helix/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-config);
                 helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
                 overlays = overlays.default;
@@ -69,7 +69,7 @@
             };
 
             zellij-module = {pkgs, ...}: let
-              home-module = import ./nix/hm-module.nix {
+              home-module = import ./zellij/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zellij-config);
               };
             in {
@@ -85,14 +85,17 @@
         }: {
           packages = rec {
             fusion = pkgs.callPackage ./common/fusion.nix {};
-            zellij-config = pkgs.callPackage ./nix {
-              version = config.flake.version;
-            };
-            helix-config = pkgs.callPackage ./nix {
+
+            helix = inputs.helix.packages.${system}.default;
+
+            helix-config = pkgs.callPackage ./helix/nix {
               inherit fusion;
               version = config.flake.version;
             };
-            helix = inputs.helix.packages.${system}.default;
+
+            zellij-config = pkgs.callPackage ./zellij/nix {
+              version = config.flake.version;
+            };
           };
 
           devShells = {
