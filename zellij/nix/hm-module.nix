@@ -202,6 +202,14 @@ in {
         };
     };
 
+    autoAttach =
+      mkEnableOption "Zellij's auto attach to an existing session on launch"
+      // {
+        default = true;
+      };
+
+    autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
+
     settings = {
       config = mkOption {
         type = pathOrKdlType;
@@ -303,6 +311,17 @@ in {
           + prettyPrintConflicts;
       })
     ];
+
+    home.sessionVariables = {
+      ZELLIJ_AUTO_ATTACH =
+        if cfg.autoAttach
+        then "true"
+        else "false";
+      ZELLIJ_AUTO_EXIT =
+        if cfg.autoExit
+        then "true"
+        else "false";
+    };
 
     programs.zellij = {
       enable = true;
