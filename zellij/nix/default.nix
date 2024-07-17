@@ -26,6 +26,7 @@ in
 
         cp -r *.kdl $out
         cp -r layouts $out
+        cp -r yazi $out
       ''
       (
         optionalString ((builtins.length extraConfig.layouts) > 0)
