@@ -33,10 +33,7 @@
         then builtins.readFile content
         else toKdl content;
     };
-  in
-    if content == null
-    then ""
-    else "${file}";
+  in "${file}";
 
   toLayoutFileName = name: value: "${name}${optionalString value.isSwap ".swap"}.kdl";
 
@@ -52,15 +49,17 @@
   finalPackage = cfg.packages.config.override {
     extraConfig = {
       config = writeKdlFile "zellij-generated-config.kdl" cfg.settings;
-      layouts = pipe cfg.layouts mapAttrsToList (
-        name: value: let
-          fileName = toLayoutFileName name value;
-          content = assert value.content != null || throw "Your layout ${name} should have a content."; value.content;
-        in {
-          fileName = fileName;
-          generatedFile = writeKdlFile fileName content;
-        }
-      );
+      layouts =
+        mapAttrsToList (
+          name: value: let
+            fileName = toLayoutFileName name value;
+            content = value.content;
+          in {
+            inherit fileName;
+            generatedFile = writeKdlFile fileName content;
+          }
+        )
+        cfg.layouts;
       themes = writeKdlFile "zellij-generated-themes.kdl" {themes = cfg.themes;};
       plugins = writeKdlFile "zellij-generated-plugins-aliases.kdl" {plugins = finalPluginsKdlAttrs;};
     };
