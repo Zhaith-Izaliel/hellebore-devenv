@@ -32,9 +32,11 @@
       inherit (flake-parts-lib) importApply;
       lib = nixpkgs.lib;
       flakeModules.helix = importApply ./helix {inherit withSystem;};
+      flakeModules.zellij = importApply ./zellij {inherit withSystem;};
     in {
       imports = [
         flakeModules.helix
+        flakeModules.zellij
       ];
 
       options.flake = {
