@@ -197,11 +197,7 @@ in {
         };
     };
 
-    autoAttach =
-      mkEnableOption "Zellij's auto attach to an existing session on launch"
-      // {
-        default = true;
-      };
+    autoAttach = mkEnableOption "Zellij's auto attach to an existing session on launch";
 
     autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
 
