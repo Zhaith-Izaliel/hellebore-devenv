@@ -51,7 +51,7 @@
         inherit (value) location;
       };
     }
-    // value.config)
+    // value.settings)
   cfg.plugins;
 
   finalPackage = cfg.packages.config.override {
@@ -62,7 +62,7 @@
           mapAttrsToList (
             name: value: let
               fileName = toLayoutFileName name value;
-              content = value.config;
+              content = value.content;
             in
               writeKdlFile fileName content
           )
@@ -104,7 +104,7 @@
       '';
     };
 
-    config = mkOption {
+    content = mkOption {
       type = pathOrKdlType;
       default = null;
       description = ''
@@ -151,7 +151,7 @@
       '';
     };
 
-    config = mkOption {
+    settings = mkOption {
       type = kdlType;
       default = {};
       description = ''
