@@ -26,8 +26,6 @@
   finalFlavors = installFlavorsOrPlugins extraConfig.flavors "flavors";
   finalPlugins = installFlavorsOrPlugins extraConfig.plugins "plugins";
 in
-  builtins.trace
-  extraConfig.settings
   stdenv.mkDerivation {
     inherit version;
 

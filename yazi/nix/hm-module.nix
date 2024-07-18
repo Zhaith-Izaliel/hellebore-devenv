@@ -30,7 +30,7 @@
   generateToml = fileName: attrset:
     if attrset == {}
     then ""
-    else "${tomlFormat.generate fileName attrset}";
+    else "${tomlFormat.generate "${fileName}.toml" attrset}";
 
   zellijSettings = optionalAttrs config.hellebore.dev-env.zellij.enable (builtins.fromTOML (builtins.readFile ./zellij-yazi.toml));
 
