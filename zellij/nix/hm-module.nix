@@ -173,7 +173,7 @@ in {
       config = mkOption {
         default = finalPackage;
         type = types.package;
-        description = "Defines the package used to get Helix's configuration from.";
+        description = "Defines the package used to get Zellij's configuration from.";
       };
 
       zellij = mkPackageOption pkgs "zellij" {};

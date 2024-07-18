@@ -42,11 +42,11 @@
       settings = generateToml "extra-yazi-settings" (recursiveUpdate cfg.settings zellijSettings);
       flavors =
         mapAttrs'
-        (name: value: nameValuePair "${name}.yazi" value)
+        (name: value: nameValuePair "${name}.yazi" "${value}")
         cfg.flavors;
       plugins =
         mapAttrs'
-        (name: value: nameValuePair "${name}.yazi" value)
+        (name: value: nameValuePair "${name}.yazi" "${value}")
         cfg.plugins;
       initLua =
         if builtins.isPath cfg.initLua
@@ -67,7 +67,7 @@ in {
       config = mkOption {
         default = finalPackage;
         type = types.package;
-        description = "Defines the package used to get Helix's configuration from.";
+        description = "Defines the package used to get Yazi's configuration from.";
       };
 
       yazi = mkPackageOption pkgs "yazi" {};
