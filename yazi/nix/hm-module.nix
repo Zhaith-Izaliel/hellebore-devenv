@@ -40,6 +40,7 @@
       theme = generateToml "extra-yazi-theme" cfg.theme;
       keymap = generateToml "extra-yazi-keymap" cfg.keymap;
       # settings = generateToml "extra-yazi-settings" (recursiveUpdate cfg.settings zellijSettings);
+      settings = generateToml "extra-yazi-settings" cfg.settings;
       flavors =
         mapAttrs'
         (name: value: nameValuePair "${name}.yazi" value)
