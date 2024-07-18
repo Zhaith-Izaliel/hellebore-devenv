@@ -4,7 +4,26 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption mkOption mkPackageOption types literalExpression mapAttrs' nameValuePair recursiveUpdate optionalAttrs;
+  inherit
+    (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    mkPackageOption
+    types
+    literalExpression
+    mapAttrs'
+    nameValuePair
+    recursiveUpdate
+    optionalAttrs
+    mapAttrsToList
+    optionalString
+    pathIsDirectory
+    pathExists
+    filter
+    removeSuffix
+    ;
+
   cfg = config.hellebore.dev-env.yazi;
   tomlFormat = pkgs.formats.toml {};
 
@@ -210,6 +229,44 @@ in {
   };
 
   config = mkIf cfg.enable {
+    assertions = let
+      mkAsserts = opt: requiredFiles:
+        mapAttrsToList (name: value: let
+          isDir = pathIsDirectory "${value}";
+          msgNotDir =
+            optionalString (!isDir)
+            "The path or package should be a directory, not a single file.";
+          isFileMissing = file:
+            !(pathExists "${value}/${file}")
+            || pathIsDirectory "${value}/${file}";
+          missingFiles = filter isFileMissing requiredFiles;
+          msgFilesMissing =
+            optionalString (missingFiles != [])
+            "The ${singularOpt} is missing these files: ${
+              toString missingFiles
+            }";
+          singularOpt = removeSuffix "s" opt;
+        in {
+          assertion = isDir && missingFiles == [];
+          message = ''
+            Value at `programs.yazi.${opt}.${name}` is not a valid yazi ${singularOpt}.
+            ${msgNotDir}
+            ${msgFilesMissing}
+            Evaluated value: `${value}`
+          '';
+        })
+        cfg.${opt};
+    in
+      (mkAsserts "flavors" [
+        "flavor.toml"
+        "tmtheme.xml"
+        "README.md"
+        "preview.png"
+        "LICENSE"
+        "LICENSE-tmtheme"
+      ])
+      ++ (mkAsserts "plugins" ["init.lua"]);
+
     home.packages = with pkgs; [
       unar
       mpv

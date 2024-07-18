@@ -100,7 +100,6 @@
             helix-config = pkgs.callPackage ./helix/nix {
               inherit fusion;
               version = config.flake.version;
-              installSideBar = true;
             };
 
             yazi-config = pkgs.callPackage ./yazi/nix {
