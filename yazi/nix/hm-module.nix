@@ -30,7 +30,7 @@
   generateToml = fileName: attrset:
     if attrset == {}
     then ""
-    else tomlFormat.generate fileName attrset;
+    else "${tomlFormat.generate fileName attrset}";
 
   zellijSettings = optionalAttrs config.hellebore.dev-env.zellij.enable (builtins.fromTOML (builtins.readFile ./zellij-yazi.toml));
 
@@ -40,12 +40,14 @@
       theme = generateToml "extra-yazi-theme" cfg.theme;
       keymap = generateToml "extra-yazi-keymap" cfg.keymap;
       settings = generateToml "extra-yazi-settings" (recursiveUpdate cfg.settings zellijSettings);
-      flavors = mapAttrs' (name: value:
-        nameValuePair "${name}.yazi" value)
-      cfg.flavors;
-      plugins = mapAttrs' (name: value:
-        nameValuePair "${name}.yazi" value)
-      cfg.plugins;
+      flavors =
+        mapAttrs'
+        (name: value: nameValuePair "${name}.yazi" value)
+        cfg.flavors;
+      plugins =
+        mapAttrs'
+        (name: value: nameValuePair "${name}.yazi" value)
+        cfg.plugins;
       initLua =
         if builtins.isPath cfg.initLua
         then cfg.initLua
