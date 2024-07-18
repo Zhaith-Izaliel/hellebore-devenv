@@ -41,6 +41,8 @@ keybinds clear-defaults=true{
             Run "env" "YAZI_CONFIG_HOME=~/.config/zellij/yazi/sidebar" "yazi" {
                 direction "Left"
             }
+            Resize "Decrease";
+            SwitchToMode "Normal";
         }
     }
     move {
