@@ -28,7 +28,6 @@ in
 
         mkdir -p $out/layouts
         cp -r layouts/*.kdl $out/layouts
-        cp -r yazi $out
       ''
       (
         optionalString ((builtins.length extraConfig.layouts) > 0)
