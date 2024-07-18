@@ -183,17 +183,17 @@ in {
       zsh =
         mkEnableOption "Zsh integration"
         // {
-          default = false;
+          default = config.programs.zsh.enable;
         };
       bash =
         mkEnableOption "Bash integration"
         // {
-          default = false;
+          default = config.programs.bash.enable;
         };
       fish =
         mkEnableOption "Fish integration"
         // {
-          default = false;
+          default = config.programs.fish.enable;
         };
     };
 
