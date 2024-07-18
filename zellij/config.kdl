@@ -38,10 +38,7 @@ keybinds clear-defaults=true{
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
         bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
         bind "t" { 
-            Run "env" "YAZI_CONFIG_HOME=~/.config/zellij/yazi/sidebar" "yazi" {
-                direction "Left"
-            }
-            Resize "Decrease";
+            Run "yazi";
             SwitchToMode "Normal";
         }
     }
