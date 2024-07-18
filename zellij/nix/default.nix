@@ -15,7 +15,7 @@ in
   stdenv.mkDerivation {
     inherit version;
 
-    pname = "helix-zhaith-configuration";
+    pname = "zellij-hellebore-dev-env";
 
     src = lib.cleanSource ../.;
 

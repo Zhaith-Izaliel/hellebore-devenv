@@ -22,7 +22,7 @@ in
   stdenv.mkDerivation {
     inherit version;
 
-    pname = "helix-zhaith-configuration";
+    pname = "helix-hellebore-dev-env";
 
     src = lib.cleanSource ../.;
 

@@ -171,7 +171,7 @@ in {
 
     packages = {
       config = mkOption {
-        default = package;
+        default = finalPackage;
         type = types.package;
         description = "Defines the package used to get Helix's configuration from.";
       };
@@ -200,6 +200,12 @@ in {
     autoAttach = mkEnableOption "Zellij's auto attach to an existing session on launch";
 
     autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
+
+    enableSidebar =
+      mkEnableOption "Zellij's file manager sidebar using Yazi. Needs `hellebore.dev-env.yazi` to be enabled."
+      // {
+        default = config.hellebore.dev-env.yazi.enable;
+      };
 
     settings = mkOption {
       type = pathOrKdlType;
@@ -301,6 +307,10 @@ in {
           "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
           + prettyPrintConflicts;
       })
+      {
+        assertion = cfg.enableSidebar -> config.hellebore.dev-env.yazi.enable;
+        message = "You must enable Yazi through `config.hellebore.dev-env.yazi.enable` to use the sidebar in Zellij.";
+      }
     ];
 
     home.shellAliases = mkIf cfg.layoutAlias {
@@ -327,7 +337,7 @@ in {
     };
 
     xdg.configFile = {
-      "zellij".source = "${finalPackage}";
+      "zellij".source = cfg.packages.config;
     };
   };
 }
