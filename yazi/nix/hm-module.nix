@@ -35,7 +35,7 @@
   zellijSettings = optionalAttrs config.hellebore.dev-env.zellij.enable (builtins.fromTOML (builtins.readFile ./zellij-yazi.toml));
 
   finalPackage = package.override {
-    installSideBar = config.hellebore.dev-env.zellij.enableSidebar;
+    installSideBar = config.hellebore.dev-env.zellij.enableSideBar;
     extraConfig = {
       theme = generateToml "extra-yazi-theme" cfg.theme;
       keymap = generateToml "extra-yazi-keymap" cfg.keymap;

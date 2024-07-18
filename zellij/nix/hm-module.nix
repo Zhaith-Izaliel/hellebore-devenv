@@ -201,7 +201,7 @@ in {
 
     autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
 
-    enableSidebar = mkEnableOption "Zellij's file manager sidebar using Yazi. Needs `hellebore.dev-env.yazi` to be enabled.";
+    enableSideBar = mkEnableOption "Zellij's file manager sidebar using Yazi. Needs `hellebore.dev-env.yazi` to be enabled.";
 
     settings = mkOption {
       type = pathOrKdlType;
