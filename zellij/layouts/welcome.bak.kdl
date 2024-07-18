@@ -1,7 +1,0 @@
-layout {
-    pane {
-        plugin location="zellij:session-manager" {
-        	welcome_screen true
-        }
-    }
-}

@@ -25,7 +25,9 @@ in
         mkdir -p $out
 
         cp -r *.kdl $out
-        cp -r layouts $out
+
+        mkdir -p $out/layouts
+        cp -r layouts/*.kdl $out/layouts
         cp -r yazi $out
       ''
       (
