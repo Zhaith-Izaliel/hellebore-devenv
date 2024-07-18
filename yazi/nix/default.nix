@@ -25,8 +25,9 @@
     );
   finalFlavors = installFlavorsOrPlugins extraConfig.flavors "flavors";
   finalPlugins = installFlavorsOrPlugins extraConfig.plugins "plugins";
-  traceExtraConfig = builtins.trace extraConfig extraConfig;
 in
+  builtins.trace
+  extraConfig.settings
   stdenv.mkDerivation {
     inherit version;
 
@@ -47,7 +48,7 @@ in
         cp -r plugins $out
         cp -r flavors $out
       ''
-      (optionalString (traceExtraConfig.theme != "") "fusion toml theme.toml ${extraConfig.theme} -o $out/theme.toml")
+      (optionalString (extraConfig.theme != "") "fusion toml theme.toml ${extraConfig.theme} -o $out/theme.toml")
       (optionalString (extraConfig.settings != "") "fusion toml yazi.toml ${extraConfig.settings} -o $out/yazi.toml")
       (optionalString (extraConfig.keymap != "") "fusion toml keymap.toml ${extraConfig.keymap} -o $out/keymap.toml")
       (
