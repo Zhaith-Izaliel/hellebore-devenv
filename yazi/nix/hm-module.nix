@@ -274,7 +274,7 @@ in {
     ];
 
     programs.yazi = {
-      inherit (cfg) shellWrapperName;
+      # inherit (cfg) shellWrapperName;
       enable = true;
 
       package = cfg.packages.yazi;
