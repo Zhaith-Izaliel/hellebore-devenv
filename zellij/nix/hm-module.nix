@@ -304,7 +304,7 @@ in {
           + prettyPrintConflicts;
       })
       {
-        assertion = cfg.enableSidebar -> config.hellebore.dev-env.yazi.enable;
+        assertion = cfg.enableSideBar -> config.hellebore.dev-env.yazi.enable;
         message = "You must enable Yazi through `config.hellebore.dev-env.yazi.enable` to use the sidebar in Zellij.";
       }
     ];
