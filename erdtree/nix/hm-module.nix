@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf mkPackageOption mkEnableOption mkOption types;
-  cfg = config.hellebore.development.erdtree;
+  cfg = config.hellebore.dev-env.erdtree;
 in {
   options.hellebore.dev-env.erdtree = {
     enable = mkEnableOption "Erdtree - A modern, cross-platform, multi-threaded,
