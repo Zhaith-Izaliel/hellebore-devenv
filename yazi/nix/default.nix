@@ -9,6 +9,7 @@
     settings = "";
     flavors = {};
     plugins = {};
+    highlight = "";
     initLua = "";
   },
   installSideBar ? false,
@@ -50,12 +51,21 @@ in
       (optionalString (extraConfig.settings != "") "fusion toml yazi.toml ${extraConfig.settings} -o $out/yazi.toml")
       (optionalString (extraConfig.keymap != "") "fusion toml keymap.toml ${extraConfig.keymap} -o $out/keymap.toml")
       (
+        if (extraConfig.highlight != "")
+        then ''
+          cat ${extraConfig.highlight} > $out/highlight.tmTheme
+        ''
+        else ''
+          cp -r highlight.tmTheme $out
+        ''
+      )
+      (
         if (extraConfig.initLua != "")
         then ''
           cat ${extraConfig.initLua} > $out/init.lua
         ''
         else ''
-          cp -r init.lua $out/init.lua
+          cp -r init.lua $out
         ''
       )
       finalFlavors

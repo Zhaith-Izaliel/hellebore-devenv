@@ -15,7 +15,7 @@ in {
     package = mkPackageOption pkgs "erdtree" {};
 
     settings = mkOption {
-      type = types.line;
+      type = types.lines;
       default = "";
       example = ''
         --human

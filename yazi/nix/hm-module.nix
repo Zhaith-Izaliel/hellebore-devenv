@@ -57,6 +57,15 @@
             text = cfg.initLua;
           };
         in "${file}";
+      highlight =
+        if builtins.isPath cfg.initLua
+        then cfg.initLua
+        else let
+          file = pkgs.writeTextFile {
+            name = "yazi-init.lua";
+            text = cfg.initLua;
+          };
+        in "${file}";
     };
   };
 in {
@@ -165,6 +174,17 @@ in {
         The init.lua for Yazi itself.
 
         This will **completely override** the default init.lua bundled in the configuration.
+      '';
+      example = literalExpression "./init.lua";
+    };
+
+    highlight = mkOption {
+      type = with types; nullOr (either path lines);
+      default = null;
+      description = ''
+        The highlight.tmTheme for your Yazi theme.
+
+        This will **completely override** the default highlight.tmTheme bundled in the configuration.
       '';
       example = literalExpression "./init.lua";
     };
