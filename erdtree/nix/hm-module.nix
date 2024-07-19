@@ -27,7 +27,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = [cfg.package];
-    xdg.configHome."erdtree/.erdtreerc" =
+    xdg.configFile."erdtree/.erdtreerc" =
       if cfg.settings != ""
       then {
         text = cfg.settings;
