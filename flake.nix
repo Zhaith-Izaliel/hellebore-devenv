@@ -53,13 +53,18 @@
           homeManagerModules = {
             default = {...}: {
               imports = [
-                homeManagerModules.helix-module
-                homeManagerModules.zellij-module
-                homeManagerModules.yazi-module
+                homeManagerModules.helix
+                homeManagerModules.zellij
+                homeManagerModules.yazi
+                homeManagerModules.erdtree
               ];
             };
 
-            helix-module = {pkgs, ...}: let
+            erdtree = {...}: {
+              imports = [./erdtree/nix/hm-module.nix];
+            };
+
+            helix = {pkgs, ...}: let
               home-module = import ./helix/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-config);
                 helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
@@ -69,7 +74,7 @@
               imports = [home-module];
             };
 
-            zellij-module = {pkgs, ...}: let
+            zellij = {pkgs, ...}: let
               home-module = import ./zellij/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zellij-config);
               };
@@ -77,7 +82,7 @@
               imports = [home-module];
             };
 
-            yazi-module = {pkgs, ...}: let
+            yazi = {pkgs, ...}: let
               home-module = import ./yazi/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.yazi-config);
               };

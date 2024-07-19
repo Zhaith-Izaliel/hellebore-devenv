@@ -1,0 +1,13 @@
+# Human readable sizes
+--human
+
+# Inverted tree
+--layout inverted
+
+# Using Icons
+--icons
+
+# Sort
+--dir-order first
+--sort name
+

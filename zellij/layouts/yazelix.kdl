@@ -14,7 +14,7 @@ layout {
            plugin location="zellij:tab-bar"
         }
         pane split_direction="vertical" {
-            pane name="sidebar" {
+            pane name="yazi" {
                 command "env"
                 args "YAZI_CONFIG_HOME=~/.config/yazi/sidebar" "yazi"
             	size "20%"
