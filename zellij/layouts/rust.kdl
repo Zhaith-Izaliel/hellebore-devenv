@@ -1,0 +1,57 @@
+layout {
+    tab_template name="ui" {
+        pane size=1 borderless=true {
+           plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=1 borderless=true {
+           plugin location="zellij:status-bar"
+        }
+    }
+
+
+    pane_template name="cargo" {
+        pane split_direction="horizontal" {        
+            pane name="cargo check" {
+                command "zsh"
+                args "-c" "direnv exec . cargo check"
+                start_suspended true
+            }
+            pane name="cargo run" {
+                command "zsh"
+                args "-c" "direnv exec . cargo run"
+                start_suspended true
+            }
+
+            pane name="cargo test" {
+                command "zsh"
+                args "-c" "direnv exec . cargo test"
+                start_suspended true
+            }
+        }
+    }
+
+    
+    pane_template name="yazi" {
+        command "env"
+        args "YAZI_CONFIG_HOME=~/.config/yazi/sidebar" "yazi"
+    }
+
+    default_tab_template {
+        pane size=1 borderless=true {
+           plugin location="zellij:tab-bar"
+        }
+        pane split_direction="vertical" {
+            yazi size="20%";
+            pane name="main" {
+                focus true
+            }
+            cargo
+        }
+        pane size=1 borderless=true {
+           plugin location="zellij:status-bar"
+        }
+    }
+}
+
+
