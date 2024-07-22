@@ -4,7 +4,7 @@ swap_tiled_layout name="sidebar_open" {
             yazi size="20%";
 
             pane name="main" split_direction="vertical" {
-                pane
+                pane focus=true;
                 pane stacked=true { children; }
             }
             cargo
@@ -15,11 +15,25 @@ swap_tiled_layout name="sidebar_open" {
 swap_tiled_layout name="sidebar_close" {
     ui min_panes=8 {
         pane split_direction="vertical" {
-            yazi size="1%";
+            yazi size=1;
 
             pane name="main" split_direction="vertical" {
-                pane
+                pane focus=true;
                 pane stacked=true { children; }
+            }
+            cargo
+        }
+    }
+}
+
+swap_tiled_layout name="main_only" {
+    ui min_panes=8 {
+        pane split_direction="vertical" {
+            yazi size=1;
+
+            pane name="main" split_direction="vertical" {
+                pane focus=true;
+                pane stacked=true size=1 { children; }
             }
             cargo
         }

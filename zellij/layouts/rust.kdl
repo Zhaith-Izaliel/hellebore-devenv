@@ -43,8 +43,9 @@ layout {
         }
         pane split_direction="vertical" {
             yazi size="20%";
-            pane name="main" {
-                focus true
+            pane name="main" split_direction="vertical"{
+                pane focus=true;
+                pane stacked=true { children; }
             }
             cargo
         }
