@@ -45,7 +45,6 @@ layout {
             yazi size="20%";
             pane name="main" split_direction="vertical"{
                 pane focus=true;
-                pane stacked=true { children; }
             }
             cargo
         }
