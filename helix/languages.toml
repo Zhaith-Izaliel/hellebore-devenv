@@ -2,6 +2,7 @@
 deno = { command = "deno", args = ["lsp"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
 ccls = { command = "ccls" }
+nixd = { command = "nixd" }
 
 [language-server.scls]
 command = "simple-completion-language-server"
@@ -132,7 +133,7 @@ auto-format = true
 
 [[language]]
 name = "nix"
-language-servers = ["nil", "scls"]
+language-servers = ["nixd", "nil", "scls"]
 formatter = { command = "alejandra", args = ["--quiet"] }
 auto-format = true
 

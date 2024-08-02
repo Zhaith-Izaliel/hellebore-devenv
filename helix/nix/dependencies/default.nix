@@ -25,6 +25,7 @@ in {
     jdt-language-server
     (taplo.override {withLsp = true;})
     nil
+    nixd
     emmet-ls
     sumneko-lua-language-server
     rust-analyzer
