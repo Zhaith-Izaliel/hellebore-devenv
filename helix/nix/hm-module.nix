@@ -9,7 +9,7 @@
   stdenv,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf types mkOption mapAttrsToList flatten recursiveUpdate literalExpression warn concatStringsSep;
+  inherit (lib) mkEnableOption mkIf types mkOption mapAttrsToList flatten recursiveUpdate literalExpression concatStringsSep warn;
   tomlFormat = pkgs.formats.toml {};
 
   cfg = config.hellebore.dev-env.helix;
@@ -82,14 +82,13 @@ in {
       };
 
       languages = mkOption {
-        type = with types;
-          coercedTo (listOf tomlFormat.type) (language:
-            warn ''
-              The syntax of programs.helix.languages has changed.
-              It now generates the whole languages.toml file instead of just the language array in that file.
+        type = types.coercedTo (types.listOf tomlFormat.type) (language:
+          warn ''
+            The syntax of programs.helix.languages has changed.
+            It now generates the whole languages.toml file instead of just the language array in that file.
 
-              Use programs.helix.languages = { language = <languages list>; } instead.
-            '' {inherit language;}) (addCheck tomlFormat.type builtins.isAttrs);
+            Use programs.helix.languages = { language = <languages list>; } instead.
+          '' {inherit language;}) (types.addCheck tomlFormat.type builtins.isAttrs);
         default = {};
         example = literalExpression ''
           {
