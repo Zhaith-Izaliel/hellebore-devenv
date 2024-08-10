@@ -11,6 +11,8 @@ args = ["--stdio"]
 [language-server.vscode-css-language-server.config]
 provideFormatter = true
 css = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
+scss = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
+less = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 
 [language-server.scls]
 command = "simple-completion-language-server"
