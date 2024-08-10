@@ -4,6 +4,85 @@ emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
 ccls = { command = "ccls" }
 nixd = { command = "nixd" }
 
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-css-language-server.config]
+provideFormatter = true
+css = { validate = { enable = true } }
+
+[[language-server.vscode-css-language-server.config.atDirectives]]
+name = "@tailwind"
+description = "Use the `@tailwind` directive to insert Tailwind's `base`, `components`, `utilities` and `screens` styles into your CSS."
+
+[[language-server.vscode-css-language-server.config.atDirectives.references]]
+name = "Tailwind Documentation"
+url = "https://tailwindcss.com/docs/functions-and-directives#tailwind"
+
+[[language-server.vscode-css-language-server.config.atDirectives]]
+name = "@apply"
+description = "Use the `@apply` directive to inline any existing utility classes into your own custom CSS. This is useful when you find a common utility pattern in your HTML that you’d like to extract to a new component."
+
+[[language-server.vscode-css-language-server.config.atDirectives.references]]
+name = "Tailwind Documentation"
+url = "https://tailwindcss.com/docs/functions-and-directives#apply"
+
+[[language-server.vscode-css-language-server.config.atDirectives]]
+name = "@responsive"
+description = """
+You can generate responsive variants of your own classes by wrapping their definitions in the `@responsive` directive:
+```css
+@responsive {
+  .alert {
+    background-color: #E53E3E;
+  }
+}
+```
+"""
+
+[[language-server.vscode-css-language-server.config.atDirectives.references]]
+name = "Tailwind Documentation"
+url = "https://tailwindcss.com/docs/functions-and-directives#responsive"
+
+[[language-server.vscode-css-language-server.config.atDirectives]]
+name = "@screen"
+description = """
+The `@screen` directive allows you to create media queries that reference your breakpoints by **name** instead of duplicating their values in your own CSS:
+```css
+@screen sm {
+  /* ... */
+}
+```
+…gets transformed into this:
+```css
+@media (min-width: 640px) {
+  /* ... */
+}
+```
+"""
+
+[[language-server.vscode-css-language-server.config.atDirectives.references]]
+name = "Tailwind Documentation"
+url = "https://tailwindcss.com/docs/functions-and-directives#screen"
+
+[[language-server.vscode-css-language-server.config.atDirectives]]
+name = "@variants"
+description = """
+Generate `hover`, `focus`, `active` and other **variants** of your own utilities by wrapping their definitions in the `@variants` directive:
+```css
+@variants hover, focus {
+   .btn-brand {
+    background-color: #3182CE;
+  }
+}
+```
+"""
+
+[[language-server.vscode-css-language-server.config.atDirectives.references]]
+name = "Tailwind Documentation"
+url = "https://tailwindcss.com/docs/functions-and-directives#variants"
+
 [language-server.scls]
 command = "simple-completion-language-server"
 
@@ -107,6 +186,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "vscode-css-language-server",
 ]
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
@@ -114,7 +194,13 @@ auto-format = true
 [[language]]
 name = "css"
 file-types = ["css", "scss", "less"]
-language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+language-servers = [
+  "stylelint-ls",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+  "vscode-css-language-server",
+]
 formatter = { command = 'prettier', args = ["--parser", "css"] }
 auto-format = true
 
@@ -127,6 +213,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "vscode-css-language-server",
 ]
 formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
@@ -196,7 +283,13 @@ auto-format = true
 
 [[language]]
 name = "scss"
-language-servers = ["stylelint-ls", "emmet-ls", "tailwindcss-ls", "scls"]
+language-servers = [
+  "stylelint-ls",
+  "emmet-ls",
+  "tailwindcss-ls",
+  "scls",
+  "vscode-css-language-server",
+]
 formatter = { command = "prettier", args = ["--parser", "scss"] }
 auto-format = true
 
