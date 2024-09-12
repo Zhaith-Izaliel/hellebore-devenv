@@ -48,6 +48,7 @@ in {
     ccls
     nodejs-packages.stylelint-lsp
     nodejs-packages."@vue/language-server"
+    biome
   ];
 
   debug-adapters = with pkgs; [
