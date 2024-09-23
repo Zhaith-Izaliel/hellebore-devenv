@@ -10,7 +10,7 @@
 in {
   formatters = with pkgs; [
     alejandra
-    python311Packages.mdformat
+    pandoc
     gotools
     nodePackages.prettier
     stylish-haskell
@@ -20,36 +20,39 @@ in {
     eslint_d
   ];
 
-  language-servers = with pkgs; [
-    simple-completion-language-server
-    jdt-language-server
-    (taplo.override {withLsp = true;})
-    nil
-    nixd
-    emmet-ls
-    sumneko-lua-language-server
-    rust-analyzer
-    pyright
-    nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
-    nodePackages.typescript-language-server
-    nodePackages.graphql-language-service-cli
-    (
-      if (builtins.hasAttr "bash-language-server" pkgs)
-      then bash-language-server
-      else nodePackages.bash-language-server
-    )
-    tailwindcss-language-server
-    texlab
-    haskell-language-server
-    marksman
-    gopls
-    cmake-language-server
-    ltex-ls
-    ccls
-    nodejs-packages.stylelint-lsp
-    nodejs-packages."@vue/language-server"
-    biome
-  ];
+  language-servers =
+    (with pkgs; [
+      simple-completion-language-server
+      jdt-language-server
+      nil
+      nixd
+      emmet-ls
+      sumneko-lua-language-server
+      rust-analyzer
+      pyright
+      nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
+      nodePackages.typescript-language-server
+      nodePackages.graphql-language-service-cli
+      tailwindcss-language-server
+      texlab
+      haskell-language-server
+      marksman
+      gopls
+      cmake-language-server
+      ltex-ls
+      ccls
+      biome
+    ])
+    ++ [
+      (pkgs.taplo.override {withLsp = true;})
+      (
+        if (builtins.hasAttr "bash-language-server" pkgs)
+        then pkgs.bash-language-server
+        else pkgs.nodePackages.bash-language-server
+      )
+      nodejs-packages.stylelint-lsp
+      nodejs-packages."@vue/language-server"
+    ];
 
   debug-adapters = with pkgs; [
     lldb
