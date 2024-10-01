@@ -43,10 +43,10 @@ layout {
         }
         pane split_direction="vertical" {
             yazi size="20%";
-            pane name="main" split_direction="vertical"{
+            pane name="main" split_direction="vertical" {
                 pane focus=true;
             }
-            cargo
+            cargo size="25%";
         }
         pane size=1 borderless=true {
            plugin location="zellij:status-bar"
