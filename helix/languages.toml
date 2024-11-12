@@ -15,6 +15,10 @@ css = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 scss = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 less = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 
+[language-server.godot]
+command = "nc"
+args = ["127.0.0.1", "6007"]
+
 [language-server.scls]
 command = "simple-completion-language-server"
 
@@ -72,13 +76,19 @@ json = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
 
 [[language]]
+name = "gdscript"
+language-servers = ["godot", "scls"]
+formatter = { command = "gdformat", args = ["-"] }
+auto-format = true
+
+[[language]]
 name = "git-commit"
 language-servers = ["scls"]
 
 [[language]]
 name = "typescript"
 language-servers = ["eslint", "typescript-language-server", "slcs"]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]

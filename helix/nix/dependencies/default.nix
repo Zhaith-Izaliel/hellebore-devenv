@@ -17,7 +17,7 @@ in {
     google-java-format
     stylua
     shfmt
-    eslint_d
+    gdtoolkit
   ];
 
   language-servers =
@@ -61,5 +61,6 @@ in {
 
   other-packages = with pkgs; [
     wl-clipboard
+    netcat
   ];
 }
