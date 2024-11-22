@@ -73,7 +73,7 @@
 
   finalYaziPackage = pkgs.symlinkJoin {
     name = "${lib.getName cfg.packages.yazi}-wrapped-${lib.getVersion cfg.packages.yazi}";
-    paths = [cfg.package];
+    paths = [cfg.packages.yazi];
     preferLocalBuild = true;
     nativeBuildInputs = [pkgs.makeWrapper];
     postBuild = ''
