@@ -1,4 +1,4 @@
 {pkgs}:
 with pkgs; [
-  exiftools
+  exiftool
 ]
