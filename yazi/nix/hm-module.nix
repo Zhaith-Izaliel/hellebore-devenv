@@ -34,6 +34,8 @@
 
   zellijSettings = optionalAttrs config.hellebore.dev-env.zellij.enable (builtins.fromTOML (builtins.readFile ./zellij-yazi.toml));
 
+  finalExtraPackages = cfg.extraPackages ++ (import ./dependencies.nix {inherit pkgs;});
+
   finalPackage = package.override {
     installSideBar = config.hellebore.dev-env.zellij.enableSideBar;
     extraConfig = {
@@ -68,6 +70,17 @@
         in "${file}";
     };
   };
+
+  finalYaziPackage = pkgs.symlinkJoin {
+    name = "${lib.getName cfg.package.yazi}-wrapped-${lib.getVersion cfg.package.yazi}";
+    paths = [cfg.package];
+    preferLocalBuild = true;
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/yazi \
+        --suffix PATH : ${lib.makeBinPath finalExtraPackages}
+    '';
+  };
 in {
   options.hellebore.dev-env.yazi = {
     enable = mkEnableOption "Hellebore's Dev-Env Yazi configuration";
@@ -80,6 +93,12 @@ in {
       };
 
       yazi = mkPackageOption pkgs "yazi" {};
+    };
+
+    extraPackages = mkOption {
+      default = [];
+      type = types.listOf types.package;
+      description = "Defines the list of additional runtimes to add to Yazi.";
     };
 
     shellWrapperName = mkOption {
@@ -190,7 +209,7 @@ in {
     };
 
     plugins = mkOption {
-      type = with types; attrsOf (oneOf [path package]);
+      type = types.attrsOf (types.oneOf [types.path types.package]);
       default = {};
       description = ''
         Lua plugins.
@@ -209,7 +228,7 @@ in {
     };
 
     flavors = mkOption {
-      type = with types; attrsOf (oneOf [path package]);
+      type = types.attrsOf (types.oneOf [types.path types.package]);
       default = {};
       description = ''
         Pre-made themes.
@@ -299,8 +318,7 @@ in {
       # inherit (cfg) shellWrapperName;
       enable = true;
 
-      package = cfg.packages.yazi;
-
+      package = finalYaziPackage;
       enableZshIntegration = cfg.shellIntegrations.zsh;
       enableBashIntegration = cfg.shellIntegrations.bash;
       enableFishIntegration = cfg.shellIntegrations.fish;
