@@ -36,7 +36,7 @@
 
   finalExtraPackages = cfg.extraPackages ++ (import ./dependencies.nix {inherit pkgs;});
 
-  finalPackage = package.override {
+  finalConfigPackage = package.override {
     installSideBar = config.hellebore.dev-env.zellij.enableSideBar;
     extraConfig = {
       theme = generateToml "extra-yazi-theme" cfg.theme;
@@ -72,7 +72,7 @@
   };
 
   finalYaziPackage = pkgs.symlinkJoin {
-    name = "${lib.getName cfg.package.yazi}-wrapped-${lib.getVersion cfg.package.yazi}";
+    name = "${lib.getName cfg.packages.yazi}-wrapped-${lib.getVersion cfg.packages.yazi}";
     paths = [cfg.package];
     preferLocalBuild = true;
     nativeBuildInputs = [pkgs.makeWrapper];
@@ -87,7 +87,7 @@ in {
 
     packages = {
       config = mkOption {
-        default = finalPackage;
+        default = finalConfigPackage;
         type = types.package;
         description = "Defines the package used to get Yazi's configuration from.";
       };
