@@ -5,6 +5,9 @@ ccls = { command = "ccls" }
 nixd = { command = "nixd" }
 biome = { command = "biome", args = ["lsp-proxy"] }
 
+[language-server.ctags-lsp]
+command = "ctags-lsp"
+
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
 args = ["--stdio"]
@@ -168,35 +171,35 @@ auto-format = true
 
 [[language]]
 name = "lua"
-language-servers = ["lua-language-server", "scls"]
+language-servers = ["ctags-lsp", "lua-language-server", "scls"]
 formatter = { command = "stylua", args = ["-"] }
 auto-format = true
 
 [[language]]
 name = "toml"
-language-servers = ["taplo", "scls"]
+language-servers = ["ctags-lsp", "taplo", "scls"]
 formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true
 
 [[language]]
 name = "haskell"
-language-servers = ["haskell-language-server", "scls"]
+language-servers = ["ctags-lsp", "haskell-language-server", "scls"]
 formatter = { command = "stylish-haskell", args = [] }
 auto-format = true
 
 [[language]]
 name = "c"
-language-servers = ["ccls", "scls"]
+language-servers = ["ctags-lsp", "ccls", "scls"]
 auto-format = true
 
 [[language]]
 name = "cpp"
-language-servers = ["ccls", "scls"]
+language-servers = ["ctags-lsp", "ccls", "scls"]
 auto-format = true
 
 [[languages]]
 name = "go"
-language-servers = ["gopls", "scls"]
+language-servers = ["ctags-lsp", "gopls", "scls"]
 formatter = { command = "goimports", args = [] }
 auto-format = true
 
