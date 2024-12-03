@@ -17,7 +17,7 @@ in {
     google-java-format
     stylua
     shfmt
-    gdtoolkit
+    gdtoolkit_4
   ];
 
   language-servers =
