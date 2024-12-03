@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "ctags-lsp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733228567,
+        "narHash": "sha256-b2e35t6+t39nhkVEllwriC0119aqacOei/5JkuVaw2o=",
+        "owner": "netmute",
+        "repo": "ctags-lsp",
+        "rev": "8321b4979b5efbd812798ea9beeebd9d78abd9ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "netmute",
+        "repo": "ctags-lsp",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -183,6 +199,7 @@
     },
     "root": {
       "inputs": {
+        "ctags-lsp": "ctags-lsp",
         "flake-parts": "flake-parts",
         "helix": "helix",
         "nil": "nil",

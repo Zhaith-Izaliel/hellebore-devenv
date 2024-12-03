@@ -15,6 +15,10 @@
       url = "github:estin/simple-completion-language-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ctags-lsp = {
+      url = "github:netmute/ctags-lsp";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -29,6 +33,9 @@
     }: let
       inherit (lib) types mkOption;
       lib = nixpkgs.lib;
+      local-overlays = {
+        helix = import ./helix/nix/overlay.nix {inherit inputs;};
+      };
     in {
       options.flake = {
         version = mkOption {
@@ -43,11 +50,9 @@
         systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
 
         flake = rec {
-          overlays.default = [
+          overlays.helix = [
             inputs.nil.overlays.default
-            (final: prev: {
-              simple-completion-language-server = inputs.simple-completion-language-server.defaultPackage.${final.stdenv.hostPlatform.system};
-            })
+            local-overlays.helix
           ];
 
           homeManagerModules = {
@@ -68,7 +73,7 @@
               home-module = import ./helix/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-config);
                 helixPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix);
-                overlays = overlays.default;
+                overlays = overlays.helix;
               };
             in {
               imports = [home-module];
