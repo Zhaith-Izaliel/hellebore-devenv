@@ -1,0 +1,41 @@
+swap_tiled_layout name="sidebar_open" {
+    ui min_panes=8 {
+        pane split_direction="vertical" {
+            yazi size="20%";
+
+            pane name="main" split_direction="vertical" focus=true {
+                pane;
+                pane stacked=true { children; }
+            }
+            haskell size="25%";
+        }
+    }
+}
+
+swap_tiled_layout name="stacking_main_pane" {
+    ui min_panes=7 {
+        pane split_direction="vertical" {
+            yazi size="20%";
+
+            pane name="main" split_direction="vertical" focus=true {
+                pane stacked=true { children; }
+            }
+            haskell size="25%";
+        }
+    }
+}
+
+swap_tiled_layout name="sidebar_close" {
+    ui min_panes=8 {
+        pane split_direction="vertical" {
+            yazi size=1;
+
+            pane name="main" split_direction="vertical" focus=true {
+                pane
+                pane stacked=true { children; }
+            }
+            haskell size="25%";
+        }
+    }
+}
+
