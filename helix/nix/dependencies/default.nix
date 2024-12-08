@@ -35,7 +35,7 @@ in {
       nodePackages.graphql-language-service-cli
       tailwindcss-language-server
       texlab
-      haskell-language-server
+      # haskell-language-server
       marksman
       gopls
       cmake-language-server
