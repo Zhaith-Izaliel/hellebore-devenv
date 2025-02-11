@@ -1,7 +1,6 @@
 {
   src,
   buildGoModule,
-  lib,
 }:
 buildGoModule {
   inherit src;
