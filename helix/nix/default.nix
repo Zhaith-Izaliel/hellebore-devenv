@@ -37,6 +37,7 @@ in
 
         cp -r *.toml $out
         cp -r themes $out/themes
+        cp -r runtime $out/runtime
       ''
       finalIgnores
       (optionalString (extraConfig.languages != "") "fusion toml languages.toml ${extraConfig.languages} -o $out/languages.toml")
