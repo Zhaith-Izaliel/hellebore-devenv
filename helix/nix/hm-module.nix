@@ -35,6 +35,9 @@
     };
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
+  finalHelixPackage = cfg.packages.helix.override {
+    grammarOverlays = import ./grammars/default.nix {inherit pkgs;};
+  };
 in {
   options.hellebore.dev-env.helix = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
@@ -220,7 +223,7 @@ in {
 
     programs.helix = {
       inherit (cfg) enable defaultEditor;
-      package = cfg.packages.helix;
+      package = finalHelixPackage;
       extraPackages = finalExtraPackages;
     };
 
