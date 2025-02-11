@@ -22,6 +22,9 @@ less = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 command = "nc"
 args = ["127.0.0.1", "6007"]
 
+[languages-server.mcfunction-lsp]
+command = "mcfunction-lsp"
+
 [language-server.scls]
 command = "simple-completion-language-server"
 
@@ -84,6 +87,7 @@ source = { git = "https://github.com/IoeCmcomc/tree-sitter-mcfunction", rev = "5
 
 [[language]]
 name = "mcfunction"
+language-servers = ["mcfunction-lsp", "scls"]
 scope = "source.mcfunction"
 file-types = ["mcfunction"]
 comment-token = "#"

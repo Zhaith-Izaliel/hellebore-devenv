@@ -43,6 +43,7 @@ in {
       ccls
       biome
       ctags-lsp
+      mcfunction-lsp
     ])
     ++ [
       (pkgs.taplo.override {withLsp = true;})
