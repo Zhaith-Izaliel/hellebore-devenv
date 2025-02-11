@@ -78,6 +78,18 @@ showDocumentation = { enable = false }
 json = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
 
+[[grammar]]
+name = "mcfunction"
+source = { git = "https://github.com/IoeCmcomc/tree-sitter-mcfunction", rev = "5bf1f08320697c24f395af76422a845f9f627fb0" }
+
+[[language]]
+name = "mcfunction"
+scope = "source.mcfunction"
+file-types = ["mcfunction"]
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+grammar = "mcfunction"
+
 [[language]]
 name = "gdscript"
 language-servers = ["godot", "scls"]
