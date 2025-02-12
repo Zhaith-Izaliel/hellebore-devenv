@@ -125,22 +125,6 @@
         "type": "github"
       }
     },
-    "mcfunction-lsp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710950436,
-        "narHash": "sha256-xb0BU3MkklR4yzstOTfhy9mIsLv84u6Mpi9u2EjLvTQ=",
-        "owner": "mend-lang",
-        "repo": "mcfunction-lsp",
-        "rev": "3bc37bc271dce1a3a3a331149cdb17447054ddb6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mend-lang",
-        "repo": "mcfunction-lsp",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -218,7 +202,6 @@
         "ctags-lsp": "ctags-lsp",
         "flake-parts": "flake-parts",
         "helix": "helix",
-        "mcfunction-lsp": "mcfunction-lsp",
         "nil": "nil",
         "nixpkgs": "nixpkgs",
         "simple-completion-language-server": "simple-completion-language-server"

@@ -5,7 +5,7 @@ ccls = { command = "ccls" }
 nixd = { command = "nixd" }
 biome = { command = "biome", args = ["lsp-proxy"] }
 ctags-lsp = { command = "ctags-lsp" }
-mcfunction-lsp = { command = "mcfunction-lsp" }
+spyglassmc = { command = "datapack-language-server", args = ["--stdio"] }
 
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
@@ -79,7 +79,7 @@ provideFormatter = true
 
 [[language]]
 name = "mcfunction"
-language-servers = ["mcfunction-lsp", "scls"]
+language-servers = ["spyglassmc", "scls"]
 scope = "source.mcfunction"
 file-types = ["mcfunction"]
 comment-token = "#"

@@ -43,7 +43,6 @@ in {
       ccls
       biome
       ctags-lsp
-      mcfunction-lsp
     ])
     ++ [
       (pkgs.taplo.override {withLsp = true;})
@@ -54,6 +53,7 @@ in {
       )
       nodejs-packages.stylelint-lsp
       nodejs-packages."@vue/language-server"
+      nodejs-packages."@spyglassmc/language-server"
     ];
 
   debug-adapters = with pkgs; [

@@ -19,10 +19,6 @@
       url = "github:netmute/ctags-lsp";
       flake = false;
     };
-    mcfunction-lsp = {
-      url = "github:mend-lang/mcfunction-lsp";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {

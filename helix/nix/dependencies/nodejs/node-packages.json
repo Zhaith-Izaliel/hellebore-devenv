@@ -1,4 +1,5 @@
 [
   "stylelint-lsp",
-  "@vue/language-server"
+  "@vue/language-server",
+  "@spyglassmc/language-server"
 ]
