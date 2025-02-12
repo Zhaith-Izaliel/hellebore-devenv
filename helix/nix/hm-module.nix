@@ -35,7 +35,9 @@
     };
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
-  finalHelixPackage = cfg.packages.helix;
+  finalHelixPackage = cfg.packages.helix.override {
+    grammarOverlays = import ./grammars {};
+  };
 in {
   options.hellebore.dev-env.helix = {
     enable = mkEnableOption "Zhaith Izaliel's Helix configuration";
