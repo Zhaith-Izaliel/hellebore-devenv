@@ -1,6 +1,6 @@
 {pkgs}: [
-  (final: prev:
-    pkgs.callPackage ./builder.nix {
+  (final: prev: {
+    mcfunction = pkgs.callPackage ./builder.nix {
       grammar = {
         source = builtins.fetchTree {
           type = "github";
@@ -11,5 +11,6 @@
 
         name = "mcfunction";
       };
-    })
+    };
+  })
 ]
