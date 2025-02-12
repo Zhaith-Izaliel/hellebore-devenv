@@ -36,7 +36,7 @@
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
   finalHelixPackage = cfg.packages.helix.override {
-    grammarOverlays = import ./grammars {};
+    grammarOverlays = import ./grammars {inherit pkgs;};
   };
 in {
   options.hellebore.dev-env.helix = {

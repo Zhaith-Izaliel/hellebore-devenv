@@ -1,6 +1,6 @@
-{}: [
+{pkgs}: [
   (final: prev:
-    prev.callPackage ./builder.nix {
+    pkgs.callPackage ./builder.nix {
       grammar = {
         source = builtins.fetchTree {
           type = "github";
