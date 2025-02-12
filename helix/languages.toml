@@ -5,7 +5,7 @@ ccls = { command = "ccls" }
 nixd = { command = "nixd" }
 biome = { command = "biome", args = ["lsp-proxy"] }
 ctags-lsp = { command = "ctags-lsp" }
-spyglassmc = { command = "datapack-language-server", args = ["--stdio"] }
+spyglassmc = { command = " spyglassmc-language-server", args = ["--stdio"] }
 
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
