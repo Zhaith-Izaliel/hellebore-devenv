@@ -64,5 +64,6 @@ in {
   other-packages = with pkgs; [
     wl-clipboard
     netcat
+    universal-ctags
   ];
 }
