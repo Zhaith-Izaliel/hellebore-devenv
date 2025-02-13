@@ -87,7 +87,7 @@ in {
 
     extraGrammarOverlay = mkOption {
       default = null;
-      type = types.nullOr types.function;
+      type = types.nullOr (types.functionTo types.attrs);
       description = "Defines an overlay to apply to grammars in Helix.";
       example = literalExpression ''
         final: prev: {
