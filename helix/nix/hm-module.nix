@@ -9,9 +9,22 @@
   stdenv,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf types mkOption mapAttrsToList flatten recursiveUpdate literalExpression concatStringsSep warn;
-  tomlFormat = pkgs.formats.toml {};
+  inherit
+    (lib)
+    mkEnableOption
+    mkIf
+    types
+    mkOption
+    mapAttrsToList
+    flatten
+    recursiveUpdate
+    literalExpression
+    concatStringsSep
+    warn
+    optional
+    ;
 
+  tomlFormat = pkgs.formats.toml {};
   cfg = config.hellebore.dev-env.helix;
 
   nodejs-packages = import ./dependencies/nodejs {
@@ -36,7 +49,7 @@
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
   finalHelixPackage = cfg.packages.helix.override {
-    grammarOverlays = import ./grammars {inherit pkgs;};
+    grammarOverlays = [(import ./grammars {inherit pkgs;})] ++ optional (cfg.extraGrammarOverlay != null) cfg.extraGrammarOverlay;
   };
 in {
   options.hellebore.dev-env.helix = {
@@ -69,6 +82,24 @@ in {
       default = [];
       type = types.listOf types.package;
       description = "Defines the list of additional runtimes to add to Helix. Usually language servers.";
+    };
+
+    extraGrammarOverlay = mkOption {
+      default = null;
+      type = types.nullOr types.function;
+      description = "Defines an overlay to apply to grammars in Helix.";
+      example = literalExpression ''
+        final: prev: {
+          markdown_inline = prev.markdown_inline.overrideAttrs {
+          EXTENSION_TAGS = 1;
+          EXTENSION_WIKI_LINK = 1;
+          nativeBuildInputs = with pkgs; [ tree-sitter nodejs ];
+          preBuild = \'\'
+            rm src/parser.c
+            tree-sitter generate
+          \'\';
+        }
+      '';
     };
 
     settings = {
