@@ -45,7 +45,7 @@
       config = tomlFormat.generate "zhaith-helix-extraConfig.toml" cfg.settings.config;
       themes = builtins.mapAttrs (name: value: tomlFormat.generate name "zhaith-helix-theme-${value}.toml") cfg.settings.themes;
       ignores = concatStringsSep "\n" cfg.settings.ignores;
-      runtime = cfg.extraRuntime;
+      runtime = cfg.settings.runtime;
     };
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
