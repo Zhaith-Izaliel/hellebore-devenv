@@ -45,6 +45,7 @@
       config = tomlFormat.generate "zhaith-helix-extraConfig.toml" cfg.settings.config;
       themes = builtins.mapAttrs (name: value: tomlFormat.generate name "zhaith-helix-theme-${value}.toml") cfg.settings.themes;
       ignores = concatStringsSep "\n" cfg.settings.ignores;
+      runtime = cfg.extraRuntime;
     };
   };
   finalExtraPackages = cfg.extraPackages ++ extraPackages;
@@ -112,6 +113,17 @@ in {
           Supports the usual ignore and negative ignore (unignore) rules used in `.gitignore` files.
 
           This takes precedence on the default ignores provided by this module.
+        '';
+      };
+
+      runtime = mkOption {
+        type = types.nullOr types.path;
+        default = null;
+        example = literalExpression "./runtime";
+        description = ''
+          A path locating a runtime directory for Helix to use alongside its default one.
+
+          The runtimes defined here will be merged with the ones provided by this module, overriding conflicting files.
         '';
       };
 

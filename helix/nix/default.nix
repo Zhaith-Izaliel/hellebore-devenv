@@ -8,6 +8,7 @@
     config = "";
     ignores = "";
     themes = {};
+    runtime = null;
   },
 }: let
   inherit (lib) concatStringsSep optionalString mapAttrsToList;
@@ -42,6 +43,7 @@ in
       finalIgnores
       (optionalString (extraConfig.languages != "") "fusion toml languages.toml ${extraConfig.languages} -o $out/languages.toml")
       (optionalString (extraConfig.config != "") "fusion toml config.toml ${extraConfig.config} -o $out/config.toml")
+      (optionalString (extraConfig.runtime != null) "cp -r ${extraConfig.runtime} $out/runtime")
       extraThemesInstall
       ''
         runHook postInstall
