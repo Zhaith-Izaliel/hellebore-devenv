@@ -13,12 +13,10 @@
     mkPackageOption
     literalExpression
     mapAttrsToList
-    optionalString
-    pipe
-    filterAttrs
-    intersectLists
-    concatStringsSep
     ;
+
+  extraTypes = import ../../common/types.nix {inherit lib;};
+  utils = import ../../common/utils.nix {inherit lib;};
 
   toKdl = lib.hm.generators.toKdl {};
 
@@ -33,8 +31,6 @@
         else toKdl content;
     };
   in "${file}";
-
-  toLayoutFileName = name: value: "${name}${optionalString value.isSwap ".swap"}.kdl";
 
   finalPluginsKdlAttrs = builtins.mapAttrs (name: value:
     {
@@ -51,7 +47,7 @@
       layouts =
         mapAttrsToList (
           name: value: let
-            fileName = toLayoutFileName name value;
+            fileName = utils.toLayoutFileName name value;
             content = value.content;
           in {
             inherit fileName;
@@ -61,74 +57,6 @@
         cfg.layouts;
       themes = writeKdlFile "zellij-generated-themes.kdl" {themes = cfg.themes;};
       plugins = writeKdlFile "zellij-generated-plugins-aliases.kdl" {plugins = finalPluginsKdlAttrs;};
-    };
-  };
-
-  pathOrKdlType = with types;
-    nullOr (oneOf [
-      path
-      kdlType
-    ]);
-
-  kdlType = with types; let
-    valueType = nullOr (oneOf [
-      bool
-      int
-      float
-      str
-      path
-      (attrsOf valueType)
-      (listOf valueType)
-    ]);
-  in
-    valueType;
-
-  layoutsType = types.submodule {
-    options = {
-      isSwap = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Defines if the layout is a swap layout.
-
-          See <https://zellij.dev/documentation/swap-layouts> for the full list of options.
-        '';
-      };
-
-      content = mkOption {
-        type = pathOrKdlType;
-        default = null;
-        description = ''
-          The configuration of the layout.
-          Can be a path to a KDL file or an attribute set representing a KDL configuration.
-
-          See <https://zellij.dev/documentation/layouts> for the full list of options.
-        '';
-
-        example = literalExpression ''
-          {
-            layout = {
-              tab_template = {
-                _props = {
-                  name = "ui";
-                };
-                pane = {
-                  _props = {
-                    size = 1;
-                    borderless = true;
-                  };
-                  plugin = {
-                    _props = {
-                     location = "zellij:tab-bar";
-                    };
-                  };
-                };
-                children = {};
-              };
-            };
-          }
-        '';
-      };
     };
   };
 
@@ -145,7 +73,7 @@
       };
 
       settings = mkOption {
-        type = kdlType;
+        type = extraTypes.kdlType;
         default = {};
         description = ''
           The configuration of the plugin.
@@ -201,7 +129,7 @@ in {
     autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
 
     settings = mkOption {
-      type = pathOrKdlType;
+      type = extraTypes.pathOrKdlType;
       default = {};
       description = ''
         Configuration written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
@@ -229,7 +157,7 @@ in {
     };
 
     layouts = mkOption {
-      type = types.attrsOf layoutsType;
+      type = types.attrsOf extraTypes.layoutsType;
       default = {};
       description = ''
         Each layout is written to {file}`$XDG_CONFIG_HOME/zellij/layouts`.
@@ -242,7 +170,7 @@ in {
     };
 
     themes = mkOption {
-      type = types.attrsOf kdlType;
+      type = types.attrsOf extraTypes.kdlType;
       default = {};
       description = ''
         Each theme is written to {file}`$XDG_CONFIG_HOME/zellij/config.kdl`.
@@ -285,21 +213,7 @@ in {
 
   config = mkIf cfg.enable {
     assertions = [
-      (let
-        conflictLayouts = intersectLists defaultLayouts definedLayouts;
-        prettyPrintConflicts = concatStringsSep "\n" (builtins.map (item: "- ${item}") conflictLayouts);
-        defaultLayouts = pipe ../layouts [
-          builtins.readDir
-          (filterAttrs (name: value: value == "regular"))
-          (mapAttrsToList (name: value: name))
-        ];
-        definedLayouts = mapAttrsToList (name: value: toLayoutFileName name value) cfg.layouts;
-      in {
-        assertion = (builtins.length conflictLayouts) == 0;
-        message =
-          "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
-          + prettyPrintConflicts;
-      })
+      (utils.mkConflictLayoutsAssertion [../layouts] cfg.layouts "Zellij")
     ];
 
     home.shellAliases = mkIf cfg.layoutAlias {

@@ -19,6 +19,10 @@
       url = "github:netmute/ctags-lsp";
       flake = false;
     };
+    zide = {
+      url = "github:josephschmitt/zide";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
@@ -31,10 +35,11 @@
       config,
       ...
     }: let
-      inherit (lib) types mkOption;
+      inherit (lib) types mkOption mapAttrsToList;
       lib = nixpkgs.lib;
       local-overlays = {
         helix = import ./helix/nix/overlay.nix {inherit inputs;};
+        zide = import ./zide/nix/overlay.nix {inherit inputs;};
       };
     in {
       options.flake = {
@@ -50,18 +55,20 @@
         systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
 
         flake = rec {
-          overlays.helix = [
-            inputs.nil.overlays.default
-            local-overlays.helix
-          ];
+          overlays.helix =
+            [
+              inputs.nil.overlays.default
+            ]
+            ++ (mapAttrsToList (name: value: value) local-overlays);
 
           homeManagerModules = {
             default = {...}: {
               imports = [
-                homeManagerModules.helix
-                homeManagerModules.zellij
-                homeManagerModules.yazi
                 homeManagerModules.erdtree
+                homeManagerModules.helix
+                homeManagerModules.yazi
+                homeManagerModules.zellij
+                homeManagerModules.zide
               ];
             };
 
@@ -94,6 +101,14 @@
             in {
               imports = [home-module];
             };
+
+            zide = {pkgs, ...}: let
+              home-module = import ./zide/nix/hm-module.nix {
+                package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zide-config);
+              };
+            in {
+              imports = [home-module];
+            };
           };
         };
 
@@ -104,6 +119,10 @@
         }: {
           packages = rec {
             fusion = pkgs.callPackage ./common/fusion.nix {};
+
+            zide = pkgs.callPackage ./zide/nix/zide.nix {
+              src = inputs.zide;
+            };
 
             helix = inputs.helix.packages.${system}.default;
 
@@ -118,6 +137,11 @@
             };
 
             zellij-config = pkgs.callPackage ./zellij/nix {
+              version = config.flake.version;
+            };
+
+            zide-config = pkgs.callPackage ./zide/nix {
+              inherit zide;
               version = config.flake.version;
             };
           };

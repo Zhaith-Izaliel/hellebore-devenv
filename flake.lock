@@ -204,7 +204,8 @@
         "helix": "helix",
         "nil": "nil",
         "nixpkgs": "nixpkgs",
-        "simple-completion-language-server": "simple-completion-language-server"
+        "simple-completion-language-server": "simple-completion-language-server",
+        "zide": "zide"
       }
     },
     "rust-overlay": {
@@ -313,6 +314,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "zide": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739823882,
+        "narHash": "sha256-+VOm9sy0x5ihgoQpUuWeBxnuH+oiVSoWwzA8y8scyNg=",
+        "owner": "josephschmitt",
+        "repo": "zide",
+        "rev": "98125cc4c862edd8e43ea1536d9fded397f7b461",
+        "type": "github"
+      },
+      "original": {
+        "owner": "josephschmitt",
+        "repo": "zide",
         "type": "github"
       }
     }
