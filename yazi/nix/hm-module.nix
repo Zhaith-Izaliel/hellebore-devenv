@@ -347,15 +347,15 @@ in {
         }
       '';
     in {
-      bash.initExtra = mkIf cfg.enableBashIntegration bashIntegration;
+      bash.initExtra = mkIf cfg.shellIntegrations.bash bashIntegration;
 
-      zsh.initExtra = mkIf cfg.enableZshIntegration bashIntegration;
+      zsh.initExtra = mkIf cfg.shellIntegrations.zsh bashIntegration;
 
       fish.functions.${cfg.shellWrapperName} =
-        mkIf cfg.enableFishIntegration fishIntegration;
+        mkIf cfg.shellIntegrations.fish fishIntegration;
 
       nushell.extraConfig =
-        mkIf cfg.enableNushellIntegration nushellIntegration;
+        mkIf cfg.shellIntegrations.nushell nushellIntegration;
     };
 
     xdg.configFile = {
