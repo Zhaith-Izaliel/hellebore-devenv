@@ -31,10 +31,8 @@ layout {
         }
     }
 
-    
     pane_template name="yazi" {
-        command "env"
-        args "YAZI_CONFIG_HOME=~/.config/yazi/sidebar" "yazi"
+        command "yazi"
     }
 
     default_tab_template {

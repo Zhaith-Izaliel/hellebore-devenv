@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  stdenv,
   ...
 }: let
   inherit
@@ -201,8 +200,6 @@ in {
 
     autoExit = mkEnableOption "Zellij's auto exit shell when leaving a session";
 
-    enableSideBar = mkEnableOption "Zellij's file manager sidebar using Yazi. Needs `hellebore.dev-env.yazi` to be enabled.";
-
     settings = mkOption {
       type = pathOrKdlType;
       default = {};
@@ -303,10 +300,6 @@ in {
           "These Zellij layouts conflict with the ones defined in Hellebore's Dev-Env:\n"
           + prettyPrintConflicts;
       })
-      {
-        assertion = cfg.enableSideBar -> config.hellebore.dev-env.yazi.enable;
-        message = "You must enable Yazi through `config.hellebore.dev-env.yazi.enable` to use the sidebar in Zellij.";
-      }
     ];
 
     home.shellAliases = mkIf cfg.layoutAlias {

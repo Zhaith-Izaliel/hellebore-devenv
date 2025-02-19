@@ -2,8 +2,7 @@ swap_tiled_layout name="sidebar_open" {
     ui min_panes=5 {
         pane split_direction="vertical" {
             pane name="yazi" {
-                command "env"
-                args "YAZI_CONFIG_HOME=~/.config/yazi/sidebar" "yazi"
+                command "yazi"
             	size "20%"
             }
             pane name="main" split_direction="vertical" {
@@ -18,8 +17,7 @@ swap_tiled_layout name="sidebar_closed" {
     ui min_panes=5 {
         pane split_direction="vertical" {
             pane name="yazi" {
-                command "env"
-                args "YAZI_CONFIG_HOME=~/.config/yazi/sidebar" "yazi"
+                command "yazi"
             	size "1%"
             }
 

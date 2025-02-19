@@ -12,7 +12,6 @@
     highlight = "";
     initLua = "";
   },
-  installSideBar ? false,
 }: let
   inherit (lib) concatStringsSep optionalString mapAttrsToList;
   installFlavorsOrPlugins = attrs: type:
@@ -70,16 +69,6 @@ in
       )
       finalFlavors
       finalPlugins
-      (
-        optionalString installSideBar
-        ''
-          cp -r sidebar $out
-          cp -r $out/keymap.toml $out/sidebar
-          cp -r $out/theme.toml $out/sidebar
-          cp -r $out/flavors $out/sidebar
-          fusion toml $out/yazi.toml sidebar/yazi.toml -o $out/sidebar/yazi.toml
-        ''
-      )
       ''
         runHook postInstall
       ''
