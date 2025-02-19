@@ -19,7 +19,7 @@
     (
       concatStringsSep "\n" (
         mapAttrsToList
-        (name: value: ''cp -r "${value.value}" "$out/${type}/${name}"'')
+        (name: value: ''cp -r "${value}" "$out/${type}/${name}"'')
         attrs
       )
     );
@@ -68,7 +68,7 @@ in
         ''
       )
       finalFlavors
-      finalPlugins
+      (builtins.trace finalPlugins finalPlugins)
       ''
         runHook postInstall
       ''

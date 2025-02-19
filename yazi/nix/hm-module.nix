@@ -307,11 +307,6 @@ in {
       ])
       ++ (mkAsserts "plugins" ["init.lua"]);
 
-    home.packages = with pkgs; [
-      unar
-      mpv
-      xdg-utils
-    ];
     programs.yazi = {
       inherit (cfg) shellWrapperName;
       enable = true;
