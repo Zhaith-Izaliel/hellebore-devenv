@@ -39,19 +39,17 @@ in {
       };
     };
 
-    settings = {
-      layouts = mkOption {
-        type = types.attrsOf extraTypes.layoutsType;
-        default = {};
-        description = ''
-          Each layout is written to {file}`$XDG_CONFIG_HOME/zide/layouts`.
-          Where the name of every layouts is the layout name.
+    layouts = mkOption {
+      type = types.attrsOf extraTypes.layoutsType;
+      default = {};
+      description = ''
+        Each layout is written to {file}`$XDG_CONFIG_HOME/zide/layouts`.
+        Where the name of every layouts is the layout name.
 
-          The layouts name should not conflict with the layouts defined in Hellebore Dev-Env.
+        The layouts name should not conflict with the layouts defined in Hellebore Dev-Env.
 
-          See <https://zellij.dev/documentation/layouts> for the full list of options.
-        '';
-      };
+        See <https://zellij.dev/documentation/layouts> for the full list of options.
+      '';
     };
   };
 
