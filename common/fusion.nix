@@ -9,9 +9,9 @@ buildGoModule {
   src = fetchFromGitHub {
     owner = "edgelaboratories";
     repo = "fusion";
-    rev = "v0.1.2";
-    hash = "sha256-4T4NG1Xd61rYRloA97wLmYwRMeDbw2V8BvwRqWIyr/0=";
+    rev = "4965c468a21feb8eb54c1f2533a0bbbc95135e72";
+    hash = "sha256-hx5FcLilCrACyaFiKuk50pZVt+c9fshoI1qMkxg14ls=";
   };
 
-  vendorHash = "sha256-r66K3Y+gTgkjILKCLJ72XpjRXmu5xbH2R1gSVZOlEcY=";
+  vendorHash = "sha256-bpk9NjK4DnQnc0FkfPVICz5aFnKUOjMHR1TEunfmwu8=";
 }
