@@ -311,51 +311,16 @@ in {
       unar
       mpv
       xdg-utils
-      finalYaziPackage
     ];
+    programs.yazi = {
+      inherit (cfg) shellWrapperName;
+      enable = true;
 
-    programs = let
-      bashIntegration = ''
-        function ${cfg.shellWrapperName}() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-          yazi "$@" --cwd-file="$tmp"
-          if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            builtin cd -- "$cwd"
-          fi
-          rm -f -- "$tmp"
-        }
-      '';
-
-      fishIntegration = ''
-        set -l tmp (mktemp -t "yazi-cwd.XXXXX")
-        command yazi $argv --cwd-file="$tmp"
-        if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-          builtin cd -- "$cwd"
-        end
-        rm -f -- "$tmp"
-      '';
-
-      nushellIntegration = ''
-        def --env ${cfg.shellWrapperName} [...args] {
-          let tmp = (mktemp -t "yazi-cwd.XXXXX")
-          yazi ...$args --cwd-file $tmp
-          let cwd = (open $tmp)
-          if $cwd != "" and $cwd != $env.PWD {
-            cd $cwd
-          }
-          rm -fp $tmp
-        }
-      '';
-    in {
-      bash.initExtra = mkIf cfg.shellIntegrations.bash bashIntegration;
-
-      zsh.initExtra = mkIf cfg.shellIntegrations.zsh bashIntegration;
-
-      fish.functions.${cfg.shellWrapperName} =
-        mkIf cfg.shellIntegrations.fish fishIntegration;
-
-      nushell.extraConfig =
-        mkIf cfg.shellIntegrations.nushell nushellIntegration;
+      package = finalYaziPackage;
+      enableZshIntegration = cfg.shellIntegrations.zsh;
+      enableBashIntegration = cfg.shellIntegrations.bash;
+      enableFishIntegration = cfg.shellIntegrations.fish;
+      enableNushellIntegration = cfg.shellIntegrations.nushell;
     };
 
     xdg.configFile = {
