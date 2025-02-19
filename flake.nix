@@ -105,6 +105,7 @@
             zide = {pkgs, ...}: let
               home-module = import ./zide/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zide-config);
+                zidePackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zide);
               };
             in {
               imports = [home-module];
