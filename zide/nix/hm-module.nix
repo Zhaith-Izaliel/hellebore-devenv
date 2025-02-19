@@ -4,6 +4,7 @@
 }: {
   config,
   lib,
+  pkgs,
   ...
 }: let
   inherit
@@ -14,8 +15,8 @@
     types
     ;
 
-  utils = import ../../common/utils.nix {inherit lib;};
   extraTypes = import ../../common/types.nix {inherit lib;};
+  utils = import ../../common/utils.nix {inherit lib pkgs;};
 
   cfg = config.hellebore.dev-env.zide;
   finalConfigPackage = package.override {

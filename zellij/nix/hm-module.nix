@@ -15,7 +15,7 @@
     ;
 
   extraTypes = import ../../common/types.nix {inherit lib;};
-  utils = import ../../common/utils.nix {inherit lib;};
+  utils = import ../../common/utils.nix {inherit lib pkgs;};
 
   cfg = config.hellebore.dev-env.zellij;
 
