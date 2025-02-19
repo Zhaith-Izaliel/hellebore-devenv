@@ -1,4 +1,7 @@
-{lib}: let
+{
+  lib,
+  pkgs,
+}: let
   inherit
     (lib)
     intersectLists
@@ -10,7 +13,31 @@
     concatMap
     zipAttrs
     ;
+
+  toKdl = lib.hm.generators.toKdl {};
 in rec {
+  mkFinalLayouts = layouts:
+    mapAttrsToList (
+      name: value: let
+        fileName = toLayoutFileName name value;
+        content = value.content;
+      in {
+        inherit fileName;
+        generatedFile = writeKdlFile fileName content;
+      }
+    )
+    layouts;
+
+  writeKdlFile = name: content: let
+    file = pkgs.writeTextFile {
+      inherit name;
+      text =
+        if builtins.isPath content
+        then builtins.readFile content
+        else toKdl content;
+    };
+  in "${file}";
+
   toLayoutFileName = name: value: "${name}${optionalString value.isSwap ".swap"}.kdl";
 
   /*

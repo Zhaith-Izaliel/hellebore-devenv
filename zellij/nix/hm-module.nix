@@ -12,25 +12,12 @@
     mkOption
     mkPackageOption
     literalExpression
-    mapAttrsToList
     ;
 
   extraTypes = import ../../common/types.nix {inherit lib;};
   utils = import ../../common/utils.nix {inherit lib;};
 
-  toKdl = lib.hm.generators.toKdl {};
-
   cfg = config.hellebore.dev-env.zellij;
-
-  writeKdlFile = name: content: let
-    file = pkgs.writeTextFile {
-      inherit name;
-      text =
-        if builtins.isPath content
-        then builtins.readFile content
-        else toKdl content;
-    };
-  in "${file}";
 
   finalPluginsKdlAttrs = builtins.mapAttrs (name: value:
     {
@@ -43,20 +30,10 @@
 
   finalPackage = package.override {
     extraConfig = {
-      config = writeKdlFile "zellij-generated-config.kdl" cfg.settings;
-      layouts =
-        mapAttrsToList (
-          name: value: let
-            fileName = utils.toLayoutFileName name value;
-            content = value.content;
-          in {
-            inherit fileName;
-            generatedFile = writeKdlFile fileName content;
-          }
-        )
-        cfg.layouts;
-      themes = writeKdlFile "zellij-generated-themes.kdl" {themes = cfg.themes;};
-      plugins = writeKdlFile "zellij-generated-plugins-aliases.kdl" {plugins = finalPluginsKdlAttrs;};
+      config = utils.writeKdlFile "zellij-generated-config.kdl" cfg.settings;
+      layouts = utils.mkFinalLayouts cfg.layouts;
+      themes = utils.writeKdlFile "zellij-generated-themes.kdl" {themes = cfg.themes;};
+      plugins = utils.writeKdlFile "zellij-generated-plugins-aliases.kdl" {plugins = finalPluginsKdlAttrs;};
     };
   };
 
