@@ -19,7 +19,7 @@
 
   cfg = config.hellebore.dev-env.zide;
   finalConfigPackage = package.override {
-    extraLayouts = cfg.settings.layouts;
+    extraLayouts = cfg.layouts;
   };
 in {
   options.hellebore.dev-env.zide = {
