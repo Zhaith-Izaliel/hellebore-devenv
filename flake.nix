@@ -19,10 +19,6 @@
       url = "github:netmute/ctags-lsp";
       flake = false;
     };
-    zide = {
-      url = "github:josephschmitt/zide";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {
@@ -39,7 +35,6 @@
       lib = nixpkgs.lib;
       local-overlays = {
         helix = import ./helix/nix/overlay.nix {inherit inputs;};
-        zide = import ./zide/nix/overlay.nix {inherit inputs;};
       };
     in {
       options.flake = {
@@ -68,7 +63,6 @@
                 homeManagerModules.helix
                 homeManagerModules.yazi
                 homeManagerModules.zellij
-                homeManagerModules.zide
               ];
             };
 
@@ -101,15 +95,6 @@
             in {
               imports = [home-module];
             };
-
-            zide = {pkgs, ...}: let
-              home-module = import ./zide/nix/hm-module.nix {
-                package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zide-config);
-                zidePackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zide);
-              };
-            in {
-              imports = [home-module];
-            };
           };
         };
 
@@ -120,10 +105,6 @@
         }: {
           packages = rec {
             fusion = pkgs.callPackage ./common/fusion.nix {};
-
-            zide = pkgs.callPackage ./zide/nix/zide.nix {
-              src = inputs.zide;
-            };
 
             helix = inputs.helix.packages.${system}.default;
 
@@ -138,11 +119,6 @@
             };
 
             zellij-config = pkgs.callPackage ./zellij/nix {
-              version = config.flake.version;
-            };
-
-            zide-config = pkgs.callPackage ./zide/nix {
-              inherit zide;
               version = config.flake.version;
             };
           };
