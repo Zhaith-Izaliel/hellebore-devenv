@@ -6,6 +6,7 @@ nixd = { command = "nixd" }
 biome = { command = "biome", args = ["lsp-proxy"] }
 ctags-lsp = { command = "ctags-lsp" }
 spyglassmc = { command = "spyglassmc-language-server", args = ["--stdio"] }
+typos = { command = "typos-lsp" }
 
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
@@ -79,7 +80,7 @@ provideFormatter = true
 
 [[language]]
 name = "mcfunction"
-language-servers = ["spyglassmc", "scls"]
+language-servers = ["spyglassmc", "scls", "typos"]
 scope = "source.mcfunction"
 file-types = ["mcfunction"]
 comment-token = "#"
@@ -88,17 +89,17 @@ grammar = "mcfunction"
 
 [[language]]
 name = "gdscript"
-language-servers = ["godot", "scls"]
+language-servers = ["godot", "scls", "typos"]
 formatter = { command = "gdformat", args = ["-"] }
 auto-format = true
 
 [[language]]
 name = "git-commit"
-language-servers = ["scls"]
+language-servers = ["scls", "typos"]
 
 [[language]]
 name = "typescript"
-language-servers = ["eslint", "typescript-language-server", "slcs"]
+language-servers = ["eslint", "typescript-language-server", "scls", "typos"]
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 auto-format = true
 
@@ -109,14 +110,15 @@ language-servers = [
   "typescript-language-server",
   "eslint",
   "emmet-ls",
-  "slcs",
+  "scls",
+  "typos",
 ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server", "eslint", "slcs"]
+language-servers = ["typescript-language-server", "eslint", "scls", "typos"]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
@@ -128,6 +130,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "typos",
 ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
@@ -139,6 +142,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "typos",
   "vscode-css-language-server",
 ]
 formatter = { command = 'prettier', args = ["--parser", "html"] }
@@ -152,6 +156,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "typos",
   "vscode-css-language-server",
 ]
 formatter = { command = 'prettier', args = ["--parser", "css"] }
@@ -166,6 +171,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "typos",
   "vscode-css-language-server",
 ]
 formatter = { command = 'prettier', args = ["--parser", "vue"] }
@@ -173,63 +179,68 @@ auto-format = true
 
 [[language]]
 name = "nix"
-language-servers = ["nixd", "nil", "scls"]
+language-servers = ["nixd", "nil", "scls", "typos"]
 formatter = { command = "alejandra", args = ["--quiet"] }
 auto-format = true
 
 [[language]]
 name = "lua"
-language-servers = ["ctags-lsp", "lua-language-server", "scls"]
+language-servers = ["ctags-lsp", "lua-language-server", "scls", "typos"]
 formatter = { command = "stylua", args = ["-"] }
 auto-format = true
 
 [[language]]
 name = "toml"
-language-servers = ["ctags-lsp", "taplo", "scls"]
+language-servers = ["ctags-lsp", "taplo", "scls", "typos"]
 formatter = { command = "taplo", args = ["format", "-"] }
 auto-format = true
 
 [[language]]
 name = "haskell"
-language-servers = ["ctags-lsp", "haskell-language-server", "scls"]
+language-servers = ["ctags-lsp", "haskell-language-server", "scls", "typos"]
 formatter = { command = "stylish-haskell", args = [] }
 auto-format = true
 
 [[language]]
 name = "c"
-language-servers = ["ctags-lsp", "ccls", "scls"]
+language-servers = ["ctags-lsp", "ccls", "scls", "typos"]
+auto-format = true
+
+[[language]]
+name = "python"
+language-servers = ["ctags-lsp", "pyright", "scls", "typos"]
 auto-format = true
 
 [[language]]
 name = "cpp"
-language-servers = ["ctags-lsp", "ccls", "scls"]
+language-servers = ["ctags-lsp", "ccls", "scls", "typos"]
 auto-format = true
 
 [[languages]]
 name = "go"
-language-servers = ["ctags-lsp", "gopls", "scls"]
+language-servers = ["ctags-lsp", "gopls", "scls", "typos"]
 formatter = { command = "goimports", args = [] }
 auto-format = true
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls", "scls"]
+language-servers = ["marksman", "ltex-ls", "scls", "typos"]
 # formatter = { command = "pandoc", args = ["--to", "markdown"] }
 auto-format = true
 
 [[language]]
 name = "latex"
-language-servers = ["texlab", "ltex-ls", "scls"]
+language-servers = ["texlab", "ltex-ls", "scls", "typos"]
 auto-format = true
 
 [[language]]
 name = "graphql"
-language-servers = ["graphql-language-service", "scls"]
+language-servers = ["graphql-language-service", "scls", "typos"]
 auto-format = true
 
 [[language]]
 name = "bash"
-language-servers = ["bash-language-server", "scls"]
+language-servers = ["bash-language-server", "scls", "typos"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = 'shfmt', args = ["-i", "2"] }
 auto-format = true
@@ -241,6 +252,7 @@ language-servers = [
   "emmet-ls",
   "tailwindcss-ls",
   "scls",
+  "typos",
   "vscode-css-language-server",
 ]
 formatter = { command = "prettier", args = ["--parser", "scss"] }
@@ -248,7 +260,7 @@ auto-format = true
 
 [[language]]
 name = "java"
-language-servers = ["jdtls", "scls"]
+language-servers = ["jdtls", "scls", "typos"]
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = "google-java-format", args = ["-"] }
 auto-format = true

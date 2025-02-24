@@ -28,6 +28,10 @@ mode.select = "SELECT"
 [editor.cursor-shape]
 insert = "bar"
 
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "warning"
+
 [editor.lsp]
 display-inlay-hints = false
 display-messages = true
