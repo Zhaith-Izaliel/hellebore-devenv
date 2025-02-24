@@ -209,6 +209,7 @@ auto-format = true
 [[language]]
 name = "python"
 language-servers = ["ctags-lsp", "pyright", "scls", "typos"]
+formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = true
 
 [[language]]

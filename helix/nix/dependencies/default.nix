@@ -18,6 +18,7 @@ in {
     stylua
     shfmt
     gdtoolkit_4
+    black
   ];
 
   language-servers =
