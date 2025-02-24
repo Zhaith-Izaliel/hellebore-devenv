@@ -33,7 +33,7 @@ cursor-line = "warning"
 other-lines = "warning"
 
 [editor.lsp]
-display-inlay-hints = false
+display-inlay-hints = true
 display-messages = true
 
 [editor.indent-guides]
