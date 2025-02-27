@@ -50,7 +50,9 @@
         (name: value: nameValuePair "${name}.yazi" "${value}")
         cfg.plugins;
       initLua =
-        if builtins.isPath cfg.initLua
+        if cfg.initLua == null
+        then ""
+        else if builtins.isPath cfg.initLua
         then cfg.initLua
         else let
           file = pkgs.writeTextFile {
@@ -59,12 +61,14 @@
           };
         in "${file}";
       highlight =
-        if builtins.isPath cfg.initLua
-        then cfg.initLua
+        if cfg.highlight == null
+        then ""
+        else if builtins.isPath cfg.highlight
+        then cfg.highlight
         else let
           file = pkgs.writeTextFile {
-            name = "yazi-init.lua";
-            text = cfg.initLua;
+            name = "yazi-highlight.tmTheme";
+            text = cfg.highlight;
           };
         in "${file}";
     };
