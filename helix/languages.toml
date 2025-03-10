@@ -7,6 +7,7 @@ biome = { command = "biome", args = ["lsp-proxy"] }
 ctags-lsp = { command = "ctags-lsp" }
 spyglassmc = { command = "spyglassmc-language-server", args = ["--stdio"] }
 typos = { command = "typos-lsp" }
+godot = { command = "nc", args = ["127.0.0.1", "6007"] }
 
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
@@ -17,10 +18,6 @@ provideFormatter = true
 css = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 scss = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
 less = { validate = { enable = true }, lint = { unknownAtRules = "ignore" } }
-
-[language-server.godot]
-command = "nc"
-args = ["127.0.0.1", "6007"]
 
 [language-server.scls]
 command = "simple-completion-language-server"
