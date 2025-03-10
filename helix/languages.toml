@@ -1,5 +1,5 @@
 [language-server]
-deno = { ommand = "deno", args = ["lsp"] }
+deno = { command = "deno", args = ["lsp"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
 ccls = { command = "ccls" }
 nixd = { command = "nixd" }
@@ -201,6 +201,13 @@ auto-format = true
 [[language]]
 name = "c"
 language-servers = ["ccls", "clangd", "ctags-lsp", "scls", "typos"]
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+
+[[language]]
+name = "cpp"
+language-servers = ["clangd", "ctags-lsp", "scls", "typos"]
+indent = { tab-width = 4, unit = "    " }
 auto-format = true
 
 [[language]]
@@ -209,10 +216,6 @@ language-servers = ["ctags-lsp", "pyright", "scls", "typos"]
 formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = true
 
-[[language]]
-name = "cpp"
-language-servers = ["clangd", "ctags-lsp", "scls", "typos"]
-auto-format = true
 
 [[languages]]
 name = "go"
