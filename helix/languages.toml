@@ -1,5 +1,5 @@
 [language-server]
-deno = { command = "deno", args = ["lsp"] }
+deno = { ommand = "deno", args = ["lsp"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
 ccls = { command = "ccls" }
 nixd = { command = "nixd" }
@@ -211,7 +211,7 @@ auto-format = true
 
 [[language]]
 name = "cpp"
-language-servers = ["ccls", "clangd", "ctags-lsp", "scls", "typos"]
+language-servers = ["clangd", "ctags-lsp", "scls", "typos"]
 auto-format = true
 
 [[languages]]
