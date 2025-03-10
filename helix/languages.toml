@@ -203,7 +203,7 @@ auto-format = true
 
 [[language]]
 name = "c"
-language-servers = ["ctags-lsp", "ccls", "scls", "typos"]
+language-servers = ["ccls", "clangd", "ctags-lsp", "scls", "typos"]
 auto-format = true
 
 [[language]]
@@ -214,7 +214,7 @@ auto-format = true
 
 [[language]]
 name = "cpp"
-language-servers = ["ctags-lsp", "ccls", "scls", "typos"]
+language-servers = ["ccls", "clangd", "ctags-lsp", "scls", "typos"]
 auto-format = true
 
 [[languages]]

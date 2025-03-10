@@ -37,6 +37,7 @@ in {
       tailwindcss-language-server
       texlab
       haskell-language-server
+      clang-tools
       marksman
       gopls
       cmake-language-server
