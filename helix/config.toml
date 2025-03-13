@@ -78,7 +78,7 @@ wrap-indicator = "󱞵"
 A = ":lsp-workspace-command"
 
 [keys.normal.m]
-"p" = "@mip:reflow<enter>"
+"p" = "@mip:reflow<ret>"
 
 [keys.normal.space.space]
 # Show blame info for current line
