@@ -33,7 +33,7 @@ in {
       pyright
       nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
       nodePackages.typescript-language-server
-      nodePackages.graphql-language-service-cli
+      # nodePackages.graphql-language-service-cli # TEMP: Currently broken in unstable
       tailwindcss-language-server
       texlab
       haskell-language-server
