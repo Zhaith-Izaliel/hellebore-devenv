@@ -19,6 +19,10 @@
       url = "github:netmute/ctags-lsp";
       flake = false;
     };
+    gdshader-lsp = {
+      url = "github:GodOfAvacyn/gdshader-lsp";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {

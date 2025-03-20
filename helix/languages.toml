@@ -8,6 +8,7 @@ ctags-lsp = { command = "ctags-lsp" }
 spyglassmc = { command = "spyglassmc-language-server", args = ["--stdio"] }
 typos = { command = "typos-lsp" }
 godot = { command = "nc", args = ["127.0.0.1", "6007"] }
+gdshader = { command = "gdshader-lsp" }
 
 [language-server.vscode-css-language-server]
 command = "vscode-css-language-server"
@@ -74,6 +75,21 @@ showDocumentation = { enable = false }
 [language-server.vscode-json-language-server.config]
 json = { validate = { enable = true }, format = { enable = true } }
 provideFormatter = true
+
+
+[[language]]
+name = "gdshader"
+scope = "source.gdshader"
+injection-regex = "gdshader"
+file-types = ["shader", "gdshader", "gdshaderinc"]
+shebangs = []
+roots = ["project.godot"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "\t" }
+language-servers = ["gdshader-lsp", "typos-lsp"]
+# formatter = { command = "", args = ["-"] }
+auto-format = true
 
 [[language]]
 name = "mcfunction"

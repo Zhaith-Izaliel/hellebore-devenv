@@ -45,6 +45,7 @@ in {
       ccls
       biome
       ctags-lsp
+      gdshader-lsp
       typos-lsp
     ])
     ++ [

@@ -102,6 +102,22 @@
         "type": "github"
       }
     },
+    "gdshader-lsp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708678928,
+        "narHash": "sha256-kzZhHIRXW3m3n5TlNRDQO9XsDoSi59N7+4NeFKtauEM=",
+        "owner": "GodOfAvacyn",
+        "repo": "gdshader-lsp",
+        "rev": "f3847df8a17cd66674b2ec058c020d80ff7d4f8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GodOfAvacyn",
+        "repo": "gdshader-lsp",
+        "type": "github"
+      }
+    },
     "helix": {
       "inputs": {
         "crane": "crane",
@@ -201,6 +217,7 @@
       "inputs": {
         "ctags-lsp": "ctags-lsp",
         "flake-parts": "flake-parts",
+        "gdshader-lsp": "gdshader-lsp",
         "helix": "helix",
         "nil": "nil",
         "nixpkgs": "nixpkgs",
