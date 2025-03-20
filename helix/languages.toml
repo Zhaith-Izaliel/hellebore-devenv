@@ -87,7 +87,7 @@ roots = ["project.godot"]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "\t" }
-language-servers = ["gdshader-lsp", "typos-lsp"]
+language-servers = ["gdshader", "typos", "scls"]
 # formatter = { command = "", args = ["-"] }
 auto-format = true
 
