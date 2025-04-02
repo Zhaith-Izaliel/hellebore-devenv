@@ -107,6 +107,11 @@ formatter = { command = "gdformat", args = ["-"] }
 auto-format = true
 
 [[language]]
+name = "glsl"
+language-servers = ["glsl_analyzer", "scls", "typos"]
+auto-format = true
+
+[[language]]
 name = "git-commit"
 language-servers = ["scls", "typos"]
 

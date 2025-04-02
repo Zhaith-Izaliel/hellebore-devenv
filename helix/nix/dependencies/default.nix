@@ -47,6 +47,7 @@ in {
       ctags-lsp
       gdshader-lsp
       typos-lsp
+      glsl_analyzer
     ])
     ++ [
       (pkgs.taplo.override {withLsp = true;})
