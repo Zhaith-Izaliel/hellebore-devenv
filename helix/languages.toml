@@ -246,7 +246,7 @@ auto-format = true
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls", "scls", "typos"]
+language-servers = ["marksman", "ltex-ls", "scls"]
 # formatter = { command = "pandoc", args = ["--to", "markdown"] }
 auto-format = true
 
