@@ -286,3 +286,8 @@ language-servers = ["jdtls", "scls", "typos"]
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = "google-java-format", args = ["-"] }
 auto-format = true
+
+[[language]]
+name = "zig"
+language-servers = ["zls", "scls", "typos"]
+auto-format = true

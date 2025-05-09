@@ -48,6 +48,7 @@ in {
       gdshader-lsp
       typos-lsp
       glsl_analyzer
+      zls
     ])
     ++ [
       (pkgs.taplo.override {withLsp = true;})
