@@ -127,9 +127,9 @@ language-servers = [
   "deno",
   "typescript-language-server",
   "eslint",
-  "emmet-ls",
   "scls",
   "typos",
+  "emmet-ls",
 ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
@@ -145,10 +145,10 @@ name = "jsx"
 language-servers = [
   "typescript-language-server",
   "eslint",
-  "emmet-ls",
   "tailwindcss-ls",
   "scls",
   "typos",
+  "emmet-ls",
 ]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
@@ -157,11 +157,10 @@ auto-format = true
 name = "html"
 language-servers = [
   "vscode-html-language-server",
-  "emmet-ls",
   "tailwindcss-ls",
   "scls",
   "typos",
-  "vscode-css-language-server",
+  "emmet-ls",
 ]
 formatter = { command = 'prettier', args = ["--parser", "html"] }
 auto-format = true
@@ -186,11 +185,10 @@ language-servers = [
   "typescript-language-server",
   "vscode-html-language-server",
   "eslint",
-  "emmet-ls",
   "tailwindcss-ls",
   "scls",
   "typos",
-  "vscode-css-language-server",
+  "emmet-ls",
 ]
 formatter = { command = 'prettier', args = ["--parser", "vue"] }
 auto-format = true
