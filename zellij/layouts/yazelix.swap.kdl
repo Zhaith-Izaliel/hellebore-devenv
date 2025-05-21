@@ -3,28 +3,31 @@ swap_tiled_layout name="sidebar_open" {
         pane split_direction="vertical" {
             pane name="yazi" {
                 command "yazi"
-            	size "20%"
+                size "20%"
             }
             pane name="main" split_direction="vertical" {
-                pane 
-                pane  stacked=true { children; }
+                pane
+                pane stacked=true {
+                    children
+                }
             }
         }
     }
 }
-
 swap_tiled_layout name="sidebar_closed" {
     ui min_panes=5 {
         pane split_direction="vertical" {
             pane name="yazi" {
                 command "yazi"
-            	size "1%"
+                size "1%"
             }
-
             pane name="main" split_direction="vertical" {
-                pane 
-                pane stacked=true { children; }
+                pane
+                pane stacked=true {
+                    children
+                }
             }
         }
     }
 }
+

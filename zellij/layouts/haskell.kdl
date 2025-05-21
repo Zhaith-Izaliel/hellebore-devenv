@@ -1,17 +1,15 @@
 layout {
     tab_template name="ui" {
         pane size=1 borderless=true {
-           plugin location="zellij:tab-bar"
+            plugin location="zellij:tab-bar"
         }
         children
         pane size=1 borderless=true {
-           plugin location="zellij:status-bar"
+            plugin location="zellij:status-bar"
         }
     }
-
-
     pane_template name="haskell" {
-        pane split_direction="horizontal" {        
+        pane split_direction="horizontal" {
             pane name="repl" {
                 command "zsh"
                 args "-c" "direnv exec . just repl"
@@ -22,7 +20,6 @@ layout {
                 args "-c" "direnv exec . just docs"
                 start_suspended true
             }
-
             pane name="run" {
                 command "zsh"
                 args "-c" "direnv exec . just run"
@@ -30,27 +27,23 @@ layout {
             }
         }
     }
-
-    
     pane_template name="yazi" {
         command "yazi"
     }
-
     default_tab_template {
         pane size=1 borderless=true {
-           plugin location="zellij:tab-bar"
+            plugin location="zellij:tab-bar"
         }
         pane split_direction="vertical" {
-            yazi size="20%";
+            yazi size="20%"
             pane name="main" split_direction="vertical" {
-                pane focus=true;
+                pane focus=true
             }
-            haskell size="25%";
+            haskell size="25%"
         }
         pane size=1 borderless=true {
-           plugin location="zellij:status-bar"
+            plugin location="zellij:status-bar"
         }
     }
 }
-
 
