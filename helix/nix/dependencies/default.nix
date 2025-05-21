@@ -19,6 +19,7 @@ in {
     shfmt
     gdtoolkit_4
     black
+    kdlfmt
   ];
 
   language-servers =
