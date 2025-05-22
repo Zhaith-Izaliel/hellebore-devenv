@@ -120,8 +120,6 @@ auto-format = true
 [[language]]
 name = "kdl"
 language-servers = ["scls", "typos"]
-formatter = { command = "kdlfmt", args = ["format", "-"] }
-auto-format = true
 
 [[language]]
 name = "git-commit"
