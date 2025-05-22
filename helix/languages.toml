@@ -53,6 +53,12 @@ at-rule-no-unknown = [
 ]
 function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
 
+[language-server.rust-analyzer.config.cargo]
+features = "all"
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
 [language-server.eslint]
 command = "vscode-eslint-language-server"
 args = ["--stdio"]
@@ -203,6 +209,12 @@ auto-format = true
 name = "nix"
 language-servers = ["nixd", "nil", "scls", "typos"]
 formatter = { command = "alejandra", args = ["--quiet"] }
+auto-format = true
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "scls", "typos"]
+formatter = { command = "rustfmt", args = [] }
 auto-format = true
 
 [[language]]

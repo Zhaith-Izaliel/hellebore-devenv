@@ -20,6 +20,7 @@ in {
     gdtoolkit_4
     black
     kdlfmt
+    rustfmt
   ];
 
   language-servers =
@@ -72,5 +73,6 @@ in {
     wl-clipboard
     netcat
     universal-ctags
+    clippy
   ];
 }
