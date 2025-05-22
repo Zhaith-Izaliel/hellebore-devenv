@@ -133,7 +133,7 @@ keybinds clear-defaults=true {
         }
         bind "r" {
             SwitchToMode "RenameTab"
-TabNameInput 0
+            TabNameInput 0
         }
         bind "h" "Left" "Up" "k" {
             GoToPreviousTab
@@ -245,7 +245,7 @@ TabNameInput 0
         // bind "Ctrl s" { SwitchToMode "Normal"; }
         bind "Ctrl y" {
             ScrollToBottom
-SwitchToMode "Normal"
+            SwitchToMode "Normal"
         }
         bind "j" "Down" {
             ScrollDown
