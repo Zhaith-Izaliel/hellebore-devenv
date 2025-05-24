@@ -2,7 +2,7 @@
   description = "Zhaith Izaliel's Helix configuration.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +43,7 @@
     in {
       options.flake = {
         version = mkOption {
-          default = "1.1.0";
+          default = "1.2.0";
           type = types.nonEmptyStr;
           readOnly = true;
           description = "Defines the version of the flake";
@@ -111,6 +111,17 @@
             fusion = pkgs.callPackage ./common/fusion.nix {};
 
             helix = inputs.helix.packages.${system}.default;
+
+            helix-driver = pkgs.callPackage ./helix-zsh/nix/helix-driver.nix {
+              inherit helix;
+              src = "${inputs.helix-zsh}/helix-driver";
+              version = inputs.helix-zsh.shortRev;
+            };
+
+            helix-zsh = pkgs.callPackage ./helix-zsh/nix/helix-zsh.nix {
+              inherit helix-driver;
+              src = inputs.helix-zsh;
+            };
 
             helix-config = pkgs.callPackage ./helix/nix {
               inherit fusion;

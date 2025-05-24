@@ -4,9 +4,6 @@ keybinds clear-defaults=true{
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
-    locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
-    }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
@@ -323,6 +320,8 @@ default_layout "welcome"
 // Default: $EDITOR or $VISUAL
 //
 scrollback_editor "hx"
+
+show_startup_tips false
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
