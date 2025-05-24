@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     helix = {
-      url = "github:helix-editor/helix";
+      url = "github:helix-editor/helix/25.01.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nil = {
@@ -111,17 +111,6 @@
             fusion = pkgs.callPackage ./common/fusion.nix {};
 
             helix = inputs.helix.packages.${system}.default;
-
-            helix-driver = pkgs.callPackage ./helix-zsh/nix/helix-driver.nix {
-              inherit helix;
-              src = "${inputs.helix-zsh}/helix-driver";
-              version = inputs.helix-zsh.shortRev;
-            };
-
-            helix-zsh = pkgs.callPackage ./helix-zsh/nix/helix-zsh.nix {
-              inherit helix-driver;
-              src = inputs.helix-zsh;
-            };
 
             helix-config = pkgs.callPackage ./helix/nix {
               inherit fusion;
