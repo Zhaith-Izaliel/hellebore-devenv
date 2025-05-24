@@ -197,23 +197,14 @@ in {
       zlayout = "zellij action new-tab --layout";
     };
 
-    home.sessionVariables = {
-      ZELLIJ_AUTO_ATTACH =
-        if cfg.autoAttach
-        then "true"
-        else "false";
-      ZELLIJ_AUTO_EXIT =
-        if cfg.autoExit
-        then "true"
-        else "false";
-    };
-
     programs.zellij = {
       enable = true;
       package = cfg.packages.zellij;
       enableZshIntegration = cfg.shellIntegrations.zsh;
       enableBashIntegration = cfg.shellIntegrations.bash;
       enableFishIntegration = cfg.shellIntegrations.fish;
+      attachExistingSession = cfg.autoAttach;
+      exitShellOnExit = cfg.autoExit;
     };
 
     xdg.configFile = {
