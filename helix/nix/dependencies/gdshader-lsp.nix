@@ -7,7 +7,7 @@ rustPlatform.buildRustPackage {
   pname = "gdshader-lsp";
   version = "f3847df";
 
-  cargoHash = "sha256-kEHqmuuh+84wJ6yjcqGvSSSVEixGbSd9qE6Fg1IE/08=";
+  cargoHash = "sha256-FP3SMcafLbz3jqKTunCi4Z1CeZADLmmsIyWHQICmi8o=";
 
   meta.mainProgram = "gdshader-lsp";
 }
