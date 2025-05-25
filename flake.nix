@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     helix = {
-      url = "github:helix-editor/helix/25.01.1";
+      url = "github:Zhaith-Izaliel/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nil = {
