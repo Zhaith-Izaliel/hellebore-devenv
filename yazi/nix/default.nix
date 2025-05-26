@@ -3,6 +3,7 @@
   lib,
   fusion,
   version ? "git",
+  inputsPlugins ? {},
   extraConfig ? {
     theme = "";
     keymap = "";
@@ -24,7 +25,7 @@
       )
     );
   finalFlavors = installFlavorsOrPlugins extraConfig.flavors "flavors";
-  finalPlugins = installFlavorsOrPlugins extraConfig.plugins "plugins";
+  finalPlugins = installFlavorsOrPlugins (extraConfig.plugins // inputsPlugins) "plugins";
 in
   stdenv.mkDerivation {
     inherit version;
@@ -68,7 +69,7 @@ in
         ''
       )
       finalFlavors
-      (builtins.trace finalPlugins finalPlugins)
+      finalPlugins
       ''
         runHook postInstall
       ''

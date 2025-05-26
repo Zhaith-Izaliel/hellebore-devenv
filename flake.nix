@@ -7,6 +7,8 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # External LSPs and Formatters
     nil = {
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,6 +23,11 @@
     };
     gdshader-lsp = {
       url = "github:GodOfAvacyn/gdshader-lsp";
+      flake = false;
+    };
+    # Yazi Plugins
+    "auto-layout.yazi" = {
+      url = "github:josephschmitt/auto-layout.yazi";
       flake = false;
     };
   };
@@ -117,10 +124,19 @@
               version = config.flake.version;
             };
 
-            yazi-config = pkgs.callPackage ./yazi/nix {
-              inherit fusion;
-              version = config.flake.version;
-            };
+            yazi-config = let
+              pluginsSource = lib.filterAttrs (name: _: (builtins.match ".*\\.yazi" name) != null) inputs;
+              inputsPlugins = lib.mapAttrs (name: value:
+                pkgs.callPackage ./yazi/nix/plugin-builder.nix {
+                  pname = name;
+                  src = value;
+                })
+              pluginsSource;
+            in
+              pkgs.callPackage ./yazi/nix {
+                inherit fusion inputsPlugins;
+                version = config.flake.version;
+              };
 
             zellij-config = pkgs.callPackage ./zellij/nix {
               version = config.flake.version;

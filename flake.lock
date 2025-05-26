@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "auto-layout.yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741370133,
+        "narHash": "sha256-sGyy1tLDqR1aNrxQBHcswqussorIkQX70rsR2JoC1Lo=",
+        "owner": "josephschmitt",
+        "repo": "auto-layout.yazi",
+        "rev": "626a6016283558b9766fe305e76b694dd9fb6156",
+        "type": "github"
+      },
+      "original": {
+        "owner": "josephschmitt",
+        "repo": "auto-layout.yazi",
+        "type": "github"
+      }
+    },
     "ctags-lsp": {
       "flake": false,
       "locked": {
@@ -183,6 +199,7 @@
     },
     "root": {
       "inputs": {
+        "auto-layout.yazi": "auto-layout.yazi",
         "ctags-lsp": "ctags-lsp",
         "flake-parts": "flake-parts",
         "gdshader-lsp": "gdshader-lsp",
