@@ -9,6 +9,7 @@ bufferline = "multiple"
 color-modes = true
 auto-completion = true
 auto-format = true
+end-of-line-diagnostics = "hint"
 
 [editor.statusline]
 separator = "╲ "
@@ -30,7 +31,6 @@ insert = "bar"
 
 [editor.inline-diagnostics]
 cursor-line = "warning"
-other-lines = "warning"
 
 [editor.lsp]
 display-inlay-hints = true
