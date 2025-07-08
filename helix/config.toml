@@ -55,6 +55,7 @@ max-indent-retain = 40
 wrap-indicator = "󱞵"
 
 [keys.normal]
+"X" = "extend_line_above"
 "ù" = ["ensure_selections_forward", "extend_to_line_end"]
 "F3" = ":set whitespace.render all"
 "F4" = ":set whitespace.render none"
