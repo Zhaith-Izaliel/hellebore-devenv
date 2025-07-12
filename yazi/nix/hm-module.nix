@@ -124,7 +124,7 @@ in {
             { exec = "escape"; on = [ "<Esc>" ]; }
             { exec = "backspace"; on = [ "<Backspace>" ]; }
           ];
-          manager.keymap = [
+          mgr.keymap = [
             { exec = "escape"; on = [ "<Esc>" ]; }
             { exec = "quit"; on = [ "q" ]; }
             { exec = "close"; on = [ "<C-q>" ]; }
@@ -148,7 +148,7 @@ in {
           log = {
             enabled = false;
           };
-          manager = {
+          mgr = {
             show_hidden = false;
             sort_by = "modified";
             sort_dir_first = true;
