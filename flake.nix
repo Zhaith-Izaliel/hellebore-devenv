@@ -120,6 +120,7 @@
             helix-zsh = {pkgs, ...}: let
               home-module = import ./helix-zsh/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-zsh);
+                helix-driver-package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-driver);
               };
             in {
               imports = [home-module];
@@ -138,7 +139,6 @@
             helix = inputs.helix.packages.${system}.default;
 
             helix-zsh = pkgs.callPackage ./helix-zsh/nix/packages/helix-zsh.nix {
-              inherit helix-driver;
               src = inputs.helix-zsh;
             };
 
