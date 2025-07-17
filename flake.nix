@@ -77,7 +77,6 @@
               imports = [
                 homeManagerModules.erdtree
                 homeManagerModules.helix
-                homeManagerModules.helix-zsh
                 homeManagerModules.yazi
                 homeManagerModules.zellij
               ];
