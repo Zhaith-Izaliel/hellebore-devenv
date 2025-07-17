@@ -104,23 +104,6 @@
         "type": "github"
       }
     },
-    "helix-zsh": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1744194134,
-        "narHash": "sha256-KLbLNaN2yvKxhTROJIasNEaNf36ApvcgrVgWoE5a72A=",
-        "owner": "john-h-k",
-        "repo": "helix-zsh",
-        "rev": "b24f06f7792ed517956e9dc8424229ab6e616630",
-        "type": "github"
-      },
-      "original": {
-        "owner": "john-h-k",
-        "ref": "b24f06f",
-        "repo": "helix-zsh",
-        "type": "github"
-      }
-    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -201,7 +184,6 @@
         "flake-parts": "flake-parts",
         "gdshader-lsp": "gdshader-lsp",
         "helix": "helix",
-        "helix-zsh": "helix-zsh",
         "nil": "nil",
         "nixpkgs": "nixpkgs",
         "simple-completion-language-server": "simple-completion-language-server",

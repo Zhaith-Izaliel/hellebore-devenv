@@ -7,10 +7,6 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix-zsh = {
-      url = "github:john-h-k/helix-zsh/b24f06f";
-      flake = false;
-    };
     zeco = {
       url = "github:julianbuettner/zeco";
       flake = false;
@@ -116,15 +112,6 @@
             in {
               imports = [home-module];
             };
-
-            helix-zsh = {pkgs, ...}: let
-              home-module = import ./helix-zsh/nix/hm-module.nix {
-                package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-zsh);
-                helix-driver-package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.helix-driver);
-              };
-            in {
-              imports = [home-module];
-            };
           };
         };
 
@@ -137,15 +124,6 @@
             fusion = pkgs.callPackage ./common/fusion.nix {};
 
             helix = inputs.helix.packages.${system}.default;
-
-            helix-zsh = pkgs.callPackage ./helix-zsh/nix/packages/helix-zsh.nix {
-              src = inputs.helix-zsh;
-            };
-
-            helix-driver = pkgs.callPackage ./helix-zsh/nix/packages/helix-driver.nix {
-              inherit helix;
-              src = inputs.helix-zsh;
-            };
 
             helix-config = pkgs.callPackage ./helix/nix {
               inherit fusion;
