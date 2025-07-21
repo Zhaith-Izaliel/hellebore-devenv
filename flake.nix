@@ -99,6 +99,7 @@
             zellij = {pkgs, ...}: let
               home-module = import ./zellij/nix/hm-module.nix {
                 package = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zellij-config);
+                zecoPackage = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.zeco);
               };
             in {
               imports = [home-module];
@@ -123,6 +124,8 @@
             fusion = pkgs.callPackage ./common/fusion.nix {};
 
             helix = inputs.helix.packages.${system}.default;
+
+            zeco = pkgs.callPackage ./zellij/nix/zeco.nix {src = inputs.zeco;};
 
             helix-config = pkgs.callPackage ./helix/nix {
               inherit fusion;

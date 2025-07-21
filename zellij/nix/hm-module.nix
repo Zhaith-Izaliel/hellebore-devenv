@@ -1,4 +1,7 @@
-{package}: {
+{
+  package,
+  zecoPackage,
+}: {
   config,
   pkgs,
   lib,
@@ -12,6 +15,7 @@
     mkOption
     mkPackageOption
     literalExpression
+    optional
     ;
 
   extraTypes = import ../../common/types.nix {inherit lib;};
@@ -186,11 +190,25 @@ in {
     };
 
     layoutAlias = mkEnableOption "`zlayout` as an alias to select a layout under {file}`$XDG_CONFIG_HOME/zellij/layouts` in a new tab.";
+
+    zeco = {
+      enable = mkEnableOption "Zeco for sharing session across devices.";
+
+      package = mkOption {
+        type = types.package;
+        default = zecoPackage;
+        description = "The `zeco` package to use.";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
     assertions = [
       (utils.mkConflictLayoutsAssertion [../layouts] cfg.layouts "Zellij")
+    ];
+
+    home.packages = optional cfg.zeco.enable [
+      cfg.zeco.package
     ];
 
     home.shellAliases = mkIf cfg.layoutAlias {
