@@ -207,9 +207,7 @@ in {
       (utils.mkConflictLayoutsAssertion [../layouts] cfg.layouts "Zellij")
     ];
 
-    home.packages = optional cfg.zeco.enable [
-      cfg.zeco.package
-    ];
+    home.packages = optional cfg.zeco.enable cfg.zeco.package;
 
     home.shellAliases = mkIf cfg.layoutAlias {
       zlayout = "zellij action new-tab --layout";
