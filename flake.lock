@@ -3,11 +3,11 @@
     "auto-layout.yazi": {
       "flake": false,
       "locked": {
-        "lastModified": 1741370133,
-        "narHash": "sha256-sGyy1tLDqR1aNrxQBHcswqussorIkQX70rsR2JoC1Lo=",
+        "lastModified": 1753463750,
+        "narHash": "sha256-xzV3Sp4QbA3N7UsuLN9vYdnnLfcwDPRfhxq+UAV7hRc=",
         "owner": "josephschmitt",
         "repo": "auto-layout.yazi",
-        "rev": "626a6016283558b9766fe305e76b694dd9fb6156",
+        "rev": "c8a3d8dbab5a9307c2334ea5d7e00d2a29a1de97",
         "type": "github"
       },
       "original": {
@@ -37,11 +37,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1751413152,
-        "narHash": "sha256-Tyw1RjYEsp5scoigs1384gIg6e0GoBVjms4aXFfRssQ=",
+        "lastModified": 1754091436,
+        "narHash": "sha256-XKqDMN1/Qj1DKivQvscI4vmHfDfvYR2pfuFOJiCeewM=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "77826244401ea9de6e3bac47c2db46005e1f30b5",
+        "rev": "67df8c627c2c39c41dbec76a1f201929929ab0bd",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
     "gdshader-lsp": {
       "flake": false,
       "locked": {
-        "lastModified": 1708678928,
-        "narHash": "sha256-kzZhHIRXW3m3n5TlNRDQO9XsDoSi59N7+4NeFKtauEM=",
+        "lastModified": 1754157100,
+        "narHash": "sha256-TcL5o7mBxoTOL+QWbH+467nnzzDB8ev0BeLIw/h7FQQ=",
         "owner": "GodOfAvacyn",
         "repo": "gdshader-lsp",
-        "rev": "f3847df8a17cd66674b2ec058c020d80ff7d4f8f",
+        "rev": "b290b6793498ba1795b869a58a18eda2d22b8f3a",
         "type": "github"
       },
       "original": {
@@ -91,11 +91,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1752604012,
-        "narHash": "sha256-/gfIVM+Vl1udE3QXgaiDV1ydfOzHQrC9ZduDdLgafuo=",
+        "lastModified": 1754257102,
+        "narHash": "sha256-bR48LaaWIvrWRRoZ0qnYa7DK1DIssUklrQFm36OD5PA=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "5cda70e86637c376bdfaaf3383872e44d7622ff8",
+        "rev": "43990ed0c88a7e7d956364a5d11e25ad6cb0a29f",
         "type": "github"
       },
       "original": {
@@ -133,11 +133,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751341694,
-        "narHash": "sha256-zXag1+8iZC3H5yVFP7KhIi4ps9z8xKrFIkyaeXlZ7Uo=",
+        "lastModified": 1753661392,
+        "narHash": "sha256-fK4INnIJQNAA8cyjcDRZSPleA+N/STI6I0oBDMZ2r+E=",
         "owner": "oxalica",
         "repo": "nil",
-        "rev": "b043bfe1f3f4c4be4b688e24c5ae96e81f525805",
+        "rev": "cd7a6f6d5dc58484e62a8e85677e06e47cf2bd4d",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1752436162,
-        "narHash": "sha256-Kt1UIPi7kZqkSc5HVj6UY5YLHHEzPBkgpNUByuyxtlw=",
+        "lastModified": 1754292888,
+        "narHash": "sha256-1ziydHSiDuSnaiPzCQh1mRFBsM2d2yRX9I+5OPGEmIE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dfcd5b901dbab46c9c6e80b265648481aafb01f8",
+        "rev": "ce01daebf8489ba97bd1609d185ea276efdeb121",
         "type": "github"
       },
       "original": {
@@ -164,11 +164,11 @@
     },
     "nixpkgs-lib": {
       "locked": {
-        "lastModified": 1751159883,
-        "narHash": "sha256-urW/Ylk9FIfvXfliA1ywh75yszAbiTEVgpPeinFyVZo=",
+        "lastModified": 1753579242,
+        "narHash": "sha256-zvaMGVn14/Zz8hnp4VWT9xVnhc8vuL3TStRqwk22biA=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "14a40a1d7fb9afa4739275ac642ed7301a9ba1ab",
+        "rev": "0f36c44e01a6129be94e3ade315a5883f0228a6e",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1752559159,
-        "narHash": "sha256-98pUe4TIRvytuFtVjr39SQ/eu3AowDgvkLDI81cLpLE=",
+        "lastModified": 1753768225,
+        "narHash": "sha256-TiVzgwsP1KZxTxW71eQyp1bkDnyTaMJdBYmkdvl1RX0=",
         "owner": "estin",
         "repo": "simple-completion-language-server",
-        "rev": "4d68b48bbac9c93a1f1fbd9bfe03a7f9a6fdb35e",
+        "rev": "cc57b08ebc68805266beacb512a453e16f86bf17",
         "type": "github"
       },
       "original": {
