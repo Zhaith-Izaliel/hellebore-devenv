@@ -33,9 +33,9 @@ in {
       sumneko-lua-language-server
       rust-analyzer
       pyright
-      nodePackages.vscode-langservers-extracted # CSS, HTML, JSON, ESLint
-      nodePackages.typescript-language-server
-      nodePackages.graphql-language-service-cli # TEMP: Currently broken in unstable
+      vscode-langservers-extracted # CSS, HTML, JSON, ESLint
+      typescript-language-server
+      graphql-language-service-cli
       tailwindcss-language-server
       texlab
       haskell-language-server
