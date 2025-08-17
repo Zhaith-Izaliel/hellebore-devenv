@@ -17,7 +17,7 @@ rustPlatform.buildRustPackage {
     openssl
   ];
 
-  cargoHash = "sha256-l5LxZyi1jOVa4a0JzCLXMQksplre559B9ofJoluVZio=";
+  cargoHash = "sha256-aiHBAQC/NwIud91p7sMXBYKEKs5mDHbDznid+tTC7Uc=";
 
   meta.mainProgram = "zeco";
 }
