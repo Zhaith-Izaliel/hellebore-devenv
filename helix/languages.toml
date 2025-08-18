@@ -43,12 +43,19 @@ at-rule-no-unknown = [
   true,
   { ignoreAtRules = [
     "apply",
-    "screen",
-    "tailwind",
+    "screen",         # DEPRECATED in Tailwind v4
+    "tailwind",       # DEPRECATED in Tailwind v4
     "config",
-    "layer",
-    "variants",
+    "layer",          # DEPRECATED in Tailwind v4
+    "variant",
     "responsive",
+    "custom-variant",
+    "theme",
+    "source",
+    "reference",
+    "utility",
+    "config",         # COMPAT
+    "plugin",         # COMPAT
   ] },
 ]
 function-no-unknown = [true, { ignoreFunctions = ["theme"] }]
