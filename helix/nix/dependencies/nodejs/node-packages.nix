@@ -31,13 +31,13 @@ let
         sha512 = "D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==";
       };
     };
-    "@babel/parser-7.28.0" = {
+    "@babel/parser-7.28.3" = {
       name = "_at_babel_slash_parser";
       packageName = "@babel/parser";
-      version = "7.28.0";
+      version = "7.28.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@babel/parser/-/parser-7.28.0.tgz";
-        sha512 = "jVZGvOxOuNSsuQuLRTh13nU0AogFlw32w/MT+LV6D3sP5WdbW61E77RnkbaO2dUvmPAYrBDJXGn5gGS6tH4j8g==";
+        url = "https://registry.npmjs.org/@babel/parser/-/parser-7.28.3.tgz";
+        sha512 = "7+Ey1mAgYqFAx2h0RuoxcQT5+MlG3GTV0TQrgr7/ZliKsm/MNDxVVutlWaziMq7wJNAz8MTqz55XLpWvva6StA==";
       };
     };
     "@babel/types-7.28.2" = {
@@ -185,31 +185,31 @@ let
         sha512 = "oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==";
       };
     };
-    "@spyglassmc/core-0.4.32" = {
+    "@spyglassmc/core-0.4.33" = {
       name = "_at_spyglassmc_slash_core";
       packageName = "@spyglassmc/core";
-      version = "0.4.32";
+      version = "0.4.33";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@spyglassmc/core/-/core-0.4.32.tgz";
-        sha512 = "s+6x7JsAiEBOPAewxw7EGRdnQy6i34bs3LacN8MPhcKpPb0iDqNzfk7MkEmGPX7oTgy5GkHNYMspG4VS4N6q/w==";
+        url = "https://registry.npmjs.org/@spyglassmc/core/-/core-0.4.33.tgz";
+        sha512 = "nzq7oILxzHWogRF4OmYp/fkI0B3R/uNAEQWjDivGT0NrRNmg0V9Rq60lKPBk+ejZ0FwhWec2c5rMfhfaO3Lj1g==";
       };
     };
-    "@spyglassmc/java-edition-0.3.43" = {
+    "@spyglassmc/java-edition-0.3.44" = {
       name = "_at_spyglassmc_slash_java-edition";
       packageName = "@spyglassmc/java-edition";
-      version = "0.3.43";
+      version = "0.3.44";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@spyglassmc/java-edition/-/java-edition-0.3.43.tgz";
-        sha512 = "Qky84q4j3NaaZgZO71J6T7ZNmhSnpVJd0OmO+2Eh/5PWqYSxdWsfr1waxN3aJ3Ww4UBwMFxEd54gqsKop1A3/A==";
+        url = "https://registry.npmjs.org/@spyglassmc/java-edition/-/java-edition-0.3.44.tgz";
+        sha512 = "6PEEDFv176lBKQNnGMThGhT9/rnIkhIh/q1KD6+efoiZT4PnkzosTGYjet74lhR6oqnLdzmb8iJUZuXU7myPcw==";
       };
     };
-    "@spyglassmc/json-0.3.36" = {
+    "@spyglassmc/json-0.3.37" = {
       name = "_at_spyglassmc_slash_json";
       packageName = "@spyglassmc/json";
-      version = "0.3.36";
+      version = "0.3.37";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@spyglassmc/json/-/json-0.3.36.tgz";
-        sha512 = "2HcikmkHWhWdNJlvgBabJjwfiejVXP9B/BGFL1UFDG6t3CztDCpDS06QMSY0GLBjBVKeJEF1MY9MSemSUbL1ug==";
+        url = "https://registry.npmjs.org/@spyglassmc/json/-/json-0.3.37.tgz";
+        sha512 = "W2G8lFb59vD2n+q7mfkivgtCqBC5gWmjU18K5vFeV144nBiyP2poc9AI4pnh24PkbxMH33ML58Q1AsT0uiNNZQ==";
       };
     };
     "@spyglassmc/locales-0.3.17" = {
@@ -221,31 +221,31 @@ let
         sha512 = "4FHGR/r+rqZhxQazJINTkgsYduh1mB1P9wZpjM0I0pwq8Fv/gy/Ud+iaGAq034juPC7CAf58KfyzlnMDCYpnWw==";
       };
     };
-    "@spyglassmc/mcdoc-0.3.36" = {
+    "@spyglassmc/mcdoc-0.3.37" = {
       name = "_at_spyglassmc_slash_mcdoc";
       packageName = "@spyglassmc/mcdoc";
-      version = "0.3.36";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@spyglassmc/mcdoc/-/mcdoc-0.3.36.tgz";
-        sha512 = "8U3Z2YHI8sfHikRZ3DyW5kniyRPwjwJth38Y3c0BLa2y1moaiFxKxQIYr7Y5V0sMsoXsGd45ccoz4q16WCqqiA==";
-      };
-    };
-    "@spyglassmc/mcfunction-0.2.35" = {
-      name = "_at_spyglassmc_slash_mcfunction";
-      packageName = "@spyglassmc/mcfunction";
-      version = "0.2.35";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/@spyglassmc/mcfunction/-/mcfunction-0.2.35.tgz";
-        sha512 = "CaW+svU2H/a5wtb9KOHvj9lLiauBWy8MujA9vTt4inXtrG18uavER4UcKlWhswaoqU49QAnxGXW/e1Qv3LdlVw==";
-      };
-    };
-    "@spyglassmc/nbt-0.3.37" = {
-      name = "_at_spyglassmc_slash_nbt";
-      packageName = "@spyglassmc/nbt";
       version = "0.3.37";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@spyglassmc/nbt/-/nbt-0.3.37.tgz";
-        sha512 = "ga8+zGu9SjPuJTccU5MCJr4k+CzwEx4NKTBU0fueSguPzk6wCA5y7WP2SD2xtHAzevZDQOUv2qcv55UbO7uFcg==";
+        url = "https://registry.npmjs.org/@spyglassmc/mcdoc/-/mcdoc-0.3.37.tgz";
+        sha512 = "QavnWCyT/LWZ5dhc+/rOV1zrHHBbYyVGCwTsMBcBQW/C3yYKHFEKkLGhl27OVrG4G4gh83AmREaL1L+DtWqRaw==";
+      };
+    };
+    "@spyglassmc/mcfunction-0.2.36" = {
+      name = "_at_spyglassmc_slash_mcfunction";
+      packageName = "@spyglassmc/mcfunction";
+      version = "0.2.36";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@spyglassmc/mcfunction/-/mcfunction-0.2.36.tgz";
+        sha512 = "IpsnHiSNQmD6YRWCX3XSlNBgexgJc3xJyTSryFXoNR9pWoGwVPLl6Gz+BdjJXTN5oPMdOg4R7yKLtkTFAx/AZA==";
+      };
+    };
+    "@spyglassmc/nbt-0.3.38" = {
+      name = "_at_spyglassmc_slash_nbt";
+      packageName = "@spyglassmc/nbt";
+      version = "0.3.38";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/@spyglassmc/nbt/-/nbt-0.3.38.tgz";
+        sha512 = "FetOBmCn3pNdoTYOBBpUPkuVHZHLgiaMvaLAcc5s3Y+hZXN1+awYduHzNlFNCEmibhvAa4f0WxadhBPPPuHGBQ==";
       };
     };
     "@types/minimist-1.2.5" = {
@@ -410,13 +410,13 @@ let
         sha512 = "B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==";
       };
     };
-    "alien-signals-2.0.6" = {
+    "alien-signals-2.0.7" = {
       name = "alien-signals";
       packageName = "alien-signals";
-      version = "2.0.6";
+      version = "2.0.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/alien-signals/-/alien-signals-2.0.6.tgz";
-        sha512 = "P3TxJSe31bUHBiblg59oU1PpaWPtmxF9GhJ/cB7OkgJ0qN/ifFSKUI25/v8ZhsT+lIG6ac8DpTOplXxORX6F3Q==";
+        url = "https://registry.npmjs.org/alien-signals/-/alien-signals-2.0.7.tgz";
+        sha512 = "wE7y3jmYeb0+h6mr5BOovuqhFv22O/MV9j5p0ndJsa7z1zJNPGQ4ph5pQk/kTTCWRC3xsA4SmtwmkzQO+7NCNg==";
       };
     };
     "ansi-regex-5.0.1" = {
@@ -2381,13 +2381,13 @@ let
         sha512 = "cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==";
       };
     };
-    "spdx-license-ids-3.0.21" = {
+    "spdx-license-ids-3.0.22" = {
       name = "spdx-license-ids";
       packageName = "spdx-license-ids";
-      version = "3.0.21";
+      version = "3.0.22";
       src = fetchurl {
-        url = "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.21.tgz";
-        sha512 = "Bvg/8F5XephndSK3JffaRqdT+gyhfqIPwDHpX80tJrF8QQRYMo8sNMeaZ2Dp5+jhwKnUmIOyFFQfHRkjJm5nXg==";
+        url = "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.22.tgz";
+        sha512 = "4PRT4nh1EImPbt2jASOKHX7PB7I+e4IWNLvkKFDxNhJlfjbYlleYQh285Z/3mPTHSAK/AvdMmw5BNNuYH8ShgQ==";
       };
     };
     "string-width-4.2.3" = {
@@ -3047,7 +3047,7 @@ in
       sources."spdx-correct-3.2.0"
       sources."spdx-exceptions-2.5.0"
       sources."spdx-expression-parse-3.0.1"
-      sources."spdx-license-ids-3.0.21"
+      sources."spdx-license-ids-3.0.22"
       sources."string-width-4.2.3"
       sources."strip-ansi-6.0.1"
       sources."strip-indent-4.0.0"
@@ -3098,7 +3098,7 @@ in
     dependencies = [
       sources."@babel/helper-string-parser-7.27.1"
       sources."@babel/helper-validator-identifier-7.27.1"
-      sources."@babel/parser-7.28.0"
+      sources."@babel/parser-7.28.3"
       sources."@babel/types-7.28.2"
       sources."@emmetio/abbreviation-2.3.3"
       sources."@emmetio/css-abbreviation-2.1.8"
@@ -3123,7 +3123,7 @@ in
       sources."@vue/shared-3.5.18"
       sources."@vue/typescript-plugin-3.0.5"
       sources."acorn-7.4.1"
-      sources."alien-signals-2.0.6"
+      sources."alien-signals-2.0.7"
       sources."call-bind-apply-helpers-1.0.2"
       sources."call-bound-1.0.4"
       sources."character-parser-2.2.0"
@@ -3193,19 +3193,19 @@ in
   "@spyglassmc/language-server" = nodeEnv.buildNodePackage {
     name = "_at_spyglassmc_slash_language-server";
     packageName = "@spyglassmc/language-server";
-    version = "0.4.43";
+    version = "0.4.44";
     src = fetchurl {
-      url = "https://registry.npmjs.org/@spyglassmc/language-server/-/language-server-0.4.43.tgz";
-      sha512 = "R9Y81c+qLzK/tLt5fhSKrDlkpxbdH8gOhxCbd2Lf5WdKXAg3tFnWPa02JmOWZoF/SP2uM6ggXDqvni4UF7Oj3g==";
+      url = "https://registry.npmjs.org/@spyglassmc/language-server/-/language-server-0.4.44.tgz";
+      sha512 = "jJSgJ2oO5IXPeoqX+gI8wLc2WNGLLCbuPkhRnu6A58d4DLFlb56ugx31XCLgOalN/pVMAmUJdMpirfPlb2ngcA==";
     };
     dependencies = [
-      sources."@spyglassmc/core-0.4.32"
-      sources."@spyglassmc/java-edition-0.3.43"
-      sources."@spyglassmc/json-0.3.36"
+      sources."@spyglassmc/core-0.4.33"
+      sources."@spyglassmc/java-edition-0.3.44"
+      sources."@spyglassmc/json-0.3.37"
       sources."@spyglassmc/locales-0.3.17"
-      sources."@spyglassmc/mcdoc-0.3.36"
-      sources."@spyglassmc/mcfunction-0.2.35"
-      sources."@spyglassmc/nbt-0.3.37"
+      sources."@spyglassmc/mcdoc-0.3.37"
+      sources."@spyglassmc/mcfunction-0.2.36"
+      sources."@spyglassmc/nbt-0.3.38"
       (sources."anymatch-3.1.3" // {
         dependencies = [
           sources."picomatch-2.3.1"
@@ -3344,6 +3344,23 @@ in
       description = "![banner](https://raw.githubusercontent.com/SpyglassMC/logo/main/banner.png)";
       homepage = "https://spyglassmc.com";
       license = "MIT";
+    };
+    production = true;
+    bypassCache = true;
+    reconstructLock = true;
+  };
+  typescript-language-server = nodeEnv.buildNodePackage {
+    name = "typescript-language-server";
+    packageName = "typescript-language-server";
+    version = "4.4.0";
+    src = fetchurl {
+      url = "https://registry.npmjs.org/typescript-language-server/-/typescript-language-server-4.4.0.tgz";
+      sha512 = "enWhplhHX7PA0q+IcKHBMpTQh9I2Bmb3L45rwnkATHMsZ7YLduyyCdOmVUWJSYZfkWaBMiKwi/e2FQo4xsKeWw==";
+    };
+    buildInputs = globalBuildInputs;
+    meta = {
+      description = "Language Server Protocol (LSP) implementation for TypeScript using tsserver";
+      license = "Apache-2.0";
     };
     production = true;
     bypassCache = true;

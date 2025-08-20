@@ -34,7 +34,6 @@ in {
       rust-analyzer
       pyright
       vscode-langservers-extracted # CSS, HTML, JSON, ESLint
-      typescript-language-server
       graphql-language-service-cli
       tailwindcss-language-server
       texlab
@@ -62,6 +61,7 @@ in {
       nodejs-packages.stylelint-lsp
       nodejs-packages."@vue/language-server"
       nodejs-packages."@spyglassmc/language-server"
+      nodejs-packages.typescript-language-server
     ];
 
   debug-adapters = with pkgs; [
