@@ -273,7 +273,7 @@ auto-format = true
 
 [[language]]
 name = "latex"
-language-servers = ["ltex-ls", "scls", "typos"]
+language-servers = ["texlab", "ltex-ls", "scls", "typos"]
 auto-format = true
 
 [[language]]
