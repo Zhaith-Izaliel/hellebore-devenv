@@ -242,7 +242,7 @@ auto-format = true
 
 [[language]]
 name = "c"
-language-servers = ["ccls", "clangd", "ctags-lsp", "scls", "typos"]
+language-servers = ["clangd", "ctags-lsp", "scls", "typos"]
 indent = { tab-width = 4, unit = "    " }
 auto-format = true
 
