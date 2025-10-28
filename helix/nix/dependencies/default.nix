@@ -50,6 +50,7 @@ in {
       typos-lsp
       glsl_analyzer
       zls
+      kdePackages.full # change to kdePackages.qtdeclarative after 25.11
     ])
     ++ [
       (pkgs.taplo.override {withLsp = true;})

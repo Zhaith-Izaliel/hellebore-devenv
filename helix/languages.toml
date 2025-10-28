@@ -105,6 +105,11 @@ language-servers = ["gdshader", "typos", "scls"]
 auto-format = true
 
 [[language]]
+name = "qml"
+language-servers = ["qmlls", "scls", "typos"]
+auto-format = true
+
+[[language]]
 name = "mcfunction"
 language-servers = ["spyglassmc", "scls", "typos"]
 scope = "source.mcfunction"
