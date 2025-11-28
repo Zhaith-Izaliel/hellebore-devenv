@@ -30,7 +30,7 @@ in {
       nil
       nixd
       emmet-ls
-      sumneko-lua-language-server
+      lua-language-server
       rust-analyzer
       pyright
       vscode-langservers-extracted # CSS, HTML, JSON, ESLint
