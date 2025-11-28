@@ -2,7 +2,7 @@
   description = "Zhaith Izaliel's Helix configuration.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     helix = {
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,7 +63,7 @@
       };
 
       config = {
-        systems = ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
+        systems = ["x86_64-linux" "aarch64-linux"];
 
         flake = rec {
           overlays.helix =
