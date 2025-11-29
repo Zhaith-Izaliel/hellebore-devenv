@@ -26,6 +26,7 @@ in {
   language-servers =
     (with pkgs; [
       simple-completion-language-server
+      hx-lsp
       jdt-language-server
       nil
       nixd
